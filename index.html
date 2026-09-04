@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IvanSasi</title>
+<meta name="description" content="Graphic designer, T1D, IS Studio">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0a2f52;
+    --blue:#0c447c;
+    --red:#c2453a;
+    --gold:#c9a24b;
+    --text:#f2efe9;
+    --muted:#8fa4b8;
+    --rule:rgba(242,239,233,0.12);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--navy);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{
+    max-width:460px;
+    margin:0 auto;
+    padding:48px 24px 64px;
+  }
+  .header{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    opacity:0;
+    animation:rise .6s ease-out forwards;
+  }
+  @keyframes rise{
+    from{opacity:0;transform:translateY(8px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .avatar{
+    width:64px;height:64px;border-radius:50%;
+    object-fit:cover;flex-shrink:0;
+    background:var(--blue);
+  }
+  .name{
+    font-family:'Fraunces',serif;
+    font-size:26px;
+    font-weight:600;
+    margin:0;
+    line-height:1.1;
+  }
+  .tagline{
+    margin:4px 0 0;
+    font-size:14px;
+    color:var(--muted);
+  }
+  .socials{
+    display:flex;
+    gap:10px;
+    margin:24px 0 36px;
+  }
+  .socials a{
+    width:38px;height:38px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(242,239,233,0.06);
+    transition:background .15s ease;
+  }
+  .socials a:hover, .socials a:focus-visible{
+    background:rgba(242,239,233,0.14);
+  }
+  .socials svg{width:17px;height:17px;fill:var(--text);}
+  .section-title{
+    font-size:13px;
+    color:var(--muted);
+    margin:0 0 12px;
+    font-weight:500;
+  }
+  section{margin-bottom:36px;}
+  section:last-of-type{margin-bottom:0;}
+  .featured{
+    background:var(--blue);
+    border-radius:14px;
+    padding:20px;
+    display:flex;
+    gap:16px;
+    align-items:center;
+  }
+  .featured img{
+    width:56px;height:56px;
+    border-radius:8px;
+    object-fit:cover;
+    flex-shrink:0;
+  }
+  .featured .body h3{
+    margin:0 0 4px;
+    font-size:16px;
+    font-weight:600;
+  }
+  .featured .body p{
+    margin:0;
+    font-size:13px;
+    color:rgba(242,239,233,0.75);
+  }
+  .featured .tag{
+    display:inline-block;
+    margin-top:8px;
+    font-size:11px;
+    padding:2px 9px;
+    border-radius:20px;
+    background:var(--red);
+    color:#fff;
+  }
+  .rows{
+    display:flex;
+    flex-direction:column;
+  }
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 2px;
+    border-bottom:1px solid var(--rule);
+    font-size:15px;
+    transition:opacity .15s ease;
+  }
+  .rows a.row:hover, .rows a.row:focus-visible{opacity:.7;}
+  .row:last-child{border-bottom:none;}
+  .row .arrow{color:var(--muted);font-size:16px;}
+  .studio{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px;
+    border-radius:12px;
+    border:1px solid rgba(201,162,75,0.35);
+  }
+  .studio .mark{
+    width:38px;height:38px;
+    border-radius:8px;
+    background:#141414;
+    color:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:16px;
+    flex-shrink:0;
+  }
+  .studio h3{margin:0;font-size:15px;font-weight:600;color:var(--gold);}
+  .studio p{margin:2px 0 0;font-size:12.5px;color:var(--muted);}
+  footer{
+    margin-top:56px;
+    font-size:12px;
+    color:var(--muted);
+    text-align:left;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <img class="avatar" src="assets/avatar.jpg" alt="IvanSasi" onerror="this.style.display='none'">
+    <div>
+      <p class="name">IvanSasi</p>
+      <p class="tagline">Graphic designer, T1D, IS Studio</p>
+    </div>
+  </div>
+  <div class="socials">
+    <a href="https://www.facebook.com/IvanSasi" aria-label="Facebook" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/ivansasi/" aria-label="Instagram" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.1 0 4.1.1 1.1 0 1.8.2 2.5.5.7.3 1.2.6 1.8 1.2.6.6.9 1.1 1.2 1.8.3.7.5 1.4.5 2.5.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c0 1.1-.2 1.8-.5 2.5-.3.7-.6 1.2-1.2 1.8-.6.6-1.1.9-1.8 1.2-.7.3-1.4.5-2.5.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1.1 0-1.8-.2-2.5-.5-.7-.3-1.2-.6-1.8-1.2-.6-.6-.9-1.1-1.2-1.8-.3-.7-.5-1.4-.5-2.5C2 15.1 2 14.7 2 12s0-3.1.1-4.1c0-1.1.2-1.8.5-2.5.3-.7.6-1.2 1.2-1.8.6-.6 1.1-.9 1.8-1.2.7-.3 1.4-.5 2.5-.5C8.9 2 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.2-8.4a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4z"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/ivansasi" aria-label="TikTok" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M16.6 2h-3.3v13.6a2.7 2.7 0 1 1-2.3-2.7v-3.3a6 6 0 1 0 5.6 6V8.4a7.8 7.8 0 0 0 4.4 1.4V6.5a4.4 4.4 0 0 1-4.4-4.4z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/ivan-salvatore-nasti-91605683?utm_source=share_via&utm_content=profile&utm_medium=member_android" aria-label="LinkedIn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 3.95 0 4.68 2.6 4.68 6V21H17V15.3c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8H9z"/></svg>
+    </a>
+    <a href="mailto:Ivansalvatorenasti@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5zm2.2.5 7.8 6.2L19.8 6zM4 8.1V18h16V8.1l-8 6.4z"/></svg>
+    </a>
+    <a href="https://t.me/ivansasi" aria-label="Telegram" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M21.9 4.3 18.7 20c-.2.9-.8 1.1-1.6.7l-4.4-3.3-2.1 2c-.2.2-.4.4-.9.4l.3-4.6 8.4-7.6c.4-.3-.1-.5-.5-.2L7 12.3l-4.4-1.4c-.9-.3-.9-.9.2-1.4L20.6 3.2c.8-.3 1.5.2 1.3 1.1z"/></svg>
+    </a>
+  </div>
+  <section>
+    <p class="section-title">Utility</p>
+    <a class="featured" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener">
+      <img src="assets/thumbnail_card_t1d.png" alt="">
+      <div class="body">
+        <h3>Card d'emergenza · diabete tipo 1</h3>
+        <p>Scaricala, stampala, mettila nel portafoglio</p>
+        <span class="tag">GRATIS</span>
+      </div>
+    </a>
+  </section>
+  <section>
+    <p class="section-title">Accessori Type 1</p>
+    <div class="rows">
+      <a class="row" href="https://amazon.it/dp/B0BPCRPXWK?ref=ppx_yo2ov_dt_b_fed_asin_title" target="_blank" rel="noopener">
+        <span>MySweetStitch — cerotti Dexcom G7, blu</span>
+        <span class="arrow">›</span>
+      </a>
+      <a class="row" href="https://www.amazon.it/gp/aw/d/B0CGZ51GTS/?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=3e09238d010c3c270ea64d9baa3a6b7c&hsa_cr_id=0&qid=1788471573&sr=1-3-e0fa1fdd-d857-4087-adda-5bd576b25987&i=aps&aref=Jo2egMOvyT&ref_=sbx_s_sparkle_sbtcd_asin_2_title&pd_rd_w=e8oNn&content-id=amzn1.sym.b1236a49-4991-48b8-af73-28e245e6c8ec%3Aamzn1.sym.b1236a49-4991-48b8-af73-28e245e6c8ec&pf_rd_p=b1236a49-4991-48b8-af73-28e245e6c8ec&pf_rd_r=QJ927V8SCEYVAY0FGCST&pd_rd_wg=ic3z9&pd_rd_r=7e728442-5b3d-4539-b6e1-365abd3eda47&th=1&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcAUHAPNwZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp4mC6YyRlXD-RvYAUaW9jNBLzwQ0JR3Bk5YL12FVSuyeVm3nNvZOuT1jdST6_aem_DJ9npdVcvTJehJkdClBcig" target="_blank" rel="noopener">
+        <span>Cerotti Dexcom G7 impermeabili</span>
+        <span class="arrow">›</span>
+      </a>
+    </div>
+  </section>
+  <section>
+    <p class="section-title">Progetti</p>
+    <a class="studio" href="https://www.instagram.com/is_studiolab" target="_blank" rel="noopener">
+      <div class="mark">IS</div>
+      <div>
+        <h3>IS | Inspiration Studio</h3>
+        <p>Overlay e grafiche per creator TikTok Live</p>
+      </div>
+    </a>
+  </section>
+  <footer>
+    IvanSasi — Napoli
+  </footer>
+</div>
+</body>
+</html>
