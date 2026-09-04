@@ -10,18 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0a2f52;
-    --blue:#0c447c;
-    --red:#c2453a;
+    --navy:#020812;
+    --blue:#07345f;
+    --accent:#0787d7;
+    --red:#0787d7;
     --gold:#c9a24b;
-    --text:#f2efe9;
-    --muted:#8fa4b8;
-    --rule:rgba(242,239,233,0.12);
+    --text:#f4f7fa;
+    --muted:#7893ad;
+    --rule:rgba(7,135,215,0.20);
   }
   *{box-sizing:border-box;}
   body{
     margin:0;
-    background:var(--navy);
+    background:radial-gradient(circle at 80% 0%, #06284a 0, #020812 38%, #01050b 100%);
     color:var(--text);
     font-family:'Inter',sans-serif;
     -webkit-font-smoothing:antialiased;
@@ -73,11 +74,13 @@
     width:38px;height:38px;
     border-radius:50%;
     display:flex;align-items:center;justify-content:center;
-    background:rgba(242,239,233,0.06);
+    background:rgba(4,25,45,0.88);
+    border:1px solid rgba(7,135,215,0.16);
     transition:background .15s ease;
   }
   .socials a:hover, .socials a:focus-visible{
-    background:rgba(242,239,233,0.14);
+    background:rgba(7,135,215,0.18);
+    border-color:rgba(7,135,215,0.42);
   }
   .socials svg{width:17px;height:17px;fill:var(--text);}
 
@@ -93,7 +96,9 @@
 
   /* Featured PDF block */
   .featured{
-    background:var(--blue);
+    background:linear-gradient(135deg, rgba(7,52,95,0.96), rgba(4,31,57,0.96));
+    border:1px solid rgba(7,135,215,0.28);
+    box-shadow:0 10px 28px rgba(0,0,0,.22);
     border-radius:14px;
     padding:20px;
     display:flex;
@@ -114,7 +119,7 @@
   .featured .body p{
     margin:0;
     font-size:13px;
-    color:rgba(242,239,233,0.75);
+    color:rgba(220,233,244,0.76);
   }
   .featured .tag{
     display:inline-block;
@@ -122,7 +127,7 @@
     font-size:11px;
     padding:2px 9px;
     border-radius:20px;
-    background:var(--red);
+    background:var(--accent);
     color:#fff;
   }
 
@@ -137,16 +142,20 @@
     gap:12px;
     padding:12px 2px;
     border-bottom:1px solid var(--rule);
+    background:rgba(3,18,33,0.34);
     font-size:15px;
     transition:opacity .15s ease;
   }
   .rows a.row:hover, .rows a.row:focus-visible{opacity:.7;}
   .row:last-child{border-bottom:none;}
+  .row:first-child{border-radius:12px 12px 0 0;}
+  .row:last-child{border-radius:0 0 12px 12px;}
   .product-thumb{
     width:54px;height:54px;
     border-radius:10px;
     object-fit:cover;
-    background:#fff;
+    background:#f7f9fb;
+    border:1px solid rgba(7,135,215,0.18);
     flex-shrink:0;
   }
   .row .product-name{
@@ -191,7 +200,6 @@
 <div class="wrap">
 
   <div class="header">
-    <!-- Sostituisci assets/avatar.jpg con la tua foto (stesso nome file) -->
     <img class="avatar" src="assets/avatar.jpg" alt="IvanSasi" onerror="this.style.display='none'">
     <div>
       <p class="name">IvanSasi</p>
@@ -209,15 +217,12 @@
     <a href="https://www.tiktok.com/ivansasi" aria-label="TikTok" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M16.6 2h-3.3v13.6a2.7 2.7 0 1 1-2.3-2.7v-3.3a6 6 0 1 0 5.6 6V8.4a7.8 7.8 0 0 0 4.4 1.4V6.5a4.4 4.4 0 0 1-4.4-4.4z"/></svg>
     </a>
-    <!-- Sostituisci con l'URL del tuo profilo LinkedIn -->
     <a href="https://www.linkedin.com/in/ivan-salvatore-nasti-91605683?utm_source=share_via&utm_content=profile&utm_medium=member_android" aria-label="LinkedIn" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 3.95 0 4.68 2.6 4.68 6V21H17V15.3c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8H9z"/></svg>
     </a>
-    <!-- Sostituisci con la tua email -->
     <a href="mailto:Ivansalvatorenasti@gmail.com" aria-label="Email">
       <svg viewBox="0 0 24 24"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5zm2.2.5 7.8 6.2L19.8 6zM4 8.1V18h16V8.1l-8 6.4z"/></svg>
     </a>
-    <!-- Sostituisci con il tuo username Telegram -->
     <a href="https://t.me/ivansasi" aria-label="Telegram" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M21.9 4.3 18.7 20c-.2.9-.8 1.1-1.6.7l-4.4-3.3-2.1 2c-.2.2-.4.4-.9.4l.3-4.6 8.4-7.6c.4-.3-.1-.5-.5-.2L7 12.3l-4.4-1.4c-.9-.3-.9-.9.2-1.4L20.6 3.2c.8-.3 1.5.2 1.3 1.1z"/></svg>
     </a>
@@ -243,7 +248,6 @@
         <span class="product-name">MySweetStitch — cerotti Dexcom G7, blu</span>
         <span class="arrow">›</span>
       </a>
-      <!-- Sostituisci con l'URL del secondo prodotto (cerotti impermeabili) -->
       <a class="row" href="https://www.amazon.it/gp/aw/d/B0CGZ51GTS/?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=3e09238d010c3c270ea64d9baa3a6b7c&hsa_cr_id=0&qid=1788471573&sr=1-3-e0fa1fdd-d857-4087-adda-5bd576b25987&i=aps&aref=Jo2egMOvyT&ref_=sbx_s_sparkle_sbtcd_asin_2_title&pd_rd_w=e8oNn&content-id=amzn1.sym.b1236a49-4991-48b8-af73-28e245e6c8ec%3Aamzn1.sym.b1236a49-4991-48b8-af73-28e245e6c8ec&pf_rd_p=b1236a49-4991-48b8-af73-28e245e6c8ec&pf_rd_r=QJ927V8SCEYVAY0FGCST&pd_rd_wg=ic3z9&pd_rd_r=7e728442-5b3d-4539-b6e1-365abd3eda47&th=1&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcAUHAPNwZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp4mC6YyRlXD-RvYAUaW9jNBLzwQ0JR3Bk5YL12FVSuyeVm3nNvZOuT1jdST6_aem_DJ9npdVcvTJehJkdClBcig" target="_blank" rel="noopener">
         <img class="product-thumb" src="assets/amazon_cerotti_trasparenti.webp" alt="Cerotti trasparenti Dexcom G7">
         <span class="product-name">Cerotti Dexcom G7 impermeabili</span>
