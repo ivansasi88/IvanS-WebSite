@@ -32,6 +32,8 @@
     margin:0 auto;
     padding:48px 24px 64px;
   }
+
+  /* Header */
   .header{
     display:flex;
     align-items:center;
@@ -60,6 +62,8 @@
     font-size:14px;
     color:var(--muted);
   }
+
+  /* Social row */
   .socials{
     display:flex;
     gap:10px;
@@ -76,6 +80,8 @@
     background:rgba(242,239,233,0.14);
   }
   .socials svg{width:17px;height:17px;fill:var(--text);}
+
+  /* Section label */
   .section-title{
     font-size:13px;
     color:var(--muted);
@@ -84,6 +90,8 @@
   }
   section{margin-bottom:36px;}
   section:last-of-type{margin-bottom:0;}
+
+  /* Featured PDF block */
   .featured{
     background:var(--blue);
     border-radius:14px;
@@ -117,6 +125,8 @@
     background:var(--red);
     color:#fff;
   }
+
+  /* Plain link rows */
   .rows{
     display:flex;
     flex-direction:column;
@@ -124,15 +134,29 @@
   .row{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:14px 2px;
+    gap:12px;
+    padding:12px 2px;
     border-bottom:1px solid var(--rule);
     font-size:15px;
     transition:opacity .15s ease;
   }
   .rows a.row:hover, .rows a.row:focus-visible{opacity:.7;}
   .row:last-child{border-bottom:none;}
-  .row .arrow{color:var(--muted);font-size:16px;}
+  .product-thumb{
+    width:54px;height:54px;
+    border-radius:10px;
+    object-fit:cover;
+    background:#fff;
+    flex-shrink:0;
+  }
+  .row .product-name{
+    flex:1;
+    min-width:0;
+    line-height:1.3;
+  }
+  .row .arrow{color:var(--muted);font-size:18px;flex-shrink:0;}
+
+  /* IS Studio — the one gold accent */
   .studio{
     display:flex;
     align-items:center;
@@ -154,6 +178,7 @@
   }
   .studio h3{margin:0;font-size:15px;font-weight:600;color:var(--gold);}
   .studio p{margin:2px 0 0;font-size:12.5px;color:var(--muted);}
+
   footer{
     margin-top:56px;
     font-size:12px;
@@ -164,13 +189,16 @@
 </head>
 <body>
 <div class="wrap">
+
   <div class="header">
+    <!-- Sostituisci assets/avatar.jpg con la tua foto (stesso nome file) -->
     <img class="avatar" src="assets/avatar.jpg" alt="IvanSasi" onerror="this.style.display='none'">
     <div>
       <p class="name">IvanSasi</p>
       <p class="tagline">Graphic designer, T1D, IS Studio</p>
     </div>
   </div>
+
   <div class="socials">
     <a href="https://www.facebook.com/IvanSasi" aria-label="Facebook" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
@@ -181,16 +209,20 @@
     <a href="https://www.tiktok.com/ivansasi" aria-label="TikTok" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M16.6 2h-3.3v13.6a2.7 2.7 0 1 1-2.3-2.7v-3.3a6 6 0 1 0 5.6 6V8.4a7.8 7.8 0 0 0 4.4 1.4V6.5a4.4 4.4 0 0 1-4.4-4.4z"/></svg>
     </a>
+    <!-- Sostituisci con l'URL del tuo profilo LinkedIn -->
     <a href="https://www.linkedin.com/in/ivan-salvatore-nasti-91605683?utm_source=share_via&utm_content=profile&utm_medium=member_android" aria-label="LinkedIn" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 3.95 0 4.68 2.6 4.68 6V21H17V15.3c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8H9z"/></svg>
     </a>
+    <!-- Sostituisci con la tua email -->
     <a href="mailto:Ivansalvatorenasti@gmail.com" aria-label="Email">
       <svg viewBox="0 0 24 24"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5zm2.2.5 7.8 6.2L19.8 6zM4 8.1V18h16V8.1l-8 6.4z"/></svg>
     </a>
+    <!-- Sostituisci con il tuo username Telegram -->
     <a href="https://t.me/ivansasi" aria-label="Telegram" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M21.9 4.3 18.7 20c-.2.9-.8 1.1-1.6.7l-4.4-3.3-2.1 2c-.2.2-.4.4-.9.4l.3-4.6 8.4-7.6c.4-.3-.1-.5-.5-.2L7 12.3l-4.4-1.4c-.9-.3-.9-.9.2-1.4L20.6 3.2c.8-.3 1.5.2 1.3 1.1z"/></svg>
     </a>
   </div>
+
   <section>
     <p class="section-title">Utility</p>
     <a class="featured" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener">
@@ -202,19 +234,24 @@
       </div>
     </a>
   </section>
+
   <section>
     <p class="section-title">Accessori Type 1</p>
     <div class="rows">
       <a class="row" href="https://amazon.it/dp/B0BPCRPXWK?ref=ppx_yo2ov_dt_b_fed_asin_title" target="_blank" rel="noopener">
-        <span>MySweetStitch — cerotti Dexcom G7, blu</span>
+        <img class="product-thumb" src="assets/amazon_cerotti_blu.webp" alt="Cerotti blu Dexcom G7">
+        <span class="product-name">MySweetStitch — cerotti Dexcom G7, blu</span>
         <span class="arrow">›</span>
       </a>
+      <!-- Sostituisci con l'URL del secondo prodotto (cerotti impermeabili) -->
       <a class="row" href="https://www.amazon.it/gp/aw/d/B0CGZ51GTS/?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=3e09238d010c3c270ea64d9baa3a6b7c&hsa_cr_id=0&qid=1788471573&sr=1-3-e0fa1fdd-d857-4087-adda-5bd576b25987&i=aps&aref=Jo2egMOvyT&ref_=sbx_s_sparkle_sbtcd_asin_2_title&pd_rd_w=e8oNn&content-id=amzn1.sym.b1236a49-4991-48b8-af73-28e245e6c8ec%3Aamzn1.sym.b1236a49-4991-48b8-af73-28e245e6c8ec&pf_rd_p=b1236a49-4991-48b8-af73-28e245e6c8ec&pf_rd_r=QJ927V8SCEYVAY0FGCST&pd_rd_wg=ic3z9&pd_rd_r=7e728442-5b3d-4539-b6e1-365abd3eda47&th=1&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcAUHAPNwZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp4mC6YyRlXD-RvYAUaW9jNBLzwQ0JR3Bk5YL12FVSuyeVm3nNvZOuT1jdST6_aem_DJ9npdVcvTJehJkdClBcig" target="_blank" rel="noopener">
-        <span>Cerotti Dexcom G7 impermeabili</span>
+        <img class="product-thumb" src="assets/amazon_cerotti_trasparenti.webp" alt="Cerotti trasparenti Dexcom G7">
+        <span class="product-name">Cerotti Dexcom G7 impermeabili</span>
         <span class="arrow">›</span>
       </a>
     </div>
   </section>
+
   <section>
     <p class="section-title">Progetti</p>
     <a class="studio" href="https://www.instagram.com/is_studiolab" target="_blank" rel="noopener">
@@ -225,9 +262,11 @@
       </div>
     </a>
   </section>
+
   <footer>
     IvanSasi — Napoli
   </footer>
+
 </div>
 </body>
 </html>
