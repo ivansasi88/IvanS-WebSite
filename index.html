@@ -3,110 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>IvanSasi — Graphic Designer, Creator, Digital Projects</title>
-<meta name="description" content="IvanSasi — graphic designer, creator e autore di progetti digitali come Glyvia.">
+<meta name="theme-color" content="#07111d">
+<title>IvanSasi</title>
+<meta name="description" content="IvanSasi — Graphic designer, creator e progetti digitali.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#08111d;--bg2:#0d1827;--panel:#111d2c;--panel2:#162437;--line:#21344a;--text:#f4f7fb;--muted:#91a1b5;--brand:#59d5b0;--brand2:#7de4c5;--danger:#ff8f87;--danger2:#5b3033;--accent:#7cc8ff;--max:1100px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,sans-serif;background:linear-gradient(180deg,#07101a 0%,#0a1420 42%,#08111d 100%);color:var(--text);-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}button{font:inherit}.shell{width:min(var(--max),calc(100% - 36px));margin:auto}.site-header{position:sticky;top:0;z-index:50;background:rgba(7,16,26,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)}.header-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;min-width:0}.brand img{width:44px;height:44px;border-radius:14px;object-fit:cover;border:1px solid #2b3d54}.brand strong{display:block;font-size:16px;line-height:1}.brand span{display:block;font-size:12px;color:var(--muted);margin-top:5px}.nav{display:flex;align-items:center;gap:4px}.nav a{padding:10px 12px;border-radius:10px;color:#aab8c9;font-size:14px;font-weight:600}.nav a:hover,.nav a.active{color:#fff;background:#132235}.menu-btn{display:none;border:1px solid var(--line);background:#101c2a;color:#fff;width:42px;height:42px;border-radius:12px}.hero{padding:82px 0 70px}.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:54px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--brand);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";width:26px;height:2px;background:var(--brand);border-radius:2px}.hero h1{font-size:clamp(42px,7vw,76px);line-height:.98;letter-spacing:-.055em;margin:18px 0 24px;max-width:760px}.hero h1 span{color:var(--brand)}.lead{font-size:clamp(18px,2vw,22px);line-height:1.6;color:#aebacd;max-width:720px;margin:0}.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:12px;font-weight:700;font-size:14px;border:1px solid var(--line);transition:.2s}.btn.primary{background:var(--brand);color:#07120e;border-color:transparent}.btn.primary:hover{transform:translateY(-1px);background:var(--brand2)}.btn.secondary{background:#101c2a;color:#fff}.btn.secondary:hover{background:#16263a}.portrait-card{position:relative;background:linear-gradient(145deg,#132236,#0f1b2a);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.portrait-card img{width:100%;aspect-ratio:1/1.05;object-fit:cover;border-radius:20px;display:block}.portrait-meta{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:16px 6px 4px}.portrait-meta b{font-size:15px}.portrait-meta span{font-size:13px;color:var(--muted)}.status{display:flex;align-items:center;gap:8px}.status i{width:8px;height:8px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 5px rgba(89,213,176,.12)}.section{padding:72px 0;border-top:1px solid rgba(255,255,255,.05)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:30px}.section-head h2{font-size:clamp(28px,4vw,44px);margin:0;letter-spacing:-.035em}.section-head p{max-width:540px;color:var(--muted);line-height:1.6;margin:0}.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.service-card,.project-card,.resource-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;transition:.2s}.service-card:hover,.project-card:hover,.resource-card:hover{transform:translateY(-3px);border-color:#35506d}.icon-box{width:46px;height:46px;border-radius:14px;background:#172a3d;display:grid;place-items:center;font-size:21px;margin-bottom:24px}.service-card h3,.project-card h3,.resource-card h3{margin:0 0 10px;font-size:20px}.service-card p,.project-card p,.resource-card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.tag{font-size:12px;font-weight:700;color:#c6d2df;background:#172537;border:1px solid #25384d;padding:7px 9px;border-radius:999px}.project-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.project-card.featured{background:linear-gradient(145deg,#102537,#10201f);min-height:260px;display:flex;flex-direction:column;justify-content:space-between}.project-card.featured h3{font-size:30px}.project-top{display:flex;justify-content:space-between;gap:18px}.project-badge{font-size:12px;color:#06130e;background:var(--brand);font-weight:800;padding:7px 10px;border-radius:999px;height:max-content}.link-arrow{margin-top:26px;font-weight:700;color:#d7e3ef}.glyvia-wrap{background:#0d1826;border:1px solid var(--line);border-radius:24px;overflow:hidden}.glyvia-tabs{display:flex;gap:6px;padding:10px;border-bottom:1px solid var(--line);background:#0b1522}.glyvia-tab{flex:1;border:0;padding:13px 16px;border-radius:12px;background:transparent;color:#8798ad;font-weight:800;cursor:pointer}.glyvia-tab.active[data-target="emergency"]{background:#4c2b2e;color:#ff9b93}.glyvia-tab.active[data-target="stock"]{background:#14382f;color:#62d9b5}.app-panel{display:none;padding:28px}.app-panel.active{display:block}.app-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}.app-logo{width:66px;height:66px;border-radius:18px;display:grid;place-items:center;font-size:28px;font-weight:900}.app-logo.emergency{background:linear-gradient(145deg,#ff7e73,#d34e4f)}.app-logo.stock{background:linear-gradient(145deg,#5be2b9,#1f9a79)}.app-head h3{font-size:26px;margin:0 0 4px}.app-head p{margin:0;color:var(--muted)}.downloads{display:grid;grid-template-columns:1fr 1fr;gap:12px}.download-item{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#111f30;border:1px solid #22364e;border-radius:16px;padding:16px}.download-item b{display:block;font-size:15px}.download-item span{display:block;font-size:12px;color:var(--muted);margin-top:4px}.download-btn{white-space:nowrap;padding:10px 13px;border-radius:10px;background:#1c3147;color:#fff;font-size:12px;font-weight:800;border:1px solid #2f4862}.download-btn.stock{background:#194a3d;border-color:#286b58;color:#7de4c5}.download-btn.disabled{opacity:.45;pointer-events:none}.resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.resource-card{display:flex;gap:18px;align-items:center}.resource-card img{width:74px;height:74px;border-radius:14px;object-fit:cover;background:#122033}.resource-card .mini{font-size:12px;color:var(--brand);font-weight:800;margin-bottom:6px}.contact-box{background:linear-gradient(145deg,#122238,#0f1d2d);border:1px solid #284058;border-radius:24px;padding:34px;display:flex;align-items:center;justify-content:space-between;gap:30px}.contact-box h2{font-size:36px;margin:0 0 10px}.contact-box p{margin:0;color:var(--muted);max-width:640px;line-height:1.6}.socials{display:flex;gap:9px;flex-wrap:wrap}.socials a{width:44px;height:44px;border-radius:12px;border:1px solid #2a4057;background:#132234;display:grid;place-items:center;font-weight:800;font-size:13px}.socials a:hover{background:#1b2e44}.footer{padding:28px 0 42px;color:#6f8196;font-size:13px;text-align:center}.reveal{opacity:0;transform:translateY(16px);transition:.55s ease}.reveal.show{opacity:1;transform:none}@media(max-width:800px){.shell{width:min(100% - 28px,var(--max))}.header-inner{height:68px}.nav{display:none;position:absolute;left:14px;right:14px;top:76px;flex-direction:column;align-items:stretch;padding:8px;background:#0e1a28;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.35)}.nav.open{display:flex}.nav a{padding:13px 14px}.menu-btn{display:block}.hero{padding:48px 0 54px}.hero-grid{grid-template-columns:1fr;gap:30px}.portrait-card{max-width:440px}.cards-3,.project-grid,.downloads,.resource-grid{grid-template-columns:1fr}.section{padding:56px 0}.section-head{align-items:start;flex-direction:column;gap:10px}.contact-box{align-items:flex-start;flex-direction:column}.contact-box h2{font-size:30px}.app-panel{padding:20px}.download-item{align-items:flex-start}.brand span{display:none}}
+:root{--bg:#07111d;--panel:#0f1b29;--panel2:#132234;--line:#22364b;--text:#f5f7fb;--muted:#91a2b6;--blue:#6fb8ff;--mint:#58d5ae;--coral:#ff847b;--max:820px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#07111d 0%,#081522 55%,#07111d 100%);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.page{width:min(var(--max),calc(100% - 28px));margin:auto;padding:34px 0 52px}.profile{display:flex;flex-direction:column;align-items:center;text-align:center;padding:12px 0 30px}.avatar{width:88px;height:88px;border-radius:28px;object-fit:cover;border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 50px rgba(0,0,0,.35)}.name{font-size:30px;line-height:1.05;letter-spacing:-.04em;font-weight:800;margin:18px 0 0}.bio{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.5}.socials{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:20px}.socials a{width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:rgba(15,27,41,.82);display:grid;place-items:center;transition:.18s transform,.18s background,.18s border-color}.socials a:hover{transform:translateY(-2px);background:#162638;border-color:#39536d}.socials svg{width:19px;height:19px;fill:#f4f7fb}.quicknav{display:flex;gap:8px;overflow:auto;padding:2px 0 10px;scrollbar-width:none;margin:0 0 22px}.quicknav::-webkit-scrollbar{display:none}.quicknav a{flex:0 0 auto;padding:10px 14px;border-radius:999px;background:#0e1a28;border:1px solid var(--line);color:#b5c1ce;font-size:12px;font-weight:700;transition:.18s}.quicknav a:hover{background:#17283a;color:#fff}.section{padding:26px 0 4px}.section-title{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 14px}.section-title h2{font-size:19px;letter-spacing:-.02em;margin:0}.section-title span{font-size:11px;color:#71849a}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:linear-gradient(180deg,#101c2a,#0d1825);border:1px solid var(--line);border-radius:22px;padding:18px;transition:.18s transform,.18s border-color,.18s background}.card:hover{transform:translateY(-2px);border-color:#3a536d;background:#132234}.app-card{padding:0;overflow:hidden}.app-top{padding:18px;display:flex;align-items:center;gap:13px}.app-icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-weight:900;font-size:22px;flex:0 0 auto;box-shadow:0 10px 28px rgba(0,0,0,.25)}.app-icon.emergency{background:linear-gradient(145deg,#ff8178,#cf4c4e)}.app-icon.stock{background:linear-gradient(145deg,#60e0ba,#229a79)}.app-name strong{display:block;font-size:17px;letter-spacing:-.02em}.app-name span{display:block;font-size:11px;color:var(--muted);margin-top:4px}.versions{border-top:1px solid var(--line);padding:10px}.version{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 9px;border-radius:13px}.version+.version{margin-top:4px}.version:hover{background:#142234}.version b{font-size:12px}.version small{display:block;color:#72859a;font-size:10px;margin-top:3px}.download{padding:8px 10px;border-radius:10px;font-size:11px;font-weight:800;border:1px solid #2b445e;background:#172a3c}.download.stock{color:#75e4c2;background:#173e34;border-color:#2a6b59}.download.emergency{color:#ffaaa4;background:#452a2d;border-color:#744246}.download.disabled{opacity:.38;pointer-events:none}.resource{display:flex;align-items:center;gap:14px}.resource img{width:58px;height:58px;border-radius:15px;object-fit:cover;background:#fff;flex:0 0 auto}.resource-body{min-width:0;flex:1}.resource strong{display:block;font-size:14px}.resource span{display:block;font-size:11px;color:var(--muted);margin-top:5px;line-height:1.35}.chevron{font-size:22px;color:#6f8298}.project{display:flex;align-items:center;gap:14px}.project-mark{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:#f4f5f7;color:#0a0d12;font-weight:900;font-size:18px;letter-spacing:-.08em;flex:0 0 auto}.project strong{font-size:15px}.project span{display:block;color:var(--muted);font-size:11px;margin-top:5px}.footer{text-align:center;color:#62758a;font-size:11px;padding:34px 0 2px}@media(max-width:640px){.page{width:min(100% - 24px,var(--max));padding-top:24px}.avatar{width:78px;height:78px;border-radius:24px}.name{font-size:26px}.grid{grid-template-columns:1fr}.section{padding-top:22px}.quicknav{margin-bottom:14px}.card{border-radius:19px}.app-top{padding:16px}}
 </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="shell header-inner">
-    <a class="brand" href="#home">
-      <img src="assets/avatar.jpg" alt="Ivan Sasi">
-      <div><strong>IvanSasi</strong><span>Graphic designer · Creator · T1D</span></div>
-    </a>
-    <nav class="nav" id="nav">
-      <a href="#about">Chi sono</a>
-      <a href="#projects">Progetti</a>
-      <a href="#glyvia">Glyvia</a>
-      <a href="#resources">Risorse</a>
-      <a href="#contact">Contatti</a>
-    </nav>
-    <button class="menu-btn" id="menuBtn" aria-label="Apri menu">☰</button>
-  </div>
-</header>
-<main id="home">
-<section class="hero">
-  <div class="shell hero-grid">
-    <div class="reveal">
-      <div class="eyebrow">Ivan Salvatore Nasti</div>
-      <h1>Design, contenuti e <span>progetti digitali.</span></h1>
-      <p class="lead">Sono un graphic designer e creator. Lavoro su identità visive, contenuti per il web e strumenti digitali pensati per essere utili, semplici e riconoscibili.</p>
-      <div class="cta-row"><a class="btn primary" href="#projects">Scopri i progetti</a><a class="btn secondary" href="#contact">Contattami</a></div>
-    </div>
-    <div class="portrait-card reveal">
-      <img src="assets/avatar.jpg" alt="Ritratto di Ivan Sasi">
-      <div class="portrait-meta"><div><b>IvanSasi</b><br><span>Napoli, Italia</span></div><div class="status"><i></i><span>Online</span></div></div>
-    </div>
+<main class="page">
+<section class="profile" id="top">
+  <img class="avatar" src="assets/avatar.jpg" alt="IvanSasi">
+  <h1 class="name">IvanSasi</h1>
+  <p class="bio">Graphic designer · Creator · T1D</p>
+  <div class="socials" aria-label="Social">
+    <a href="https://www.facebook.com/IvanSasi" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+    <a href="https://www.instagram.com/ivansasi/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.1 0 4.1.1 1.1 0 1.8.2 2.5.5.7.3 1.2.6 1.8 1.2.6.6.9 1.1 1.2 1.8.3.7.5 1.4.5 2.5.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c0 1.1-.2 1.8-.5 2.5-.3.7-.6 1.2-1.2 1.8-.6.6-1.1.9-1.8 1.2-.7.3-1.4.5-2.5.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1.1 0-1.8-.2-2.5-.5-.7-.3-1.2-.6-1.8-1.2-.6-.6-.9-1.1-1.2-1.8-.3-.7-.5-1.4-.5-2.5C2 15.1 2 14.7 2 12s0-3.1.1-4.1c0-1.1.2-1.8.5-2.5.3-.7.6-1.2 1.2-1.8.6-.6 1.1-.9 1.8-1.2.7-.3 1.4-.5 2.5-.5C8.9 2 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.2-8.4a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4z"/></svg></a>
+    <a href="https://www.tiktok.com/@ivansasi" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 2h-3.3v13.6a2.7 2.7 0 1 1-2.3-2.7v-3.3a6 6 0 1 0 5.6 6V8.4a7.8 7.8 0 0 0 4.4 1.4V6.5a4.4 4.4 0 0 1-4.4-4.4z"/></svg></a>
+    <a href="https://www.linkedin.com/in/ivan-salvatore-nasti-91605683" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 3.95 0 4.68 2.6 4.68 6V21H17V15.3c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8H9z"/></svg></a>
+    <a href="mailto:Ivansalvatorenasti@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5zm2.2.5 7.8 6.2L19.8 6zM4 8.1V18h16V8.1l-8 6.4z"/></svg></a>
+    <a href="https://t.me/ivansasi" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M21.9 4.3 18.7 20c-.2.9-.8 1.1-1.6.7l-4.4-3.3-2.1 2c-.2.2-.4.4-.9.4l.3-4.6 8.4-7.6c.4-.3-.1-.5-.5-.2L7 12.3l-4.4-1.4c-.9-.3-.9-.9.2-1.4L20.6 3.2c.8-.3 1.5.2 1.3 1.1z"/></svg></a>
   </div>
 </section>
-<section class="section" id="about">
-  <div class="shell">
-    <div class="section-head reveal"><div><div class="eyebrow">Chi sono</div><h2>Tre aree, una sola identità.</h2></div><p>Il sito ruota attorno a quello che faccio. Le app, le risorse e i progetti vengono dopo, come estensione del mio lavoro.</p></div>
-    <div class="cards-3">
-      <article class="service-card reveal"><div class="icon-box">✦</div><h3>Graphic Design</h3><p>Identità visive, loghi, social graphics, overlay, copertine e materiale per creator e piccoli brand.</p><div class="tag-row"><span class="tag">Branding</span><span class="tag">Social</span><span class="tag">Visual</span></div></article>
-      <article class="service-card reveal"><div class="icon-box">◉</div><h3>Creator</h3><p>Contenuti su tecnologia, gaming e vita quotidiana con diabete tipo 1, con un taglio pratico e personale.</p><div class="tag-row"><span class="tag">TikTok</span><span class="tag">Instagram</span><span class="tag">Live</span></div></article>
-      <article class="service-card reveal"><div class="icon-box">⌘</div><h3>Progetti digitali</h3><p>Sviluppo idee, strumenti e app che nascono da bisogni reali e da workflow costruiti insieme all'AI.</p><div class="tag-row"><span class="tag">Glyvia</span><span class="tag">Android</span><span class="tag">AI</span></div></article>
-    </div>
-  </div>
-</section>
-<section class="section" id="projects">
-  <div class="shell">
-    <div class="section-head reveal"><div><div class="eyebrow">Progetti</div><h2>Quello su cui sto lavorando.</h2></div><p>Una selezione dei progetti principali. Niente elenco infinito. Solo ciò che rappresenta davvero il mio lavoro.</p></div>
-    <div class="project-grid">
-      <article class="project-card featured reveal"><div class="project-top"><div><h3>Glyvia</h3><p>Una famiglia di strumenti digitali dedicati alla gestione quotidiana del diabete tipo 1.</p></div><span class="project-badge">IN SVILUPPO</span></div><a class="link-arrow" href="#glyvia">Vedi le app →</a></article>
-      <article class="project-card reveal"><div><h3>IS Inspiration Studio</h3><p>Il mio spazio dedicato a graphic design, visual identity e contenuti per creator e piccoli brand.</p></div><a class="link-arrow" href="https://www.instagram.com/is_studiolab" target="_blank" rel="noopener">Apri il profilo →</a></article>
-    </div>
-  </div>
-</section>
+
+<nav class="quicknav" aria-label="Sezioni">
+  <a href="#glyvia">Glyvia</a>
+  <a href="#utility">Utility</a>
+  <a href="#projects">Progetti</a>
+  <a href="#accessori">Accessori</a>
+</nav>
+
 <section class="section" id="glyvia">
-  <div class="shell">
-    <div class="section-head reveal"><div><div class="eyebrow">Glyvia</div><h2>Download Android.</h2></div><p>Qui trovi solo le versioni che voglio rendere disponibili. Le app restano un progetto del portfolio, non il centro del sito.</p></div>
-    <div class="glyvia-wrap reveal">
-      <div class="glyvia-tabs"><button class="glyvia-tab active" data-target="emergency">Emergency</button><button class="glyvia-tab" data-target="stock">Stock</button></div>
-      <div class="app-panel active" id="emergency">
-        <div class="app-head"><div class="app-logo emergency">+</div><div><h3>Glyvia Emergency</h3><p>Tessera di emergenza T1D e informazioni essenziali per i soccorritori.</p></div></div>
-        <div class="downloads">
-          <div class="download-item"><div><b>Versione 2.0.6</b><span>Android APK · ultima versione</span></div><a class="download-btn disabled" href="#" aria-disabled="true">In attesa</a></div>
-          <div class="download-item"><div><b>Versione 2.0.5</b><span>Android APK · versione precedente</span></div><a class="download-btn disabled" href="#" aria-disabled="true">In attesa</a></div>
-        </div>
+  <div class="section-title"><h2>Glyvia</h2></div>
+  <div class="grid">
+    <article class="card app-card">
+      <div class="app-top"><div class="app-icon emergency">+</div><div class="app-name"><strong>Glyvia Emergency</strong><span>T1D</span></div></div>
+      <div class="versions">
+        <div class="version"><div><b>Versione 2.0.6</b><small>Android APK</small></div><a class="download emergency disabled" href="#" aria-disabled="true">APK</a></div>
+        <div class="version"><div><b>Versione 2.0.5</b><small>Android APK</small></div><a class="download emergency disabled" href="#" aria-disabled="true">APK</a></div>
       </div>
-      <div class="app-panel" id="stock">
-        <div class="app-head"><div class="app-logo stock">S</div><div><h3>Glyvia Stock</h3><p>Scorte, prodotti, dispositivi e scadenze organizzati in un'unica app.</p></div></div>
-        <div class="downloads">
-          <div class="download-item"><div><b>Versione 1.5.13</b><span>Android APK · ultima versione</span></div><a class="download-btn stock" href="downloads/Glyvia-Stock-v1.5.13.apk" download>Scarica</a></div>
-          <div class="download-item"><div><b>Versione 1.5.12</b><span>Android APK · versione precedente</span></div><a class="download-btn stock" href="downloads/Glyvia-Stock-v1.5.12.apk" download>Scarica</a></div>
-        </div>
+    </article>
+    <article class="card app-card">
+      <div class="app-top"><div class="app-icon stock">S</div><div class="app-name"><strong>Glyvia Stock</strong><span>T1D</span></div></div>
+      <div class="versions">
+        <div class="version"><div><b>Versione 1.5.13</b><small>Android APK</small></div><a class="download stock" href="downloads/Glyvia-Stock-v1.5.13.apk" download>APK</a></div>
+        <div class="version"><div><b>Versione 1.5.12</b><small>Android APK</small></div><a class="download stock" href="downloads/Glyvia-Stock-v1.5.12.apk" download>APK</a></div>
       </div>
-    </div>
+    </article>
   </div>
 </section>
-<section class="section" id="resources">
-  <div class="shell">
-    <div class="section-head reveal"><div><div class="eyebrow">Risorse</div><h2>Utility e link utili.</h2></div><p>Materiale selezionato e accessori che possono essere utili nella quotidianità.</p></div>
-    <div class="resource-grid">
-      <a class="resource-card reveal" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener"><img src="assets/thumbnail_card_t1d.png" alt="Card emergenza T1D"><div><div class="mini">DOWNLOAD GRATUITO</div><h3>Card emergenza T1D</h3><p>Scarica e stampa una card da tenere nel portafoglio.</p></div></a>
-      <a class="resource-card reveal" href="https://www.amazon.it/dp/B0BPCRPXWK" target="_blank" rel="noopener"><img src="assets/amazon_cerotti_blu.webp" alt="Cerotti Dexcom G7"><div><div class="mini">ACCESSORI</div><h3>Cerotti Dexcom G7</h3><p>Un accessorio che uso come riferimento per il sensore.</p></div></a>
-    </div>
+
+<section class="section" id="utility">
+  <div class="section-title"><h2>Utility</h2></div>
+  <a class="card resource" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener">
+    <img src="assets/thumbnail_card_t1d.png" alt="Card emergenza T1D">
+    <div class="resource-body"><strong>Card emergenza diabete tipo 1</strong><span>PDF</span></div><div class="chevron">›</div>
+  </a>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-title"><h2>Progetti</h2></div>
+  <a class="card project" href="https://www.instagram.com/is_studiolab" target="_blank" rel="noopener">
+    <div class="project-mark">IS</div><div class="resource-body"><strong>IS Inspiration Studio</strong><span>Graphic Design</span></div><div class="chevron">›</div>
+  </a>
+</section>
+
+<section class="section" id="accessori">
+  <div class="section-title"><h2>Accessori</h2></div>
+  <div class="grid">
+    <a class="card resource" href="https://www.amazon.it/dp/B0BPCRPXWK" target="_blank" rel="noopener"><img src="assets/amazon_cerotti_blu.webp" alt="Cerotti Dexcom G7 blu"><div class="resource-body"><strong>MySweetStitch</strong><span>Cerotti Dexcom G7</span></div><div class="chevron">›</div></a>
+    <a class="card resource" href="https://www.amazon.it/dp/B0CGZ51GTS" target="_blank" rel="noopener"><img src="assets/amazon_cerotti_trasparenti.webp" alt="Cerotti Dexcom G7 trasparenti"><div class="resource-body"><strong>Cerotti Dexcom G7</strong><span>Impermeabili</span></div><div class="chevron">›</div></a>
   </div>
 </section>
-<section class="section" id="contact">
-  <div class="shell">
-    <div class="contact-box reveal"><div><h2>Parliamo.</h2><p>Per collaborazioni, lavori grafici o semplicemente per seguire i miei progetti, puoi trovarmi sui miei canali principali.</p></div><div class="socials"><a href="https://www.instagram.com/ivansasi/" target="_blank" rel="noopener" aria-label="Instagram">IG</a><a href="https://www.tiktok.com/@ivansasi" target="_blank" rel="noopener" aria-label="TikTok">TT</a><a href="https://www.linkedin.com/in/ivan-salvatore-nasti-91605683" target="_blank" rel="noopener" aria-label="LinkedIn">IN</a><a href="mailto:Ivansalvatorenasti@gmail.com" aria-label="Email">@</a><a href="https://t.me/ivansasi" target="_blank" rel="noopener" aria-label="Telegram">TG</a></div></div>
-  </div>
-</section>
+
+<footer class="footer">IvanSasi</footer>
 </main>
-<footer class="footer">© 2026 IvanSasi · Napoli</footer>
-<script>
-const menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('nav');menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-document.querySelectorAll('.glyvia-tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.glyvia-tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.app-panel').forEach(x=>x.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.target).classList.add('active')}));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const sections=[...document.querySelectorAll('main section[id]')],links=[...document.querySelectorAll('.nav a')];const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-35% 0px -55% 0px'});sections.forEach(s=>spy.observe(s));
-</script>
 </body>
 </html>
