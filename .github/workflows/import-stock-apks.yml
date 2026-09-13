@@ -1,0 +1,37 @@
+name: Import Glyvia Stock APKs
+
+on:
+  push:
+    paths:
+      - '.github/workflows/import-stock-apks.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import-apks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import APK files
+        shell: bash
+        env:
+          V1513: 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-3614-81f4-afa8-14ee3959337f/raw?se=2026-09-13T00%3A41%3A07Z&sp=r&sv=2026-02-06&sr=b&scid=c62ddf06-4429-5472-8e73-c0dc62b59106&skoid=5bfb38a5-43fb-4c63-80a1-6ae1e97e2e16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-12T23%3A19%3A39Z&ske=2026-09-13T23%3A19%3A39Z&sks=b&skv=2026-02-06&sig=9e4kIuEoaudum47xiYEl4hzvwz9TXYtMbIodMeXP4ms%3D'
+          V1512: 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-e478-8246-bc29-351517e7e947/raw?se=2026-09-13T00%3A41%3A14Z&sp=r&sv=2026-02-06&sr=b&scid=2a90afe4-5894-5de7-b517-efca9260db20&skoid=5bfb38a5-43fb-4c63-80a1-6ae1e97e2e16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-12T05%3A55%3A40Z&ske=2026-09-13T05%3A55%3A40Z&sks=b&skv=2026-02-06&sig=BfyDKnrFChUXlF38BB%2BWlzxxxNn5GKZd4xkEWF3EzW0%3D'
+        run: |
+          set -euo pipefail
+          mkdir -p downloads
+          curl -fL --retry 3 "$V1513" -o /tmp/1513.zip
+          curl -fL --retry 3 "$V1512" -o /tmp/1512.zip
+          unzip -p /tmp/1513.zip T1D-Stock.apk > downloads/Glyvia-Stock-v1.5.13.apk
+          unzip -p /tmp/1512.zip T1D-Stock.apk > downloads/Glyvia-Stock-v1.5.12.apk
+          test "$(head -c2 downloads/Glyvia-Stock-v1.5.13.apk)" = "PK"
+          test "$(head -c2 downloads/Glyvia-Stock-v1.5.12.apk)" = "PK"
+      - name: Commit APKs
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add downloads/Glyvia-Stock-v1.5.13.apk downloads/Glyvia-Stock-v1.5.12.apk
+          git commit -m 'Publish Glyvia Stock APKs'
+          git push
