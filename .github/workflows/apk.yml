@@ -1,0 +1,82 @@
+name: Aggiorna download APK
+
+on:
+  push:
+    paths:
+      - "downloads/**"
+      - ".github/scripts/build_downloads.py"
+      - ".github/workflows/apk.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # commit di rinomine, cancellazioni e manifest
+  pages: write      # richiesta esplicita di build di GitHub Pages
+
+# Un solo aggiornamento alla volta: se pushi due APK di fila, il secondo aspetta il primo.
+concurrency:
+  group: apk-downloads
+  cancel-in-progress: false
+
+jobs:
+  update:
+    # Evita loop: ignora i push fatti dal workflow stesso.
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rinomina APK, tieni le ultime 2 versioni, rigenera il manifest
+        run: python3 .github/scripts/build_downloads.py
+
+      - name: Commit e push (solo se ci sono modifiche)
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A downloads
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica da pubblicare."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Niente [skip ci] nel messaggio: salterebbe anche la build di GitHub Pages.
+          git commit -m "Aggiorna download APK"
+          for i in 1 2 3; do
+            if git push; then
+              echo "pushed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "Push rifiutato (qualcuno ha pushato nel frattempo), riprovo ($i/3)..."
+            git pull --rebase
+          done
+          echo "::error::Push non riuscito dopo 3 tentativi. Rilancia il workflow da Actions."
+          exit 1
+
+      # I push fatti con GITHUB_TOKEN non sempre fanno partire la build di Pages:
+      # la richiediamo noi in modo esplicito. Se Pages usa un'altra modalita' di deploy
+      # il comando puo' fallire senza conseguenze.
+      - name: Richiedi build di GitHub Pages
+        if: steps.commit.outputs.pushed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
+
+      - name: Controlla che il sito si sia pubblicato
+        if: steps.commit.outputs.pushed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for i in $(seq 1 16); do
+            status=$(gh api "repos/${{ github.repository }}/pages/builds/latest" --jq .status 2>/dev/null || echo "sconosciuto")
+            echo "Build Pages: $status"
+            if [ "$status" = "built" ]; then exit 0; fi
+            if [ "$status" = "errored" ]; then
+              echo "::warning::La build di GitHub Pages e' fallita. Controlla Settings > Pages."
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "::warning::La build di Pages non ha finito entro 4 minuti: controlla Settings > Pages."

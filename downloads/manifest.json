@@ -1,0 +1,54 @@
+{
+  "apps": [
+    {
+      "slug": "glyvia-emergency",
+      "title": "Glyvia Emergency",
+      "tag": "EMERGENCY · T1D",
+      "description": "Tessera d'emergenza e widget con le informazioni essenziali da mostrare subito.",
+      "icon": "assets/glyvia-emergency.svg",
+      "accent": "#ff8b82",
+      "order": 1,
+      "versions": [
+        {
+          "version": "2.0.6",
+          "file": "downloads/glyvia-emergency/glyvia-emergency-v2.0.6.apk",
+          "size": 376308,
+          "sha256": "491812ed74c398f715af0efd3041e87e35875307bdb7472bbba3124fd6cd5840",
+          "date": "2026-09-21"
+        },
+        {
+          "version": "2.0.5",
+          "file": "downloads/glyvia-emergency/glyvia-emergency-v2.0.5.apk",
+          "size": 372212,
+          "sha256": "1339ce1613a7858f26f6a6e601c226bfe3017ddcfe6d33e6fb347e6732babf69",
+          "date": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "slug": "glyvia-stock",
+      "title": "Glyvia Stock",
+      "tag": "STOCK · T1D",
+      "description": "Scorte, scadenze e materiale T1D organizzati in un unico posto.",
+      "icon": "assets/glyvia-stock.svg",
+      "accent": "#55d6ac",
+      "order": 2,
+      "versions": [
+        {
+          "version": "1.5.13",
+          "file": "downloads/glyvia-stock/glyvia-stock-v1.5.13.apk",
+          "size": 71530193,
+          "sha256": "9188629650200103dfb86610c9c2a86b5f27fd65997fb51af9430b9ab49811b3",
+          "date": "2026-09-21"
+        },
+        {
+          "version": "1.5.12",
+          "file": "downloads/glyvia-stock/glyvia-stock-v1.5.12.apk",
+          "size": 71513721,
+          "sha256": "f0fc1992abefc0024f92fc24580c0a39ea8852a5d4e8aa295f5ff84b88c569fe",
+          "date": "2026-09-21"
+        }
+      ]
+    }
+  ]
+}
