@@ -1,0 +1,8 @@
+{
+  "title": "Glyvia Emergency",
+  "tag": "EMERGENCY · T1D",
+  "description": "Tessera d'emergenza e widget con le informazioni essenziali da mostrare subito.",
+  "icon": "assets/glyvia-emergency.svg",
+  "accent": "#ff8b82",
+  "order": 1
+}
