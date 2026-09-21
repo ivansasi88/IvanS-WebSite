@@ -35,17 +35,17 @@
       "order": 2,
       "versions": [
         {
+          "version": "1.6.0",
+          "file": "downloads/glyvia-stock/glyvia-stock-v1.6.0.apk",
+          "size": 39722908,
+          "sha256": "67816ad1ec8a3675cae746d17025d88c08ebf2598401a9854552713bed43d6fa",
+          "date": "2026-09-21"
+        },
+        {
           "version": "1.5.13",
           "file": "downloads/glyvia-stock/glyvia-stock-v1.5.13.apk",
           "size": 71530193,
           "sha256": "9188629650200103dfb86610c9c2a86b5f27fd65997fb51af9430b9ab49811b3",
-          "date": "2026-09-21"
-        },
-        {
-          "version": "1.5.12",
-          "file": "downloads/glyvia-stock/glyvia-stock-v1.5.12.apk",
-          "size": 71513721,
-          "sha256": "f0fc1992abefc0024f92fc24580c0a39ea8852a5d4e8aa295f5ff84b88c569fe",
           "date": "2026-09-21"
         }
       ]
