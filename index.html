@@ -53,7 +53,16 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
 .page{position:relative;z-index:1;width:min(calc(100% - 28px),var(--max));margin:auto;padding:36px 0 60px}
 /* Le card delle app (#apps) sono generate da downloads/manifest.json e si dispongono da sole nella griglia. */
 .grid{display:grid;gap:16px;grid-template-columns:1fr;grid-auto-flow:row dense}
-.apps{display:contents}
+/* #apps ora e' UN solo spazio nella griglia: dentro scorre un carosello (swipe/trascina) tra le card Glyvia */
+.apps{display:flex;flex-direction:column;gap:12px}
+.apps-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;cursor:grab;scrollbar-width:none;-ms-overflow-style:none}
+.apps-track::-webkit-scrollbar{display:none}
+.apps-track.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.apps-track:focus-visible{outline:2px solid var(--line-strong);outline-offset:4px;border-radius:var(--r-lg)}
+.apps-track>.app-tile{flex:0 0 100%;scroll-snap-align:start;min-width:0}
+.apps-dots{display:flex;gap:6px;justify-content:center}
+.apps-dots button{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:var(--line-strong);cursor:pointer;transition:.2s ease}
+.apps-dots button[aria-current="true"]{background:var(--text);width:18px;border-radius:4px}
 @media(min-width:680px){
   .grid{grid-template-columns:1fr 1fr}
   .access,.app-msg{grid-column:1/-1}
@@ -128,6 +137,7 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
 .pdf-top strong{display:block;font-size:15px}
 .pdf-top span{display:block;margin-top:4px;color:var(--muted);font-size:11.5px;line-height:1.4}
 .pill{display:inline-block;margin-top:14px;font-size:10px;font-weight:900;letter-spacing:.06em;background:var(--mint-soft);color:#80e2c0;border:1px solid rgba(85,214,172,.25);border-radius:999px;padding:5px 9px}
+.pdf-dl{margin:10px 0 0;color:var(--muted);font-size:11px;font-weight:700}
 .pdf-cta{margin-top:18px;display:block;text-align:center;padding:13px;border-radius:13px;background:var(--text);color:#050505;font-weight:900;font-size:12.5px;transition:.15s ease}
 .pdf-cta:hover{background:#fff}
 
@@ -210,6 +220,7 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
         <div><strong>Card d'emergenza T1D</strong><span>Salvala o stampala per tenerla con te.</span></div>
       </div>
       <span class="pill">GRATIS · PDF</span>
+      <p class="pdf-dl" id="pdfDl"></p>
     </div>
     <a class="pdf-cta" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener">Scarica il PDF</a>
   </div>
@@ -244,6 +255,28 @@ const shareBtn=document.getElementById('shareBtn');
 shareBtn.addEventListener('click',async()=>{const data={title:'IvanSasi',text:'IvanSasi',url:location.origin+location.pathname};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);showToast('Link copiato')}}catch(e){}});
 
 /* ---- Card delle app: generate da downloads/manifest.json (aggiornato in automatico da GitHub Actions) ---- */
+/* ---- Contatore download del PDF: cresce da solo col tempo, stesso numero per tutti i visitatori.
+   Non e' un dato reale: e' calcolato dall'orologio (nessun contatore salvato da nessuna parte),
+   quindi e' identico per chiunque apra il sito nello stesso momento e resta coerente ricaricando.
+   Per cambiare il numero di partenza o la data di inizio, modifica DL_COUNTERS qui sotto. ---- */
+const DL_COUNTERS={
+  'pdf':{base:97,since:'2026-09-22T00:00:00Z'}
+};
+function dlSeed(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function dlRng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function dlIncrement(slug,period){return dlRng(dlSeed(slug+':'+period))()<0.5?3:5}
+function dlTotal(slug){
+  const c=DL_COUNTERS[slug];if(!c)return null;
+  const periodMs=12*3600*1000;
+  const periods=Math.max(0,Math.floor((Date.now()-Date.parse(c.since))/periodMs));
+  let total=c.base;
+  for(let p=0;p<periods;p++)total+=dlIncrement(slug,p);
+  return total;
+}
+function dlText(slug){const n=dlTotal(slug);return n==null?'':n.toLocaleString('it-IT')+' download'}
+function dlRenderPdf(){const el=document.getElementById('pdfDl');if(el){const t=dlText('pdf');if(t)el.textContent=t}}
+dlRenderPdf();
+
 (function(){
   const box=document.getElementById('apps');
   const inApp=/Instagram|FBAN|FBAV|FB_IAB|TikTok|musical_ly|Bytedance|Snapchat|Threads/i.test(navigator.userAgent);
@@ -325,6 +358,72 @@ shareBtn.addEventListener('click',async()=>{const data={title:'IvanSasi',text:'I
     return tile;
   }
 
+  /* ---- Carosello: track scorrevole (swipe nativo su touch, trascinamento col mouse, rotellina, frecce) + puntini ---- */
+  function buildCarousel(apps){
+    const track=h('div','apps-track');
+    track.tabIndex=0;
+    track.setAttribute('role','region');
+    track.setAttribute('aria-label','App disponibili, scorri per vedere le altre');
+    apps.forEach((a,i)=>track.appendChild(card(a,i)));
+
+    let dragging=false,moved=false,startX=0,startScroll=0,pid=null;
+    track.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='touch')return; // sul touch lo scroll nativo basta ed e' piu' fluido
+      dragging=true;moved=false;startX=e.clientX;startScroll=track.scrollLeft;pid=e.pointerId;
+      // NON catturare il puntatore qui: farlo su un semplice click (senza movimento) dirotta
+      // l'evento click risultante sul contenitore invece che sul link/pulsante sotto il dito, bloccando i download.
+    });
+    track.addEventListener('pointermove',e=>{
+      if(!dragging)return;
+      const dx=e.clientX-startX;
+      if(!moved&&Math.abs(dx)>4){
+        moved=true;track.classList.add('dragging');
+        try{track.setPointerCapture(pid)}catch(err){}
+      }
+      if(moved)track.scrollLeft=startScroll-dx;
+    });
+    function endDrag(){
+      if(!dragging)return;dragging=false;track.classList.remove('dragging');
+      if(moved&&pid!=null){try{track.releasePointerCapture(pid)}catch(err){}}
+      if(moved)snap();
+    }
+    track.addEventListener('pointerup',endDrag);
+    track.addEventListener('pointercancel',endDrag);
+    track.addEventListener('pointerleave',()=>{if(dragging)endDrag()});
+    // dopo un trascinamento evita che il rilascio venga letto come click su link/pulsanti/accordion dentro la card
+    track.addEventListener('click',e=>{if(moved){moved=false;e.preventDefault();e.stopPropagation()}},true);
+    track.addEventListener('wheel',e=>{
+      if(Math.abs(e.deltaX)>=Math.abs(e.deltaY))return; // scroll gia' orizzontale (trackpad): lascia fare al browser
+      track.scrollLeft+=e.deltaY;e.preventDefault();
+    },{passive:false});
+    track.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'){track.scrollTo({left:track.scrollLeft+track.clientWidth,behavior:'smooth'});e.preventDefault()}
+      else if(e.key==='ArrowLeft'){track.scrollTo({left:track.scrollLeft-track.clientWidth,behavior:'smooth'});e.preventDefault()}
+    });
+    function snap(){
+      const w=track.clientWidth||1;const idx=Math.round(track.scrollLeft/w);
+      track.scrollTo({left:idx*w,behavior:'smooth'});
+    }
+
+    const wrap=h('div',null);wrap.appendChild(track);
+    if(apps.length>1){
+      const dots=h('div','apps-dots'),btns=[];
+      apps.forEach((a,i)=>{
+        const b=document.createElement('button');
+        b.type='button';b.setAttribute('aria-label',(a.title||'App')+ ' ('+(i+1)+' di '+apps.length+')');
+        b.addEventListener('click',()=>track.scrollTo({left:i*track.clientWidth,behavior:'smooth'}));
+        dots.appendChild(b);btns.push(b);
+      });
+      let syncT;
+      function sync(){const idx=Math.round(track.scrollLeft/Math.max(1,track.clientWidth));btns.forEach((b,i)=>b.setAttribute('aria-current',i===idx?'true':'false'))}
+      track.addEventListener('scroll',()=>{clearTimeout(syncT);syncT=setTimeout(sync,60)});
+      window.addEventListener('resize',()=>{clearTimeout(syncT);syncT=setTimeout(sync,60)});
+      sync();
+      wrap.appendChild(dots);
+    }
+    return wrap;
+  }
+
   function fail(){
     const m=h('div','tile app-msg');
     m.append(document.createTextNode('Download momentaneamente non disponibili.'));
@@ -340,7 +439,7 @@ shareBtn.addEventListener('click',async()=>{const data={title:'IvanSasi',text:'I
         if(!m||!Array.isArray(m.apps))throw new Error('manifest');
         const apps=m.apps.filter(a=>a&&typeof a.slug==='string'&&typeof a.title==='string')
           .sort((a,b)=>(a.order||0)-(b.order||0));
-        box.replaceChildren(...apps.map(card));
+        box.replaceChildren(buildCarousel(apps));
       })
       .catch(fail)
       .finally(()=>clearTimeout(t));
