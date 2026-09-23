@@ -131,7 +131,9 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
 .app-msg button{margin-left:6px;border:1px solid var(--line-strong);background:rgba(255,255,255,.04);color:var(--text);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer}
 
 /* pdf utility */
-.pdf-tile{animation-delay:.2s;display:flex;flex-direction:column;justify-content:space-between}
+.pdf-tile{animation-delay:.2s;display:flex;flex-direction:column;gap:20px}
+.pdf-item{display:flex;flex-direction:column}
+.pdf-divider{height:1px;background:var(--line);margin:0 0 -2px}
 .pdf-top{display:flex;gap:14px;align-items:center}
 .pdf-top img{width:56px;height:56px;border-radius:14px;object-fit:cover;border:1px solid var(--line)}
 .pdf-top strong{display:block;font-size:15px}
@@ -213,16 +215,26 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
   </div>
 
   <div class="tile pdf-tile" id="utility">
-    <div>
-      <p class="kicker">Utility</p>
+    <p class="kicker">Utility</p>
+    <div class="pdf-item">
       <div class="pdf-top">
         <img src="assets/thumbnail_card_t1d.png" alt="Card emergenza T1D">
         <div><strong>Card d'emergenza T1D</strong><span>Salvala o stampala per tenerla con te.</span></div>
       </div>
       <span class="pill">GRATIS · PDF</span>
       <p class="pdf-dl" id="pdfDl"></p>
+      <a class="pdf-cta" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener">Scarica il PDF</a>
     </div>
-    <a class="pdf-cta" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener">Scarica il PDF</a>
+    <div class="pdf-divider"></div>
+    <div class="pdf-item">
+      <div class="pdf-top">
+        <img src="assets/thumbnail_card_t2d.png" alt="Card emergenza diabete tipo 2">
+        <div><strong>Card d'emergenza Tipo 2</strong><span>Salvala o stampala per tenerla con te.</span></div>
+      </div>
+      <span class="pill">GRATIS · PDF</span>
+      <p class="pdf-dl" id="pdf2Dl"></p>
+      <a class="pdf-cta" href="assets/card_emergenza_diabete_tipo2.pdf" target="_blank" rel="noopener">Scarica il PDF</a>
+    </div>
   </div>
 
   <div class="tile studio" id="studio">
@@ -255,26 +267,34 @@ const shareBtn=document.getElementById('shareBtn');
 shareBtn.addEventListener('click',async()=>{const data={title:'IvanSasi',text:'IvanSasi',url:location.origin+location.pathname};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);showToast('Link copiato')}}catch(e){}});
 
 /* ---- Card delle app: generate da downloads/manifest.json (aggiornato in automatico da GitHub Actions) ---- */
-/* ---- Contatore download del PDF: cresce da solo col tempo, stesso numero per tutti i visitatori.
-   Non e' un dato reale: e' calcolato dall'orologio (nessun contatore salvato da nessuna parte),
-   quindi e' identico per chiunque apra il sito nello stesso momento e resta coerente ricaricando.
-   Per cambiare il numero di partenza o la data di inizio, modifica DL_COUNTERS qui sotto. ---- */
+/* ---- Contatori download dei PDF: crescono da soli col tempo, stesso numero per tutti i visitatori.
+   Non sono dati reali: sono calcolati dall'orologio (nessun contatore salvato da nessuna parte),
+   quindi sono identici per chiunque apra il sito nello stesso momento e restano coerenti ricaricando.
+   Per ciascuna voce: base=numero di partenza, since=data/ora di partenza, periodHours=ogni quanto
+   sale, choices=i possibili incrementi (uno scelto a caso, sempre lo stesso per un dato periodo). ---- */
 const DL_COUNTERS={
-  'pdf':{base:97,since:'2026-09-22T00:00:00Z'}
+  'pdf':{base:97,since:'2026-09-22T00:00:00Z',periodHours:12,choices:[3,5]},
+  'pdf2':{base:3,since:'2026-09-23T00:00:00Z',periodHours:24,choices:[2,3,5]}
 };
 function dlSeed(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
 function dlRng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function dlIncrement(slug,period){return dlRng(dlSeed(slug+':'+period))()<0.5?3:5}
+function dlIncrement(slug,period,choices){const r=dlRng(dlSeed(slug+':'+period))();return choices[Math.min(choices.length-1,Math.floor(r*choices.length))]}
 function dlTotal(slug){
   const c=DL_COUNTERS[slug];if(!c)return null;
-  const periodMs=12*3600*1000;
+  const periodMs=(c.periodHours||12)*3600*1000;
+  const choices=(c.choices&&c.choices.length)?c.choices:[3,5];
   const periods=Math.max(0,Math.floor((Date.now()-Date.parse(c.since))/periodMs));
   let total=c.base;
-  for(let p=0;p<periods;p++)total+=dlIncrement(slug,p);
+  for(let p=0;p<periods;p++)total+=dlIncrement(slug,p,choices);
   return total;
 }
 function dlText(slug){const n=dlTotal(slug);return n==null?'':n.toLocaleString('it-IT')+' download'}
-function dlRenderPdf(){const el=document.getElementById('pdfDl');if(el){const t=dlText('pdf');if(t)el.textContent=t}}
+function dlRenderPdf(){
+  [['pdf','pdfDl'],['pdf2','pdf2Dl']].forEach(([slug,id])=>{
+    const el=document.getElementById(id);
+    if(el){const t=dlText(slug);if(t)el.textContent=t}
+  });
+}
 dlRenderPdf();
 
 (function(){
