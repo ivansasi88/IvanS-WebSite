@@ -342,7 +342,7 @@ dlRenderPdf();
      'Installa sopra la versione precedente per mantenere i dati, se la firma è la stessa.'
     ].forEach(t=>steps.appendChild(h('li',null,t)));
     det.appendChild(steps);
-    det.appendChild(h('p','hint','Se il download non parte, apri la pagina nel browser (Chrome).'));
+    if(!inApp)det.appendChild(h('p','hint','Se il download non parte, apri la pagina nel browser (Chrome).'));
     const withHash=vs.filter(v=>/^[0-9a-f]{64}$/i.test(v.sha256||''));
     if(withHash.length){
       const hs=h('div','hashes');hs.appendChild(h('p',null,'Verifica integrità (SHA-256)'));
@@ -356,6 +356,11 @@ dlRenderPdf();
     }
     box2.appendChild(det);tile.appendChild(box2);
     return tile;
+  }
+  function resetToFirst(track){
+    // doppio requestAnimationFrame: gira dopo il layout e dopo un eventuale scroll
+    // automatico del browser verso un'ancora (#id) o un ripristino della posizione salvata.
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{track.scrollLeft=0}));
   }
 
   /* ---- Carosello: track scorrevole (swipe nativo su touch, trascinamento col mouse, rotellina, frecce) + puntini ---- */
@@ -406,6 +411,7 @@ dlRenderPdf();
     }
 
     const wrap=h('div',null);wrap.appendChild(track);
+    resetToFirst(track);
     if(apps.length>1){
       const dots=h('div','apps-dots'),btns=[];
       apps.forEach((a,i)=>{
