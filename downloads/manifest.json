@@ -10,17 +10,17 @@
       "order": 1,
       "versions": [
         {
+          "version": "2.0.9",
+          "file": "downloads/glyvia-emergency/glyvia-emergency-v2.0.9.apk",
+          "size": 1352273,
+          "sha256": "c96ffef3656ea0557cf4339fd274cf08034bffc534e66bc2e4eb6fc75ff4bec1",
+          "date": "2026-09-28"
+        },
+        {
           "version": "2.0.6",
           "file": "downloads/glyvia-emergency/glyvia-emergency-v2.0.6.apk",
           "size": 376308,
           "sha256": "491812ed74c398f715af0efd3041e87e35875307bdb7472bbba3124fd6cd5840",
-          "date": "2026-09-21"
-        },
-        {
-          "version": "2.0.5",
-          "file": "downloads/glyvia-emergency/glyvia-emergency-v2.0.5.apk",
-          "size": 372212,
-          "sha256": "1339ce1613a7858f26f6a6e601c226bfe3017ddcfe6d33e6fb347e6732babf69",
           "date": "2026-09-21"
         }
       ]
@@ -37,9 +37,9 @@
         {
           "version": "1.6.1",
           "file": "downloads/glyvia-stock/glyvia-stock-v1.6.1.apk",
-          "size": 28653259,
-          "sha256": "896440e25fe07e0b4b4d6cee6804d4ebe571ab7af814b44f7969ed379ce3ee28",
-          "date": "2026-09-23"
+          "size": 28653251,
+          "sha256": "b29acf8f1160ce65b0606c8c2c653cd04d131debf1e757f36ba8d9102631b258",
+          "date": "2026-09-28"
         },
         {
           "version": "1.6.0",
