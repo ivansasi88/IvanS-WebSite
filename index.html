@@ -9,6 +9,11 @@
 <meta property="og:title" content="IvanSasi">
 <meta property="og:description" content="T1D senza filtri · design · progetti digitali.">
 <meta property="og:image" content="assets/avatar.jpg">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <style>
 :root{
   --bg:#04070d;
@@ -52,10 +57,10 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
 /* layout */
 .page{position:relative;z-index:1;width:min(calc(100% - 28px),var(--max));margin:auto;padding:36px 0 60px}
 /* Le card delle app (#apps) sono generate da downloads/manifest.json e si dispongono da sole nella griglia. */
-.grid{display:grid;gap:16px;grid-template-columns:1fr;grid-auto-flow:row dense}
+.grid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr);grid-auto-flow:row dense}
 /* #apps ora e' UN solo spazio nella griglia: dentro scorre un carosello (swipe/trascina) tra le card Glyvia */
-.apps{display:flex;flex-direction:column;gap:12px}
-.apps-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;cursor:grab;scrollbar-width:none;-ms-overflow-style:none}
+.apps{display:flex;flex-direction:column;gap:12px;min-width:0}
+.apps-track{display:flex;gap:16px;overflow-x:auto;min-width:0;scroll-snap-type:x proximity;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;cursor:grab;scrollbar-width:none;-ms-overflow-style:none}
 .apps-track::-webkit-scrollbar{display:none}
 .apps-track.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
 .apps-track:focus-visible{outline:2px solid var(--line-strong);outline-offset:4px;border-radius:var(--r-lg)}
@@ -64,15 +69,15 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
 .apps-dots button{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:var(--line-strong);cursor:pointer;transition:.2s ease}
 .apps-dots button[aria-current="true"]{background:var(--text);width:18px;border-radius:4px}
 @media(min-width:680px){
-  .grid{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .access,.app-msg{grid-column:1/-1}
 }
 @media(min-width:980px){
-  .grid{grid-template-columns:1.1fr 1fr 1fr}
+  .grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr)}
   .studio{grid-column:span 2}
   .access{grid-column:span 1}
 }
-.tile{border:1px solid var(--line);background:var(--panel);border-radius:var(--r-lg);padding:26px;opacity:0;transform:translateY(10px);animation:rise .5s ease forwards}
+.tile{min-width:0;border:1px solid var(--line);background:var(--panel);border-radius:var(--r-lg);padding:26px;opacity:0;transform:translateY(10px);animation:rise .5s ease forwards}
 @keyframes rise{to{opacity:1;transform:none}}
 .kicker{margin:0 0 12px;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 
@@ -99,8 +104,9 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
 .appname h2{margin:0;font-size:19px;letter-spacing:-.02em}
 .apptag{display:inline-block;margin-top:4px;font-size:10.5px;font-weight:900;letter-spacing:.04em;color:var(--glow)}
 .appcopy{margin:16px 0;color:#9fabb8;font-size:12.5px;line-height:1.55}
-.versions{display:grid;gap:8px}
-.version{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 13px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px}
+.versions{display:grid;gap:8px;min-width:0}
+.version>div:first-child,.prevrow>div:first-child{min-width:0}
+.version{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 13px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px}
 .version b{display:block;font-size:13px}
 .meta{display:flex;gap:7px;align-items:center;margin-top:4px;color:#7c8ea2;font-size:10px}
 .latest{color:#06120e;background:var(--glow);font-weight:900;border-radius:6px;padding:3px 6px}
@@ -115,7 +121,7 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
 .install summary:after{content:"+";color:#71859a;font-size:16px}
 .install details[open] summary:after{content:"−"}
 .install ol{margin:0 0 14px 18px;padding:0;color:#8091a2;font-size:10.5px;line-height:1.6}
-.prevrow{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:10px 12px;margin:0 0 14px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px}
+.prevrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;margin:0 0 14px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px}
 .prevrow b{display:block;font-size:12px}
 .hashes{margin:0 0 14px;color:#8091a2;font-size:10.5px}
 .hashes p{margin:0 0 4px;font-weight:800;color:#aebbc7}
@@ -131,7 +137,9 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
 .app-msg button{margin-left:6px;border:1px solid var(--line-strong);background:rgba(255,255,255,.04);color:var(--text);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer}
 
 /* pdf utility */
-.pdf-tile{animation-delay:.2s;display:flex;flex-direction:column;justify-content:space-between}
+.pdf-tile{animation-delay:.2s;display:flex;flex-direction:column;gap:20px}
+.pdf-item{display:flex;flex-direction:column}
+.pdf-divider{height:1px;background:var(--line);margin:0 0 -2px}
 .pdf-top{display:flex;gap:14px;align-items:center}
 .pdf-top img{width:56px;height:56px;border-radius:14px;object-fit:cover;border:1px solid var(--line)}
 .pdf-top strong{display:block;font-size:15px}
@@ -213,16 +221,26 @@ body::before{content:"";position:fixed;inset:-10% -20% auto -20%;height:640px;ba
   </div>
 
   <div class="tile pdf-tile" id="utility">
-    <div>
-      <p class="kicker">Utility</p>
+    <p class="kicker">Utility</p>
+    <div class="pdf-item">
       <div class="pdf-top">
         <img src="assets/thumbnail_card_t1d.png" alt="Card emergenza T1D">
         <div><strong>Card d'emergenza T1D</strong><span>Salvala o stampala per tenerla con te.</span></div>
       </div>
       <span class="pill">GRATIS · PDF</span>
       <p class="pdf-dl" id="pdfDl"></p>
+      <a class="pdf-cta" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener">Scarica il PDF</a>
     </div>
-    <a class="pdf-cta" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener">Scarica il PDF</a>
+    <div class="pdf-divider"></div>
+    <div class="pdf-item">
+      <div class="pdf-top">
+        <img src="assets/thumbnail_card_t2d.png" alt="Card emergenza diabete tipo 2">
+        <div><strong>Card d'emergenza Tipo 2</strong><span>Salvala o stampala per tenerla con te.</span></div>
+      </div>
+      <span class="pill">GRATIS · PDF</span>
+      <p class="pdf-dl" id="pdf2Dl"></p>
+      <a class="pdf-cta" href="assets/card_emergenza_diabete_tipo2.pdf" target="_blank" rel="noopener">Scarica il PDF</a>
+    </div>
   </div>
 
   <div class="tile studio" id="studio">
@@ -255,26 +273,34 @@ const shareBtn=document.getElementById('shareBtn');
 shareBtn.addEventListener('click',async()=>{const data={title:'IvanSasi',text:'IvanSasi',url:location.origin+location.pathname};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);showToast('Link copiato')}}catch(e){}});
 
 /* ---- Card delle app: generate da downloads/manifest.json (aggiornato in automatico da GitHub Actions) ---- */
-/* ---- Contatore download del PDF: cresce da solo col tempo, stesso numero per tutti i visitatori.
-   Non e' un dato reale: e' calcolato dall'orologio (nessun contatore salvato da nessuna parte),
-   quindi e' identico per chiunque apra il sito nello stesso momento e resta coerente ricaricando.
-   Per cambiare il numero di partenza o la data di inizio, modifica DL_COUNTERS qui sotto. ---- */
+/* ---- Contatori download dei PDF: crescono da soli col tempo, stesso numero per tutti i visitatori.
+   Non sono dati reali: sono calcolati dall'orologio (nessun contatore salvato da nessuna parte),
+   quindi sono identici per chiunque apra il sito nello stesso momento e restano coerenti ricaricando.
+   Per ciascuna voce: base=numero di partenza, since=data/ora di partenza, periodHours=ogni quanto
+   sale, choices=i possibili incrementi (uno scelto a caso, sempre lo stesso per un dato periodo). ---- */
 const DL_COUNTERS={
-  'pdf':{base:97,since:'2026-09-22T00:00:00Z'}
+  'pdf':{base:97,since:'2026-09-22T00:00:00Z',periodHours:12,choices:[3,5]},
+  'pdf2':{base:3,since:'2026-09-23T00:00:00Z',periodHours:24,choices:[2,3,5]}
 };
 function dlSeed(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
 function dlRng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function dlIncrement(slug,period){return dlRng(dlSeed(slug+':'+period))()<0.5?3:5}
+function dlIncrement(slug,period,choices){const r=dlRng(dlSeed(slug+':'+period))();return choices[Math.min(choices.length-1,Math.floor(r*choices.length))]}
 function dlTotal(slug){
   const c=DL_COUNTERS[slug];if(!c)return null;
-  const periodMs=12*3600*1000;
+  const periodMs=(c.periodHours||12)*3600*1000;
+  const choices=(c.choices&&c.choices.length)?c.choices:[3,5];
   const periods=Math.max(0,Math.floor((Date.now()-Date.parse(c.since))/periodMs));
   let total=c.base;
-  for(let p=0;p<periods;p++)total+=dlIncrement(slug,p);
+  for(let p=0;p<periods;p++)total+=dlIncrement(slug,p,choices);
   return total;
 }
 function dlText(slug){const n=dlTotal(slug);return n==null?'':n.toLocaleString('it-IT')+' download'}
-function dlRenderPdf(){const el=document.getElementById('pdfDl');if(el){const t=dlText('pdf');if(t)el.textContent=t}}
+function dlRenderPdf(){
+  [['pdf','pdfDl'],['pdf2','pdf2Dl']].forEach(([slug,id])=>{
+    const el=document.getElementById(id);
+    if(el){const t=dlText(slug);if(t)el.textContent=t}
+  });
+}
 dlRenderPdf();
 
 (function(){
@@ -342,7 +368,7 @@ dlRenderPdf();
      'Installa sopra la versione precedente per mantenere i dati, se la firma è la stessa.'
     ].forEach(t=>steps.appendChild(h('li',null,t)));
     det.appendChild(steps);
-    det.appendChild(h('p','hint','Se il download non parte, apri la pagina nel browser (Chrome).'));
+    if(!inApp)det.appendChild(h('p','hint','Se il download non parte, apri la pagina nel browser (Chrome).'));
     const withHash=vs.filter(v=>/^[0-9a-f]{64}$/i.test(v.sha256||''));
     if(withHash.length){
       const hs=h('div','hashes');hs.appendChild(h('p',null,'Verifica integrità (SHA-256)'));
@@ -356,6 +382,11 @@ dlRenderPdf();
     }
     box2.appendChild(det);tile.appendChild(box2);
     return tile;
+  }
+  function resetToFirst(track){
+    // doppio requestAnimationFrame: gira dopo il layout e dopo un eventuale scroll
+    // automatico del browser verso un'ancora (#id) o un ripristino della posizione salvata.
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{track.scrollLeft=0}));
   }
 
   /* ---- Carosello: track scorrevole (swipe nativo su touch, trascinamento col mouse, rotellina, frecce) + puntini ---- */
@@ -406,6 +437,7 @@ dlRenderPdf();
     }
 
     const wrap=h('div',null);wrap.appendChild(track);
+    resetToFirst(track);
     if(apps.length>1){
       const dots=h('div','apps-dots'),btns=[];
       apps.forEach((a,i)=>{
