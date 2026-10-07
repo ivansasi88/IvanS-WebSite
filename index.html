@@ -80,10 +80,14 @@
 @media(min-width:768px){:root{--gap:16px;--pad:28px;--gutter:24px}}
 
 /* colori neon: --c per i testi, --r per i bagliori (rgb) */
-.n-red,.n-orange{--c:#ffd60a;--r:255,214,10}
-.n-green{--c:#b8ff2c;--r:184,255,44}
-.n-blue,.n-magenta{--c:#f2ff00;--r:242,255,0}
-.n-purple{--c:#d6ff3a;--r:214,255,58}
+.n-red{--c:#ff4d5e;--r:255,77,94}
+.n-orange{--c:#ff8a2b;--r:255,138,43}
+.n-green{--c:#19e08a;--r:25,224,138}
+.n-blue{--c:#3b8bff;--r:59,139,255}
+.n-purple{--c:#a45bff;--r:164,91,255}
+.n-magenta{--c:#f04fd8;--r:240,79,216}
+.n-cyan{--c:#22e3e8;--r:34,227,232}
+.n-lime{--c:#f2ff00;--r:242,255,0}
 .n-ice{--c:#eef2d6;--r:238,242,214}
 
 *,*::before,*::after{box-sizing:border-box}
@@ -142,10 +146,10 @@ ul,ol{padding:0;list-style:none}
 
 /* ---------- icone neon (stile screenshot) ---------- */
 .neon{display:grid;place-items:center;flex:none;width:56px;height:56px;border-radius:16px;
-  background:radial-gradient(circle at 50% 30%,rgba(var(--r),.26),transparent 72%),#080906;
-  border:1px solid rgba(var(--r),.5);
-  box-shadow:inset 0 0 18px rgba(var(--r),.22),0 0 20px rgba(var(--r),.2)}
-.neon .ico{width:28px;height:28px;color:var(--c);filter:drop-shadow(0 0 3px var(--c)) drop-shadow(0 0 11px rgba(var(--r),.75))}
+  background:radial-gradient(circle at 50% 30%,rgba(var(--r),.36),transparent 72%),#080906;
+  border:1px solid rgba(var(--r),.72);
+  box-shadow:inset 0 0 20px rgba(var(--r),.3),0 0 22px rgba(var(--r),.32)}
+.neon .ico{width:28px;height:28px;color:var(--c);filter:drop-shadow(0 0 3px var(--c)) drop-shadow(0 0 12px rgba(var(--r),.9))}
 .neon.sm{width:40px;height:40px;border-radius:12px}.neon.sm .ico{width:21px;height:21px}
 .neon.lg{width:64px;height:64px;border-radius:18px}.neon.lg .ico{width:32px;height:32px}
 
@@ -441,10 +445,10 @@ ul,ol{padding:0;list-style:none}
         <li class="tg n-blue"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-palette"/></svg></span>Identità visive</li>
         <li class="tg n-red"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-broadcast"/></svg></span>Overlay per live</li>
         <li class="tg n-orange"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-film-strip"/></svg></span>Animazioni</li>
-        <li class="tg n-green"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-play-circle"/></svg></span>Intro</li>
+        <li class="tg n-cyan"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-play-circle"/></svg></span>Intro</li>
         <li class="tg n-magenta"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-image"/></svg></span>Grafiche social</li>
         <li class="tg n-green"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-android-logo"/></svg></span>App Android</li>
-        <li class="tg n-red"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-first-aid-kit"/></svg></span>Card T1D</li>
+        <li class="tg n-lime"><span class="neon sm"><svg class="ico" aria-hidden="true"><use href="#d-first-aid-kit"/></svg></span>Card T1D</li>
       </ul>
     </section>
 
