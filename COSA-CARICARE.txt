@@ -1,0 +1,33 @@
+IvanSasi - sito v2: cosa caricare nel repository (IvanS-WebSite)
+
+IMPORTANTE: l'errore della versione precedente era che index.html era online ma la cartella
+"assets" nuova no. Le immagini e i font davano errore 404. Carica TUTTO, non solo index.html.
+
+1) Copia il contenuto di questo zip nella cartella del repository, alla radice (accanto
+   a downloads/ e .github/), unendo la cartella assets/ a quella esistente:
+
+   index.html
+   assets/avatar.webp
+   assets/is-monogramma.webp
+   assets/is-contorno.svg
+   assets/ivansasi-monogramma.svg
+   assets/og.jpg
+   assets/favicon.ico  assets/favicon-16.png  assets/favicon-32.png  assets/favicon-192.png
+   assets/apple-touch-icon.png
+   assets/thumbnail_card_t1d.png  assets/thumbnail_card_t2d.png      (sostituiscono le vecchie)
+   assets/fonts/Geist-Variable.subset.woff2
+   assets/fonts/GeistMono-Variable.subset.woff2
+   assets/fonts/Montserrat-Variable.latin.woff2
+   assets/fonts/PlayfairDisplay-Italic-Variable.latin.woff2
+   assets/fonts/OFL-*.txt   (licenze dei font)
+
+2) Commit e push (con GitHub Desktop controlla che nell'elenco dei file modificati ci siano
+   anche i file dentro assets/, compresi i .woff2 e .webp).
+
+3) Dopo 1-2 minuti apri questi indirizzi: devono mostrare un file, non "404".
+   https://ivansasi88.github.io/IvanS-WebSite/assets/avatar.webp
+   https://ivansasi88.github.io/IvanS-WebSite/assets/ivansasi-monogramma.svg
+   https://ivansasi88.github.io/IvanS-WebSite/assets/fonts/Montserrat-Variable.latin.woff2
+   https://ivansasi88.github.io/IvanS-WebSite/assets/og.jpg
+
+Non toccare: downloads/, .github/, README.md, gli APK e i PDF.
