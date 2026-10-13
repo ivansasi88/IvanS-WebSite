@@ -23,6 +23,6 @@ La pubblicazione su Cloudflare non è eseguita da questi file: occorre autorizza
 
 ## Note
 - La cartella è separata dal sito GitHub Pages presente nella root del repository.
-- I link interni utilizzano percorsi assoluti, corretti quando Cloudflare pubblica `unified-home` come root.
+- I link interni utilizzano percorsi relativi, compatibili con Cloudflare Pages e con anteprime in sottocartelle.
 - Il ritratto è incorporato nel file HTML, ripreso dall'avatar già pubblico nel sito esistente.
 - Il monogramma IS è una resa tipografica da sostituire con il file vettoriale originale del nuovo logo per la massima fedeltà.
