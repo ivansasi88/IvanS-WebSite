@@ -214,22 +214,20 @@ ul,ol{padding:0;list-style:none}
 .frame-sm img{width:40px;height:40px;border-radius:10px}
 .frame-sm .appicon-ph{width:40px;height:40px;border-radius:10px;font-size:1.1rem}
 
-/* ---------- elenco app: intestazione cliccabile, contenuto a comparsa ---------- */
-.tile.app{padding:0;overflow:hidden}
-.app-accordion{display:block}
-.app-top{position:relative;cursor:pointer;list-style:none;display:flex;align-items:center;gap:14px;padding:var(--pad);padding-left:calc(var(--pad) + 10px);min-height:48px}
-.app-top::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:rgb(var(--r));box-shadow:0 0 10px rgba(var(--r),.65)}
-.app-top::-webkit-details-marker{display:none}
-.app-top-text{display:grid;gap:3px;min-width:0;flex:1}
-.app-top-name{font:italic 700 1.2rem/1.15 var(--serif);letter-spacing:-.01em;color:var(--text)}
-.app-top-sub{color:var(--muted);font-size:13px}
-.app-top::after{content:"";flex:none;width:18px;height:18px;background:currentColor;color:var(--text-2);opacity:.7;transition:transform .25s;
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M213.66%2C101.66l-80%2C80a8%2C8%2C0%2C0%2C1-11.32%2C0l-80-80A8%2C8%2C0%2C0%2C1%2C53.66%2C90.34L128%2C164.69l74.34-74.35a8%2C8%2C0%2C0%2C1%2C11.32%2C11.32Z'/%3E%3C/svg%3E") center/contain no-repeat;
-  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M213.66%2C101.66l-80%2C80a8%2C8%2C0%2C0%2C1-11.32%2C0l-80-80A8%2C8%2C0%2C0%2C1%2C53.66%2C90.34L128%2C164.69l74.34-74.35a8%2C8%2C0%2C0%2C1%2C11.32%2C11.32Z'/%3E%3C/svg%3E") center/contain no-repeat}
-.app-accordion[open] .app-top::after{transform:rotate(180deg)}
-@media(hover:hover){.app-top:hover .app-top-name{color:var(--paper)}}
-.app-accordion[open] .app-top{border-bottom:1px solid var(--line)}
-.app-accordion>.feat{padding:22px var(--pad) var(--pad)}
+/* ---------- elenco app: barra di schede orizzontale + pannello sotto ---------- */
+.apptabs{padding:0;overflow:hidden}
+.apptabs-nav{display:flex;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-bottom:1px solid var(--line);scroll-padding-inline:var(--pad)}
+.apptabs-nav::-webkit-scrollbar{display:none}
+.app-tab{flex:none;display:flex;align-items:center;gap:10px;min-width:0;padding:14px var(--pad);cursor:pointer;background:transparent;border:none;border-bottom:3px solid transparent;
+  color:var(--text-2);font:inherit;text-align:left;white-space:nowrap;opacity:.6;transition:opacity .2s,border-color .2s,background-color .2s}
+.app-tab .frame-sm{filter:grayscale(.45) brightness(.8);transition:filter .2s}
+.app-tab-text{display:grid;gap:2px;min-width:0}
+.app-tab-name{font:italic 700 1.02rem/1.2 var(--serif);letter-spacing:-.01em;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.app-tab-sub{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.app-tab.active{opacity:1;border-bottom-color:rgb(var(--r));background:rgba(var(--r),.07)}
+.app-tab.active .frame-sm{filter:none}
+@media(hover:hover){.app-tab:not(.active):hover{opacity:.85}}
+.apptabs-panel{padding:22px var(--pad) var(--pad)}
 .meta{display:flex;flex-wrap:wrap;gap:8px}
 .notice{display:flex;gap:10px;align-items:flex-start;text-align:left;padding:12px 14px;border-radius:var(--r-inner);border:1px solid rgba(255,201,51,.5);background:rgba(255,201,51,.07);color:var(--text-2);font-size:13.5px;line-height:1.5}
 .notice .ico{color:var(--warn);width:20px;height:20px;margin-top:1px;filter:drop-shadow(0 0 6px rgba(255,201,51,.6))}
@@ -550,27 +548,38 @@ ul,ol{padding:0;list-style:none}
     return fr;
   }
 
-  function card(app){
+  function tab(app,isActive){
+    const x=APP_EXTRA[app.slug]||{};
+    const vs=Array.isArray(app.versions)?app.versions:[];
+    const cur=vs[0];
+    const b=document.createElement('button');
+    b.type='button';b.className='app-tab'+(isActive?' active':'');
+    b.id='tab-'+app.slug;
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-selected',isActive?'true':'false');
+    b.setAttribute('aria-controls','panel-apps');
+    b.tabIndex=isActive?0:-1;
+    b.style.setProperty('--r',rgb(app.accent));
+    const text=h('div','app-tab-text');
+    text.append(h('span','app-tab-name',app.title),h('span','app-tab-sub',cur?('Versione '+cur.version):(app.tag||'In arrivo')));
+    b.append(iconFrame(app,'frame-sm',40),text);
+    return b;
+  }
+
+  function panel(app){
     const x=APP_EXTRA[app.slug]||{};
     const vs=Array.isArray(app.versions)?app.versions:[];
     const cur=vs[0];
     let prev=vs[1];
     if(prev&&x.hidePrevBelow&&vcmp(prev.version,x.hidePrevBelow)<0)prev=null;
 
-    const tile=h('article','tile app');
-    if(/^[\w-]+$/.test(app.slug))tile.id=app.slug;
-    tile.style.setProperty('--r',rgb(app.accent));
-
-    const acc=document.createElement('details');
-    acc.className='app-accordion';
-
-    const top=document.createElement('summary');
-    top.className='app-top';
-    const topText=h('div','app-top-text');
-    topText.append(h('span','app-top-name',app.title),h('span','app-top-sub',cur?('Versione '+cur.version):(app.tag||'In arrivo')));
-    top.append(iconFrame(app,'frame-sm',40),topText);
-
     const wrap=h('div','feat');
+    wrap.id='panel-apps';
+    wrap.setAttribute('role','tabpanel');
+    wrap.setAttribute('aria-labelledby','tab-'+app.slug);
+    if(/^[\w-]+$/.test(app.slug))wrap.dataset.slug=app.slug;
+    wrap.style.setProperty('--r',rgb(app.accent));
+
     const body=h('div','feat-body');
     body.append(h('h3','tile-title',app.title),h('p','tile-sub',app.description||''));
 
@@ -622,9 +631,7 @@ ul,ol{padding:0;list-style:none}
     art.appendChild(iconFrame(app,'',86));
 
     wrap.append(body,art);
-    acc.append(top,wrap);
-    tile.appendChild(acc);
-    return tile;
+    return wrap;
   }
 
   function fail(){
@@ -634,14 +641,52 @@ ul,ol{padding:0;list-style:none}
     box.replaceChildren(m);
   }
 
+  let APPS=[];
+  function select(slug){
+    const app=APPS.find(a=>a.slug===slug);
+    if(!app)return;
+    nav.querySelectorAll('.app-tab').forEach(t=>{
+      const on=t.id==='tab-'+slug;
+      t.classList.toggle('active',on);
+      t.setAttribute('aria-selected',on?'true':'false');
+      t.tabIndex=on?0:-1;
+    });
+    panelHost.replaceChildren(panel(app));
+    const active=nav.querySelector('.app-tab.active');
+    if(active&&active.scrollIntoView)active.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+  }
+
+  let nav,panelHost;
   function load(){
     const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),10000);
     fetch('downloads/manifest.json?t='+Date.now(),{cache:'no-store',signal:ctl.signal})
       .then(r=>{if(!r.ok)throw new Error(r.status);return r.json()})
       .then(m=>{
         if(!m||!Array.isArray(m.apps))throw new Error('manifest');
-        const apps=m.apps.filter(a=>a&&typeof a.slug==='string'&&typeof a.title==='string').sort((a,b)=>(a.order||0)-(b.order||0));
-        box.replaceChildren(...apps.map(card));
+        APPS=m.apps.filter(a=>a&&typeof a.slug==='string'&&typeof a.title==='string').sort((a,b)=>(a.order||0)-(b.order||0));
+        if(!APPS.length)throw new Error('empty');
+
+        const outer=h('div','tile apptabs');
+        nav=h('div','apptabs-nav');nav.setAttribute('role','tablist');nav.setAttribute('aria-label','App disponibili');
+        panelHost=h('div','apptabs-panel');
+
+        APPS.forEach((app,i)=>{
+          const btn=tab(app,i===0);
+          btn.addEventListener('click',()=>select(app.slug));
+          btn.addEventListener('keydown',e=>{
+            if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+            e.preventDefault();
+            const idx=APPS.findIndex(a=>a.slug===app.slug);
+            const next=APPS[(idx+(e.key==='ArrowRight'?1:-1)+APPS.length)%APPS.length];
+            select(next.slug);
+            document.getElementById('tab-'+next.slug).focus();
+          });
+          nav.appendChild(btn);
+        });
+        panelHost.appendChild(panel(APPS[0]));
+
+        outer.append(nav,panelHost);
+        box.replaceChildren(outer);
       })
       .catch(fail)
       .finally(()=>clearTimeout(t));
