@@ -217,7 +217,8 @@ ul,ol{padding:0;list-style:none}
 /* ---------- elenco app: intestazione cliccabile, contenuto a comparsa ---------- */
 .tile.app{padding:0;overflow:hidden}
 .app-accordion{display:block}
-.app-top{cursor:pointer;list-style:none;display:flex;align-items:center;gap:14px;padding:var(--pad);min-height:48px}
+.app-top{position:relative;cursor:pointer;list-style:none;display:flex;align-items:center;gap:14px;padding:var(--pad);padding-left:calc(var(--pad) + 10px);min-height:48px}
+.app-top::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:rgb(var(--r));box-shadow:0 0 10px rgba(var(--r),.65)}
 .app-top::-webkit-details-marker{display:none}
 .app-top-text{display:grid;gap:3px;min-width:0;flex:1}
 .app-top-name{font:italic 700 1.2rem/1.15 var(--serif);letter-spacing:-.01em;color:var(--text)}
@@ -558,7 +559,7 @@ ul,ol{padding:0;list-style:none}
 
     const tile=h('article','tile app');
     if(/^[\w-]+$/.test(app.slug))tile.id=app.slug;
-    tile.style.setProperty('--r','242,255,0');
+    tile.style.setProperty('--r',rgb(app.accent));
 
     const acc=document.createElement('details');
     acc.className='app-accordion';
