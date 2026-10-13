@@ -59,6 +59,16 @@
       "accent": "#3b8bff",
       "order": 3,
       "versions": []
+    },
+    {
+      "slug": "glyvia-follow",
+      "title": "Glyvia Follow",
+      "tag": "FOLLOW · T1D",
+      "description": "Segue da remoto la glicemia letta da Glyvia Diary, senza sensore diretto.",
+      "icon": "assets/glyvia-follow.svg",
+      "accent": "#a45bff",
+      "order": 4,
+      "versions": []
     }
   ]
 }
