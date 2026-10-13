@@ -114,11 +114,30 @@ ul,ol{padding:0;list-style:none}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.nav{background:rgba(5,5,5,.98)}}
 .nav-logo{display:block;width:34px;height:34px;border-radius:9px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(var(--lime-rgb),.35),0 0 14px rgba(var(--lime-rgb),.25)}
 .nav-logo img{width:100%;height:100%}
+.nav-name{display:none;font:italic 600 .95rem/1 var(--serif);color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+@media(min-width:620px){.nav-name{display:block}}
 .nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
 .nav-links a{padding:9px 12px;border-radius:10px;font-size:14px;font-weight:550;color:var(--text-2)}
 @media(hover:hover){.nav-links a:hover{background:var(--raise-2);color:var(--text)}}
 .nav .btn{min-height:40px;padding:0 16px;font-size:14px;border-radius:12px}
 @media(max-width:420px){.nav-links a{padding:9px 8px;font-size:13.5px}.nav .btn{padding:0 12px}}
+
+/* ---------- menu a tendina "App" nella nav ---------- */
+.nav-dd{position:relative}
+.nav-dd-btn{display:inline-flex;align-items:center;gap:5px;padding:9px 12px;border-radius:10px;font-size:14px;font-weight:550;color:var(--text-2);background:none;border:none;font-family:inherit;cursor:pointer}
+@media(hover:hover){.nav-dd-btn:hover{background:var(--raise-2);color:var(--text)}}
+.nav-dd-btn .ico{width:11px;height:11px;opacity:.65;transform:rotate(90deg);transition:transform .2s}
+.nav-dd-btn[aria-expanded="true"]{background:var(--raise-2);color:var(--text)}
+.nav-dd-btn[aria-expanded="true"] .ico{transform:rotate(-90deg)}
+.nav-dd-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:200px;margin:0;padding:8px;list-style:none;
+  background:radial-gradient(110% 80% at 50% 0%,rgba(242,255,0,.045),transparent 60%),linear-gradient(180deg,var(--tile-a),var(--tile-b));
+  border:1px solid var(--line-strong);border-radius:14px;box-shadow:0 18px 44px rgba(0,0,0,.55);z-index:50}
+.nav-dd-menu[hidden]{display:none}
+.nav-dd-menu li+li{margin-top:2px}
+.nav-dd-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border-radius:10px;border:none;background:none;color:var(--text-2);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.nav-dd-menu button:hover,.nav-dd-menu button:focus-visible{background:var(--raise);color:var(--text)}
+.nav-dd-menu .frame-sm{width:30px;height:30px;border-radius:8px}
+.nav-dd-menu .frame-sm img,.nav-dd-menu .frame-sm .appicon-ph{width:24px;height:24px;border-radius:6px;font-size:.85rem}
 
 /* ---------- colonna ---------- */
 .page{position:relative;z-index:1;width:min(calc(100% - (var(--gutter) * 2) - env(safe-area-inset-left) - env(safe-area-inset-right)),var(--max));margin:0 auto;padding:16px 0 48px;display:grid;gap:var(--gap)}
@@ -338,9 +357,14 @@ ul,ol{padding:0;list-style:none}
 <div class="nav-wrap">
   <header class="nav">
     <a class="nav-logo" href="#top" aria-label="IvanSasi, torna all'inizio"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyOC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGl2ZWxsb18xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTAyNCAxMDI0OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fQ0KCS5zdDF7ZmlsbDp1cmwoI2xldHRlcmEtaV8wMDAwMDEzNDk2MTI4MTg1NjIwNzk3MTA1MDAwMDAxMzU0NzYwNzQ4MzE4MDQ0NjY1NV8pO30NCgkuc3Qye2ZpbGw6dXJsKCNsZXR0ZXJhLXNfMDAwMDAxMTQ3NTI2NzQ3NDk1MTQ2MzQ0MTAwMDAwMTQyODQxODg5NzE5MjIyMDM1MjNfKTt9DQo8L3N0eWxlPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTk1Ni4zLDExODYuNUgzNy43Yy0xMzIuNCwwLTIzOS43LTEwNy4zLTIzOS43LTIzOS43Vjk0LjZjMC0xMzIuNCwxMDcuMy0yMzkuNywyMzkuNy0yMzkuN2g5MTguNg0KCWMxMzIuNCwwLDIzOS43LDEwNy4zLDIzOS43LDIzOS43djg1Mi4xQzExOTYsMTA3OS4yLDEwODguNywxMTg2LjUsOTU2LjMsMTE4Ni41eiIvPg0KPGcgaWQ9Im1vbm9ncmFtbWEiPg0KCQ0KCQk8bGluZWFyR3JhZGllbnQgaWQ9ImxldHRlcmEtaV8wMDAwMDA4NDUwNTE5NDAyNTYyODYxMzYwMDAwMDAwMzAxMzkwMDY2ODk3OTg4NzI2N18iIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iLTQ0Ni4xNTkzIiB5MT0iMTA1My4xNDk5IiB4Mj0iLTQ0NS4xNTkzIiB5Mj0iMTA1Mi4xNDk5IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDI0Ni4yMjAyIDAgMCAtODIwLjM1MDYgMTA5OTQ1LjQ4NDQgODY0MDA5LjY4NzUpIj4NCgkJPHN0b3AgIG9mZnNldD0iMCIgc3R5bGU9InN0b3AtY29sb3I6I0ZBRkYwMCIvPg0KCQk8c3RvcCAgb2Zmc2V0PSIwLjUiIHN0eWxlPSJzdG9wLWNvbG9yOiNFRkZGMDAiLz4NCgkJPHN0b3AgIG9mZnNldD0iMSIgc3R5bGU9InN0b3AtY29sb3I6I0NDRTYwMCIvPg0KCTwvbGluZWFyR3JhZGllbnQ+DQoJPHBhdGggaWQ9ImxldHRlcmEtaSIgc3R5bGU9ImZpbGw6dXJsKCNsZXR0ZXJhLWlfMDAwMDAwODQ1MDUxOTQwMjU2Mjg2MTM2MDAwMDAwMDMwMTM5MDA2Njg5Nzk4ODcyNjdfKTsiIGQ9Ik0zMzguMyw1Ny41djE3MC4zDQoJCWMwLDYuOS0zLjUsMTMtMTAuNCwxOC40bC04Mi44LDU2LjR2NDQxLjhjMCw2LjEtMy4xLDExLjktOS4yLDE3LjNMOTIsODc3LjlsMS4yLTU5Ny4xYy0wLjgtOS4yLDEuOS0xNi41LDguMS0yMS45TDMzOC4zLDU3LjV6Ii8+DQoJDQoJCTxsaW5lYXJHcmFkaWVudCBpZD0ibGV0dGVyYS1zXzAwMDAwMDYzNjMzMDYwMDI2MTkzODUxMjkwMDAwMDAyMjg3ODc1MTg0MDUzOTE1MzIyXyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSItNDQ2Ljc2NDIiIHkxPSIxMDUzLjE1ODYiIHgyPSItNDQ1Ljc2NDIiIHkyPSIxMDUyLjE1ODYiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoODc3Ljg3ODcgMCAwIC03NzUuNDc4NiAzOTIyNzcuMjUgODE2ODg2LjEyNSkiPg0KCQk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojRkFGRjAwIi8+DQoJCTxzdG9wICBvZmZzZXQ9IjAuNSIgc3R5bGU9InN0b3AtY29sb3I6I0VGRkYwMCIvPg0KCQk8c3RvcCAgb2Zmc2V0PSIxIiBzdHlsZT0ic3RvcC1jb2xvcjojQ0NFNjAwIi8+DQoJPC9saW5lYXJHcmFkaWVudD4NCgk8cGF0aCBpZD0ibGV0dGVyYS1zIiBzdHlsZT0iZmlsbDp1cmwoI2xldHRlcmEtc18wMDAwMDA2MzYzMzA2MDAyNjE5Mzg1MTI5MDAwMDAwMjI4Nzg3NTE4NDA1MzkxNTMyMl8pOyIgZD0iTTk1MC40LDE4NC4xDQoJCWwtMTk5LDE2My40Yy0xMCw5LjItMjEuOSwxMy44LTM1LjcsMTMuOGgtMTkxYy0xMi4zLDAtMjMuNCw0LjItMzMuNCwxMi43bC00Ny4yLDM4Yy0xMS41LDkuMi0xMy44LDE4LjgtNi45LDI4LjgNCgkJYzYuOSw4LjQsMTgsMTIuNywzMy40LDEyLjdoMjQxLjZjNTYuOCwwLDEwMC41LDE2LjEsMTMxLjIsNDguM2MyNi4xLDI3LjYsMzkuMSw2NCwzOS4xLDEwOS4zdjY3LjljMCwzMy0xMS41LDU5LjgtMzQuNSw4MC41DQoJCWwtOTQuMyw3Ny4xYy0xNy42LDE2LjEtNDIuMiwyNi4xLTczLjYsMjkuOUw3Mi41LDk1OS42bDI3NS0yNDEuNmM5LjItOC40LDE5LjktMTIuNywzMi4yLTEyLjdoMjY2LjljMTAuNywwLDIxLjEtNC4yLDMxLjEtMTIuNw0KCQlsMzUuNy0yNy42YzEwLjctOS4yLDEzLjgtMTkuNiw5LjItMzEuMWMtNS40LTE0LjYtMTYuMS0yMS45LTMyLjItMjEuOWgtMjc1Yy0xOS4yLDAtMzYuOC02LjEtNTIuOS0xOC40bC01OC43LTQ3LjINCgkJYy0yMi4yLTE3LjYtMzMuNC0zOS4xLTMzLjQtNjQuNHYtOTUuNWMwLTkuMiwzLjgtMTYuOSwxMS41LTIzTDQ1Ni44LDIxNGMyMi4yLTE4LjQsNDkuOS0yNy42LDgyLjgtMjcuNkw5NTAuNCwxODQuMXoiLz4NCjwvZz4NCjwvc3ZnPg0K" alt="" width="34" height="34"></a>
+    <span class="nav-name">Ivan Salvatore Nasti</span>
     <nav class="nav-links" aria-label="Sezioni">
-      <a href="#apps">App</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" id="appDdBtn" aria-haspopup="true" aria-expanded="false" aria-controls="appDdMenu">App<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
+        <ul class="nav-dd-menu" id="appDdMenu" role="menu" aria-label="App disponibili" hidden></ul>
+      </div>
       <a href="#card">Card</a>
+      <a href="#link">Link</a>
       <a href="#studio">Design</a>
     </nav>
     <a class="btn btn-paper" href="https://t.me/ivansasi" target="_blank" rel="noopener">Scrivimi</a>
@@ -470,7 +494,7 @@ ul,ol{padding:0;list-style:none}
       </ul>
     </section>
 
-    <section class="tile access" aria-labelledby="acc-t">
+    <section class="tile access" id="link" aria-labelledby="acc-t">
       <h2 class="tile-title" id="acc-t">Accessori Type 1</h2>
       <div class="access-list">
         <a class="product" href="https://www.amazon.it/dp/B0BPCRPXWK" target="_blank" rel="noopener"><img src="assets/amazon_cerotti_blu.webp" alt="Cerotti blu per Dexcom G7" width="52" height="52" loading="lazy" decoding="async"><div><strong>MySweetStitch, cerotti Dexcom G7</strong></div><svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></a>
@@ -687,10 +711,38 @@ ul,ol{padding:0;list-style:none}
 
         outer.append(nav,panelHost);
         box.replaceChildren(outer);
+
+        const ddMenu=document.getElementById('appDdMenu');
+        if(ddMenu){
+          ddMenu.replaceChildren(...APPS.map(app=>{
+            const li=document.createElement('li');
+            const b=document.createElement('button');
+            b.type='button';b.setAttribute('role','menuitem');
+            b.append(iconFrame(app,'frame-sm',24),document.createTextNode(app.title));
+            b.addEventListener('click',()=>{
+              closeAppDd();
+              select(app.slug);
+              document.getElementById('apps').scrollIntoView({behavior:'smooth',block:'start'});
+            });
+            li.appendChild(b);
+            return li;
+          }));
+        }
       })
       .catch(fail)
       .finally(()=>clearTimeout(t));
   }
+
+  /* ---- menu a tendina "App" nella nav ---- */
+  const ddBtn=document.getElementById('appDdBtn'),ddMenuEl=document.getElementById('appDdMenu');
+  function openAppDd(){ddMenuEl.hidden=false;ddBtn.setAttribute('aria-expanded','true')}
+  function closeAppDd(){ddMenuEl.hidden=true;ddBtn.setAttribute('aria-expanded','false')}
+  if(ddBtn&&ddMenuEl){
+    ddBtn.addEventListener('click',()=>{ddMenuEl.hidden?openAppDd():closeAppDd()});
+    document.addEventListener('click',e=>{if(!ddMenuEl.hidden&&!ddBtn.contains(e.target)&&!ddMenuEl.contains(e.target))closeAppDd()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!ddMenuEl.hidden){closeAppDd();ddBtn.focus()}});
+  }
+
   if(inApp){const n=document.getElementById('inAppNote');if(n)n.textContent='Sei in un browser interno: se il download non parte, apri la pagina in Chrome.'}
   load();
 })();
