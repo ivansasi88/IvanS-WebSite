@@ -49,6 +49,26 @@
           "date": "2026-09-21"
         }
       ]
+    },
+    {
+      "slug": "glyvia-diary",
+      "title": "Glyvia Diary",
+      "tag": "DIARIO · T1D",
+      "description": "Diario glicemico con lettura dai dati del sensore CGM.",
+      "icon": "assets/glyvia-diary.svg",
+      "accent": "#3b8bff",
+      "order": 3,
+      "versions": []
+    },
+    {
+      "slug": "glyvia-follow",
+      "title": "Glyvia Follow",
+      "tag": "FOLLOW · T1D",
+      "description": "Segue da remoto la glicemia letta da Glyvia Diary, senza sensore diretto.",
+      "icon": "assets/glyvia-follow.svg",
+      "accent": "#a45bff",
+      "order": 4,
+      "versions": []
     }
   ]
 }
