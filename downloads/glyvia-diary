@@ -1,8 +1,0 @@
-{
-  "title": "Glyvia Diary",
-  "tag": "DIARIO · T1D",
-  "description": "Diario glicemico con lettura dai dati del sensore CGM.",
-  "icon": "assets/glyvia-diary.svg",
-  "accent": "#3b8bff",
-  "order": 3
-}
