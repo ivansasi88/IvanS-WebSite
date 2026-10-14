@@ -51,31 +51,6 @@
       ]
     },
     {
-      "slug": "glyvia-diary",
-      "title": "Glyvia Diary",
-      "tag": "DIARIO · T1D",
-      "description": "Diario glicemico con lettura dai dati del sensore CGM.",
-      "icon": "assets/glyvia-diary.svg",
-      "accent": "#3b8bff",
-      "order": 3,
-      "versions": [
-        {
-          "version": "3.10.18",
-          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.18.apk",
-          "size": 19318551,
-          "sha256": "b9baa5b03bb16363c250d7f22a7264927b74f9e7928781ca57275d9cd81eecb4",
-          "date": "2026-10-13"
-        },
-        {
-          "version": "3.10.17",
-          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.17.apk",
-          "size": 19318551,
-          "sha256": "85dc09d2b3d2dbf755a9bc6a3a8daa86e68338559d3738a615f5c3ad5a4bf6e8",
-          "date": "2026-10-13"
-        }
-      ]
-    },
-    {
       "slug": "glyvia-follow",
       "title": "Glyvia Follow",
       "tag": "FOLLOW · T1D",
