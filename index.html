@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- IvanSasi sito v2.4 -->
+<!-- IvanSasi sito v2.5 -->
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -294,17 +294,36 @@ ul,ol{padding:0;list-style:none}
 .linkcard>.ico{width:18px;height:18px;color:var(--muted)}
 @media(hover:hover){.linkcard:hover{border-color:rgba(242,255,0,.5)}}
 
-/* ---------- galleria design ---------- */
-.studio .chips{margin-top:2px}
-.gal{display:grid;gap:14px;overflow:hidden}
-.gal .tile-title,.case .tile-title,.stk .tile-title{font-weight:400}
+/* ---------- app come schede di browser ---------- */
+.apptabs{padding:0;overflow:hidden}
+.tabbar{display:flex;gap:3px;padding:10px 10px 0;overflow-x:auto;scrollbar-width:none;background:rgba(0,0,0,.55);box-shadow:inset 0 -1px 0 var(--line-strong)}
+.tabbar::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;display:flex;align-items:center;gap:12px;min-height:62px;margin-top:5px;padding:9px 22px 9px 14px;border:1px solid var(--line);border-bottom:0;border-radius:16px 16px 0 0;background:rgba(255,255,255,.03);color:var(--text-2);text-align:left;cursor:pointer;transition:background-color .2s,color .2s}
+.tab[aria-selected="true"]{margin-top:0;min-height:67px;background:var(--tile-a);border-color:var(--line-strong);color:var(--text)}
+@media(hover:hover){.tab[aria-selected="false"]:hover{background:var(--raise-2);color:var(--text)}}
+.tab-i{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:11px;overflow:hidden;border:1px solid rgba(var(--lime-rgb),.35);background:#080906;font:italic 700 1.1rem var(--serif)}
+.tab-i img{width:100%;height:100%;object-fit:cover}
+.tab-t b{display:block;font:italic 700 1.12rem/1.15 var(--serif);white-space:nowrap}
+.tab-t small{display:block;margin-top:2px;font-size:13px;color:var(--muted);white-space:nowrap}
+.tabpanel{padding:var(--pad)}
+.tabpanel[hidden]{display:none}
+
+/* ---------- voci IS e pannelli lavori ---------- */
+.voices{display:flex;flex-wrap:wrap;gap:8px}
+.voice{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 14px 0 16px;border-radius:12px;border:1px solid rgba(var(--lime-rgb),.55);background:rgba(var(--lime-rgb),.06);color:#f6ffb0;font-size:14px;font-weight:600;cursor:pointer;transition:background-color .2s,color .2s}
+.voice .ico{width:14px;height:14px;transition:transform .2s}
+.voice[aria-expanded="true"]{background:var(--paper);border-color:var(--paper);color:var(--paper-ink)}
+.voice[aria-expanded="true"] .ico{transform:rotate(90deg)}
+@media(hover:hover){.voice[aria-expanded="false"]:hover{background:rgba(var(--lime-rgb),.15)}}
+.vpanel{grid-column:1/-1;display:grid;gap:14px;margin-top:4px;padding-top:20px;border-top:1px solid var(--line)}
+.vpanel[hidden]{display:none}
+.vpanel .tile-title{font-weight:400;font-size:clamp(1.3rem,1.15rem + .6vw,1.6rem)}
 .clips{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 12px;scrollbar-width:thin;scrollbar-color:rgba(242,255,0,.4) transparent}
 .clip{flex:0 0 min(46%,195px);scroll-snap-align:start;display:grid;gap:2px;justify-items:center;text-align:center}
-.clipbox{position:relative;width:100%;aspect-ratio:360/650;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(90% 60% at 50% 40%,rgba(242,255,0,.07),transparent 70%),#08090a}
-.clipbox img,.clipbox video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.clipbox{position:relative;width:100%;aspect-ratio:360/650;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#e8e8e8}
+.clipbox img,.clipbox video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .clip b{margin-top:8px;font-size:14.5px;font-weight:650}
 .clip small{color:var(--muted);font-size:12.5px}
-.case,.stk{display:grid;gap:14px}
 .case-grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
 .case-grid figure{margin:0}.case-grid figure:first-child{grid-column:1/-1}
 @media(min-width:680px){.case-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.case-grid figure:first-child{grid-column:auto}}
@@ -458,8 +477,12 @@ ul,ol{padding:0;list-style:none}
   <section class="tile feat studio n-ice" id="studio" aria-labelledby="studio-t">
     <div class="feat-body">
       <h2 class="tile-title" id="studio-t">IS | Inspiration Studio</h2>
-      <p class="tile-sub">Overlay, intro e animazioni per live, più loghi e grafiche social per creator e brand.</p>
-      <ul class="chips"><li class="chip">Overlay per live</li><li class="chip">Animazioni</li><li class="chip">Intro</li><li class="chip">Loghi</li><li class="chip">Grafiche social</li></ul>
+      <p class="tile-sub">Overlay, intro e animazioni per live, più loghi e grafiche social per creator e brand. Tocca una voce per vedere alcuni lavori.</p>
+      <div class="voices" role="group" aria-label="Lavori di IS | Inspiration Studio">
+        <button type="button" class="voice" id="vb-overlay" aria-expanded="false" aria-controls="v-overlay">Overlay e animazioni<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
+        <button type="button" class="voice" id="vb-loghi" aria-expanded="false" aria-controls="v-loghi">Loghi<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
+        <button type="button" class="voice" id="vb-social" aria-expanded="false" aria-controls="v-social">Sticker e grafiche social<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
+      </div>
       <div class="btn-row">
         <a class="btn btn-paper" href="mailto:ivaninspirationstudio@gmail.com?subject=Richiesta%20preventivo%20IS%20Inspiration%20Studio&body=Ciao%20Ivan%2C%0A%0Avorrei%20richiedere%20un%20preventivo%20per%3A%20"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Richiedi preventivo</a>
         <a class="btn btn-ghost" href="https://t.me/ivansasi" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-telegram"/></svg>Telegram</a>
@@ -467,42 +490,40 @@ ul,ol{padding:0;list-style:none}
       </div>
     </div>
     <div class="feat-art"><div class="frame"><img src="data:image/webp;base64,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" alt="Monogramma IS | Inspiration Studio" width="96" height="79" loading="lazy" decoding="async"></div></div>
-  </section>
 
-  <section class="tile gal" aria-labelledby="gal-t">
-    <h3 class="tile-title" id="gal-t">Overlay animati</h3>
-    <p class="tile-sub">Quattro stili, con lo sfondo già rimosso. Scorri di lato per vederli tutti.</p>
-    <ul class="clips" role="list" tabindex="0" aria-label="Anteprime degli overlay, scorri in orizzontale">
-      <li class="clip" data-webm="assets/clips/caramel-taptap.webm"><div class="clipbox"><img src="assets/clips/caramel-taptap.webp" alt="Overlay animato Tap Tap in stile Caramel" width="360" height="650" loading="lazy" decoding="async"></div><b>Caramel</b><small>Tap Tap</small></li>
-      <li class="clip" data-webm="assets/clips/glass-taptap.webm"><div class="clipbox"><img src="assets/clips/glass-taptap.webp" alt="Overlay animato Tap Tap in stile Glass" width="360" height="650" loading="lazy" decoding="async"></div><b>Glass</b><small>Tap Tap</small></li>
-      <li class="clip" data-webm="assets/clips/metal-taptap.webm"><div class="clipbox"><img src="assets/clips/metal-taptap.webp" alt="Overlay animato Tap Tap in stile Metal" width="360" height="650" loading="lazy" decoding="async"></div><b>Metal</b><small>Tap Tap</small></li>
-      <li class="clip" data-webm="assets/clips/neon-taptap.webm"><div class="clipbox"><img src="assets/clips/neon-taptap.webp" alt="Overlay animato Tap Tap in stile Neon" width="360" height="650" loading="lazy" decoding="async"></div><b>Neon</b><small>Tap Tap</small></li>
-      <li class="clip" data-webm="assets/clips/caramel-guanto.webm"><div class="clipbox"><img src="assets/clips/caramel-guanto.webp" alt="Overlay animato con guantone da boxe in stile Caramel" width="360" height="650" loading="lazy" decoding="async"></div><b>Caramel</b><small>Guanto</small></li>
-      <li class="clip" data-webm="assets/clips/glass-guanto.webm"><div class="clipbox"><img src="assets/clips/glass-guanto.webp" alt="Overlay animato con guantone da boxe in stile Glass" width="360" height="650" loading="lazy" decoding="async"></div><b>Glass</b><small>Guanto</small></li>
-      <li class="clip" data-webm="assets/clips/metal-guanto.webm"><div class="clipbox"><img src="assets/clips/metal-guanto.webp" alt="Overlay animato con guantone da boxe in stile Metal" width="360" height="650" loading="lazy" decoding="async"></div><b>Metal</b><small>Guanto</small></li>
-      <li class="clip" data-webm="assets/clips/neon-guanto.webm"><div class="clipbox"><img src="assets/clips/neon-guanto.webp" alt="Overlay animato con guantone da boxe in stile Neon" width="360" height="650" loading="lazy" decoding="async"></div><b>Neon</b><small>Guanto</small></li>
-    </ul>
-  </section>
-
-  <section class="tile case" aria-labelledby="gfs-t">
-    <div>
-      <h3 class="tile-title" id="gfs-t">GFS, restyling del logo</h3>
-      <p class="tile-sub" style="margin-top:8px">Global Fire Security, impianti antincendio: il logo esistente reso più minimale, oggi stampato sui cartellini degli estintori. Qui in mockup su insegna, furgone e ufficio.</p>
+    <div class="vpanel" id="v-overlay" role="region" aria-labelledby="vb-overlay" hidden>
+      <h3 class="tile-title">Overlay e animazioni</h3>
+      <p class="tile-sub">Quattro stili, otto animazioni. Anteprime con il logo IS e il fondo a quadretti. Scorri di lato per vederle tutte.</p>
+      <ul class="clips" role="list" tabindex="0" aria-label="Anteprime degli overlay, scorri in orizzontale">
+      <li class="clip" data-src="assets/lavori/ov-caramel-taptap.mp4"><div class="clipbox"><img src="assets/lavori/ov-caramel-taptap.webp" alt="Anteprima di un overlay animato Tap Tap in stile Caramel" width="360" height="650" loading="lazy" decoding="async"></div><b>Caramel</b><small>Tap Tap</small></li>
+      <li class="clip" data-src="assets/lavori/ov-glass-taptap.mp4"><div class="clipbox"><img src="assets/lavori/ov-glass-taptap.webp" alt="Anteprima di un overlay animato Tap Tap in stile Glass" width="360" height="650" loading="lazy" decoding="async"></div><b>Glass</b><small>Tap Tap</small></li>
+      <li class="clip" data-src="assets/lavori/ov-metal-taptap.mp4"><div class="clipbox"><img src="assets/lavori/ov-metal-taptap.webp" alt="Anteprima di un overlay animato Tap Tap in stile Metal" width="360" height="650" loading="lazy" decoding="async"></div><b>Metal</b><small>Tap Tap</small></li>
+      <li class="clip" data-src="assets/lavori/ov-neon-taptap.mp4"><div class="clipbox"><img src="assets/lavori/ov-neon-taptap.webp" alt="Anteprima di un overlay animato Tap Tap in stile Neon" width="360" height="650" loading="lazy" decoding="async"></div><b>Neon</b><small>Tap Tap</small></li>
+      <li class="clip" data-src="assets/lavori/ov-caramel-guanto.mp4"><div class="clipbox"><img src="assets/lavori/ov-caramel-guanto.webp" alt="Anteprima di un overlay animato con guantone da boxe in stile Caramel" width="360" height="650" loading="lazy" decoding="async"></div><b>Caramel</b><small>Guanto</small></li>
+      <li class="clip" data-src="assets/lavori/ov-glass-guanto.mp4"><div class="clipbox"><img src="assets/lavori/ov-glass-guanto.webp" alt="Anteprima di un overlay animato con guantone da boxe in stile Glass" width="360" height="650" loading="lazy" decoding="async"></div><b>Glass</b><small>Guanto</small></li>
+      <li class="clip" data-src="assets/lavori/ov-metal-guanto.mp4"><div class="clipbox"><img src="assets/lavori/ov-metal-guanto.webp" alt="Anteprima di un overlay animato con guantone da boxe in stile Metal" width="360" height="650" loading="lazy" decoding="async"></div><b>Metal</b><small>Guanto</small></li>
+      <li class="clip" data-src="assets/lavori/ov-neon-guanto.mp4"><div class="clipbox"><img src="assets/lavori/ov-neon-guanto.webp" alt="Anteprima di un overlay animato con guantone da boxe in stile Neon" width="360" height="650" loading="lazy" decoding="async"></div><b>Neon</b><small>Guanto</small></li>
+      </ul>
     </div>
-    <div class="case-grid">
-      <figure><img class="shot" src="assets/lavori/gfs-furgone.webp" alt="Mockup del logo GFS su un furgone bianco" width="960" height="640" loading="lazy" decoding="async"></figure>
-      <figure><img class="shot" src="assets/lavori/gfs-sede.webp" alt="Mockup del logo GFS sull'insegna di una sede" width="960" height="640" loading="lazy" decoding="async"></figure>
-      <figure><img class="shot" src="assets/lavori/gfs-ufficio.webp" alt="Mockup del logo GFS in un ufficio, con tazza" width="960" height="640" loading="lazy" decoding="async"></figure>
-    </div>
-  </section>
 
-  <section class="tile stk" aria-labelledby="stk-t">
-    <h3 class="tile-title" id="stk-t">Sticker personalizzati</h3>
-    <div class="stickers">
-      <img src="assets/lavori/sticker-demone.webp" alt="Sticker di un personaggio con occhi rossi e fiamme" width="360" height="360" loading="lazy" decoding="async">
-      <img src="assets/lavori/sticker-dio.webp" alt="Sticker di un guerriero barbuto con corona che tiene una carota" width="360" height="360" loading="lazy" decoding="async">
-      <img src="assets/lavori/sticker-angelo.webp" alt="Sticker di un personaggio con le ali e l'aureola" width="360" height="360" loading="lazy" decoding="async">
-      <img src="assets/lavori/sticker-auto.webp" alt="Sticker di un'auto cabrio blu scuro" width="360" height="360" loading="lazy" decoding="async">
+    <div class="vpanel" id="v-loghi" role="region" aria-labelledby="vb-loghi" hidden>
+      <h3 class="tile-title">GFS, restyling del logo</h3>
+      <p class="tile-sub">Global Fire Security, impianti antincendio: il logo esistente reso più minimale, oggi stampato sui cartellini degli estintori. Qui in mockup su insegna, furgone e ufficio.</p>
+      <div class="case-grid">
+        <figure><img class="shot" src="assets/lavori/gfs-furgone.webp" alt="Mockup del logo GFS su un furgone bianco" width="960" height="640" loading="lazy" decoding="async"></figure>
+        <figure><img class="shot" src="assets/lavori/gfs-sede.webp" alt="Mockup del logo GFS sull'insegna di una sede" width="960" height="640" loading="lazy" decoding="async"></figure>
+        <figure><img class="shot" src="assets/lavori/gfs-ufficio.webp" alt="Mockup del logo GFS in un ufficio, con tazza" width="960" height="640" loading="lazy" decoding="async"></figure>
+      </div>
+    </div>
+
+    <div class="vpanel" id="v-social" role="region" aria-labelledby="vb-social" hidden>
+      <h3 class="tile-title">Sticker personalizzati</h3>
+      <div class="stickers">
+        <img src="assets/lavori/sticker-demone.webp" alt="Sticker di un personaggio con occhi rossi e fiamme" width="360" height="360" loading="lazy" decoding="async">
+        <img src="assets/lavori/sticker-dio.webp" alt="Sticker di un guerriero barbuto con corona che tiene una carota" width="360" height="360" loading="lazy" decoding="async">
+        <img src="assets/lavori/sticker-angelo.webp" alt="Sticker di un personaggio con le ali e l'aureola" width="360" height="360" loading="lazy" decoding="async">
+        <img src="assets/lavori/sticker-auto.webp" alt="Sticker di un'auto cabrio blu scuro" width="360" height="360" loading="lazy" decoding="async">
+      </div>
     </div>
   </section>
 
@@ -574,8 +595,7 @@ ul,ol{padding:0;list-style:none}
     const cur=vs[0];
     let prev=vs[1];
     if(prev&&x.hidePrevBelow&&vcmp(prev.version,x.hidePrevBelow)<0)prev=null;
-    const tile=h('article','tile feat app');
-    if(/^[\w-]+$/.test(app.slug))tile.id=app.slug;
+    const tile=h('div','feat app tabpanel');
     tile.style.setProperty('--r','242,255,0');
 
     const body=h('div','feat-body');
@@ -633,6 +653,38 @@ ul,ol{padding:0;list-style:none}
     return tile;
   }
 
+  function build(apps){
+    const wrap=h('div','tile apptabs'),bar=h('div','tabbar'),tabs=[],panels=[];
+    bar.setAttribute('role','tablist');bar.setAttribute('aria-label','App disponibili');
+    const slugs=apps.map((a,i)=>/^[\w-]+$/.test(a.slug)?a.slug:'app'+i);
+    function select(i,focus,hash){
+      tabs.forEach((t,k)=>{const on=k===i;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;panels[k].hidden=!on});
+      const t=tabs[i];bar.scrollTo({left:Math.max(0,t.offsetLeft-12),behavior:'smooth'});
+      if(focus)t.focus();
+      if(hash){try{history.replaceState(null,'','#'+slugs[i])}catch(e){}}
+    }
+    apps.forEach((a,i)=>{
+      const p=card(a);p.id=slugs[i];p.setAttribute('role','tabpanel');p.setAttribute('aria-labelledby','tab-'+slugs[i]);
+      const t=h('button','tab');t.type='button';t.id='tab-'+slugs[i];t.setAttribute('role','tab');t.setAttribute('aria-controls',slugs[i]);
+      const ic=h('span','tab-i'),src=safePath(a.icon),ini=(a.title||'?').trim().charAt(0).toUpperCase();
+      if(src){const im=h('img');im.alt='';im.width=40;im.height=40;im.onerror=()=>{im.remove();ic.textContent=ini};im.src=src;ic.appendChild(im)}else ic.textContent=ini;
+      const v=Array.isArray(a.versions)&&a.versions[0];
+      const tx=h('span','tab-t');tx.append(h('b',null,a.title),h('small',null,v?'Versione '+v.version:'In arrivo'));
+      t.append(ic,tx);
+      t.addEventListener('click',()=>select(i,false,true));
+      t.addEventListener('keydown',e=>{const k=e.key,n=tabs.length;let j=null;
+        if(k==='ArrowRight')j=(i+1)%n;else if(k==='ArrowLeft')j=(i-1+n)%n;else if(k==='Home')j=0;else if(k==='End')j=n-1;
+        if(j!==null){e.preventDefault();select(j,true,true)}});
+      tabs.push(t);panels.push(p);bar.appendChild(t);
+    });
+    wrap.append(bar,...panels);
+    const want=location.hash.slice(1),w=slugs.indexOf(want);
+    select(w>=0?w:0);
+    window.addEventListener('hashchange',()=>{const k=slugs.indexOf(location.hash.slice(1));if(k>=0)select(k)});
+    if(w>=0)setTimeout(()=>wrap.scrollIntoView({block:'start'}),0);
+    return wrap;
+  }
+
   function fail(){
     const m=h('div','tile app-msg');
     m.append(document.createTextNode('Download momentaneamente non disponibili. '));const tg=h('a',null,'Scrivimi su Telegram');tg.href='https://t.me/ivansasi';tg.rel='noopener';tg.style.textDecoration='underline';m.appendChild(tg);
@@ -647,7 +699,7 @@ ul,ol{padding:0;list-style:none}
       .then(m=>{
         if(!m||!Array.isArray(m.apps))throw new Error('manifest');
         const apps=m.apps.filter(a=>a&&typeof a.slug==='string'&&typeof a.title==='string').sort((a,b)=>(a.order||0)-(b.order||0));
-        box.replaceChildren(...apps.map(card));
+        box.replaceChildren(build(apps));
       })
       .catch(fail)
       .finally(()=>clearTimeout(t));
@@ -656,23 +708,32 @@ ul,ol{padding:0;list-style:none}
   load();
 })();
 
-/* ---- Galleria overlay: WebM con trasparenza, caricati solo quando entrano nello schermo ---- */
+/* ---- Voci IS: ogni voce apre il suo pannello (uno alla volta) ---- */
 (function(){
-  const clips=[...document.querySelectorAll('.clip[data-webm]')];
+  const bs=[...document.querySelectorAll('.voice')];
+  bs.forEach(b=>b.addEventListener('click',()=>{
+    const open=b.getAttribute('aria-expanded')==='true';
+    bs.forEach(x=>{x.setAttribute('aria-expanded','false');const p=document.getElementById(x.getAttribute('aria-controls'));if(p)p.hidden=true});
+    if(!open){b.setAttribute('aria-expanded','true');const p=document.getElementById(b.getAttribute('aria-controls'));if(p)p.hidden=false}
+  }));
+})();
+
+/* ---- Anteprime overlay: MP4 con logo e quadretti, caricati e avviati solo quando sono visibili ---- */
+(function(){
+  const clips=[...document.querySelectorAll('.clip[data-src]')];
   if(!clips.length||!('IntersectionObserver' in window))return;
-  const ua=navigator.userAgent;
-  /* Safari e i browser iOS non mostrano la trasparenza dei WebM: restano le immagini ferme */
-  const apple=/iP(hone|ad|od)/.test(ua)||(/Safari/.test(ua)&&!/Chrome|Chromium|Android|Edg|OPR/.test(ua));
-  const still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(apple||still||!document.createElement('video').canPlayType('video/webm; codecs="vp9"'))return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const mp4=!!document.createElement('video').canPlayType('video/mp4; codecs="avc1.42E01E"');
   const io=new IntersectionObserver(es=>es.forEach(e=>{
     const li=e.target;let v=li._v;
     if(e.isIntersecting){
       if(!v){
         v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.preload='auto';
-        v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('aria-hidden','true');
+        v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('aria-hidden','true');v.disablePictureInPicture=true;
+        v.setAttribute('controlslist','nodownload noremoteplayback');
+        v.addEventListener('contextmenu',ev=>ev.preventDefault());
         v.addEventListener('playing',()=>{const im=li.querySelector('img');if(im)im.style.visibility='hidden'},{once:true});
-        v.src=li.dataset.webm;li.querySelector('.clipbox').appendChild(v);li._v=v;
+        v.src=mp4?li.dataset.src:li.dataset.src.replace(/\.mp4$/,'.webm');li.querySelector('.clipbox').appendChild(v);li._v=v;
       }
       v.play().catch(()=>{});
     }else if(v){v.pause()}
