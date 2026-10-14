@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- IvanSasi sito v2.5 -->
+<!-- IvanSasi sito v2.6 -->
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -294,6 +294,26 @@ ul,ol{padding:0;list-style:none}
 .linkcard>.ico{width:18px;height:18px;color:var(--muted)}
 @media(hover:hover){.linkcard:hover{border-color:rgba(242,255,0,.5)}}
 
+/* ---------- menu a tendina nella barra ---------- */
+.nav{position:relative}
+.dd{position:relative}
+.dd-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 12px;border:0;border-radius:10px;background:none;font-size:14px;font-weight:550;color:var(--text-2);cursor:pointer}
+.dd-btn .ico{width:12px;height:12px;transition:transform .2s;transform:rotate(90deg)}
+.dd-btn[aria-expanded="true"]{background:var(--raise-2);color:var(--text)}
+.dd-btn[aria-expanded="true"] .ico{transform:rotate(-90deg)}
+@media(hover:hover){.dd-btn:hover{background:var(--raise-2);color:var(--text)}}
+.dd-menu{position:absolute;top:calc(100% + 12px);left:0;z-index:50;display:grid;gap:2px;min-width:270px;max-width:min(360px,calc(100vw - 2 * var(--gutter)));padding:8px;border-radius:16px;border:1px solid var(--line-strong);background:#080906;box-shadow:0 18px 50px rgba(0,0,0,.65),0 0 30px rgba(242,255,0,.06)}
+.dd-menu.r{left:auto;right:0}
+.dd-menu[hidden]{display:none}
+.dd-menu a{display:flex;align-items:center;gap:10px;min-height:44px;padding:8px 12px;border-radius:10px;font-size:14.5px;font-weight:550;color:var(--text-2)}
+.dd-menu a:hover,.dd-menu a:focus-visible{background:var(--raise-2);color:var(--text)}
+.dd-menu small{margin-left:auto;padding-left:12px;color:var(--muted);font-size:12.5px;font-weight:400;white-space:nowrap}
+.dd-menu .sep{height:1px;margin:4px 6px;background:var(--line)}
+.dd-menu .ddi{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;overflow:hidden;background:#080906;border:1px solid rgba(var(--lime-rgb),.3);font:italic 700 .8rem var(--serif)}
+.dd-menu .ddi img{width:100%;height:100%;object-fit:cover}
+@media(max-width:719px){.dd{position:static}.dd-menu,.dd-menu.r{left:0;right:0;min-width:0;max-width:none;top:calc(100% + 8px)}}
+@media(max-width:420px){.dd-btn{padding:9px 8px;gap:4px}.dd-btn .ico{width:10px;height:10px}}
+
 /* ---------- app come schede di browser ---------- */
 .apptabs{padding:0;overflow:hidden}
 .tabbar{display:flex;gap:3px;padding:10px 10px 0;overflow-x:auto;scrollbar-width:none;background:rgba(0,0,0,.55);box-shadow:inset 0 -1px 0 var(--line-strong)}
@@ -359,9 +379,31 @@ ul,ol{padding:0;list-style:none}
   <header class="nav">
     <a class="nav-logo" href="#top" aria-label="IvanSasi, torna all'inizio"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyOC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGl2ZWxsb18xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTAyNCAxMDI0OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fQ0KCS5zdDF7ZmlsbDp1cmwoI2xldHRlcmEtaV8wMDAwMDEzNDk2MTI4MTg1NjIwNzk3MTA1MDAwMDAxMzU0NzYwNzQ4MzE4MDQ0NjY1NV8pO30NCgkuc3Qye2ZpbGw6dXJsKCNsZXR0ZXJhLXNfMDAwMDAxMTQ3NTI2NzQ3NDk1MTQ2MzQ0MTAwMDAwMTQyODQxODg5NzE5MjIyMDM1MjNfKTt9DQo8L3N0eWxlPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTk1Ni4zLDExODYuNUgzNy43Yy0xMzIuNCwwLTIzOS43LTEwNy4zLTIzOS43LTIzOS43Vjk0LjZjMC0xMzIuNCwxMDcuMy0yMzkuNywyMzkuNy0yMzkuN2g5MTguNg0KCWMxMzIuNCwwLDIzOS43LDEwNy4zLDIzOS43LDIzOS43djg1Mi4xQzExOTYsMTA3OS4yLDEwODguNywxMTg2LjUsOTU2LjMsMTE4Ni41eiIvPg0KPGcgaWQ9Im1vbm9ncmFtbWEiPg0KCQ0KCQk8bGluZWFyR3JhZGllbnQgaWQ9ImxldHRlcmEtaV8wMDAwMDA4NDUwNTE5NDAyNTYyODYxMzYwMDAwMDAwMzAxMzkwMDY2ODk3OTg4NzI2N18iIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iLTQ0Ni4xNTkzIiB5MT0iMTA1My4xNDk5IiB4Mj0iLTQ0NS4xNTkzIiB5Mj0iMTA1Mi4xNDk5IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDI0Ni4yMjAyIDAgMCAtODIwLjM1MDYgMTA5OTQ1LjQ4NDQgODY0MDA5LjY4NzUpIj4NCgkJPHN0b3AgIG9mZnNldD0iMCIgc3R5bGU9InN0b3AtY29sb3I6I0ZBRkYwMCIvPg0KCQk8c3RvcCAgb2Zmc2V0PSIwLjUiIHN0eWxlPSJzdG9wLWNvbG9yOiNFRkZGMDAiLz4NCgkJPHN0b3AgIG9mZnNldD0iMSIgc3R5bGU9InN0b3AtY29sb3I6I0NDRTYwMCIvPg0KCTwvbGluZWFyR3JhZGllbnQ+DQoJPHBhdGggaWQ9ImxldHRlcmEtaSIgc3R5bGU9ImZpbGw6dXJsKCNsZXR0ZXJhLWlfMDAwMDAwODQ1MDUxOTQwMjU2Mjg2MTM2MDAwMDAwMDMwMTM5MDA2Njg5Nzk4ODcyNjdfKTsiIGQ9Ik0zMzguMyw1Ny41djE3MC4zDQoJCWMwLDYuOS0zLjUsMTMtMTAuNCwxOC40bC04Mi44LDU2LjR2NDQxLjhjMCw2LjEtMy4xLDExLjktOS4yLDE3LjNMOTIsODc3LjlsMS4yLTU5Ny4xYy0wLjgtOS4yLDEuOS0xNi41LDguMS0yMS45TDMzOC4zLDU3LjV6Ii8+DQoJDQoJCTxsaW5lYXJHcmFkaWVudCBpZD0ibGV0dGVyYS1zXzAwMDAwMDYzNjMzMDYwMDI2MTkzODUxMjkwMDAwMDAyMjg3ODc1MTg0MDUzOTE1MzIyXyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSItNDQ2Ljc2NDIiIHkxPSIxMDUzLjE1ODYiIHgyPSItNDQ1Ljc2NDIiIHkyPSIxMDUyLjE1ODYiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoODc3Ljg3ODcgMCAwIC03NzUuNDc4NiAzOTIyNzcuMjUgODE2ODg2LjEyNSkiPg0KCQk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojRkFGRjAwIi8+DQoJCTxzdG9wICBvZmZzZXQ9IjAuNSIgc3R5bGU9InN0b3AtY29sb3I6I0VGRkYwMCIvPg0KCQk8c3RvcCAgb2Zmc2V0PSIxIiBzdHlsZT0ic3RvcC1jb2xvcjojQ0NFNjAwIi8+DQoJPC9saW5lYXJHcmFkaWVudD4NCgk8cGF0aCBpZD0ibGV0dGVyYS1zIiBzdHlsZT0iZmlsbDp1cmwoI2xldHRlcmEtc18wMDAwMDA2MzYzMzA2MDAyNjE5Mzg1MTI5MDAwMDAwMjI4Nzg3NTE4NDA1MzkxNTMyMl8pOyIgZD0iTTk1MC40LDE4NC4xDQoJCWwtMTk5LDE2My40Yy0xMCw5LjItMjEuOSwxMy44LTM1LjcsMTMuOGgtMTkxYy0xMi4zLDAtMjMuNCw0LjItMzMuNCwxMi43bC00Ny4yLDM4Yy0xMS41LDkuMi0xMy44LDE4LjgtNi45LDI4LjgNCgkJYzYuOSw4LjQsMTgsMTIuNywzMy40LDEyLjdoMjQxLjZjNTYuOCwwLDEwMC41LDE2LjEsMTMxLjIsNDguM2MyNi4xLDI3LjYsMzkuMSw2NCwzOS4xLDEwOS4zdjY3LjljMCwzMy0xMS41LDU5LjgtMzQuNSw4MC41DQoJCWwtOTQuMyw3Ny4xYy0xNy42LDE2LjEtNDIuMiwyNi4xLTczLjYsMjkuOUw3Mi41LDk1OS42bDI3NS0yNDEuNmM5LjItOC40LDE5LjktMTIuNywzMi4yLTEyLjdoMjY2LjljMTAuNywwLDIxLjEtNC4yLDMxLjEtMTIuNw0KCQlsMzUuNy0yNy42YzEwLjctOS4yLDEzLjgtMTkuNiw5LjItMzEuMWMtNS40LTE0LjYtMTYuMS0yMS45LTMyLjItMjEuOWgtMjc1Yy0xOS4yLDAtMzYuOC02LjEtNTIuOS0xOC40bC01OC43LTQ3LjINCgkJYy0yMi4yLTE3LjYtMzMuNC0zOS4xLTMzLjQtNjQuNHYtOTUuNWMwLTkuMiwzLjgtMTYuOSwxMS41LTIzTDQ1Ni44LDIxNGMyMi4yLTE4LjQsNDkuOS0yNy42LDgyLjgtMjcuNkw5NTAuNCwxODQuMXoiLz4NCjwvZz4NCjwvc3ZnPg0K" alt="" width="34" height="34"></a>
     <nav class="nav-links" aria-label="Sezioni">
-      <a href="#apps">App</a>
-      <a href="#card">Card</a>
-      <a href="#link">Link</a>
+      <div class="dd">
+        <button type="button" class="dd-btn" aria-expanded="false" aria-controls="dd-apps" aria-haspopup="true">App<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
+        <ul class="dd-menu" id="dd-apps" hidden>
+          <li class="sep" role="separator"></li>
+          <li><a href="#apps">Tutte le app</a></li>
+        </ul>
+      </div>
+      <div class="dd">
+        <button type="button" class="dd-btn" aria-expanded="false" aria-controls="dd-card" aria-haspopup="true">Card<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
+        <ul class="dd-menu" id="dd-card" hidden>
+          <li><a href="#card-t1d">Diabete tipo 1<small>PDF</small></a></li>
+          <li><a href="#card-t2d">Diabete tipo 2<small>PDF</small></a></li>
+        </ul>
+      </div>
+      <div class="dd">
+        <button type="button" class="dd-btn" aria-expanded="false" aria-controls="dd-link" aria-haspopup="true">Link<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
+        <ul class="dd-menu r" id="dd-link" hidden>
+          <li><a href="https://www.instagram.com/ivansasi/" target="_blank" rel="noopener">Pillole di Diabete<small>Instagram</small></a></li>
+          <li><a href="https://www.diabeteitalia.it/" target="_blank" rel="noopener">Diabete Italia<small>diabeteitalia.it</small></a></li>
+          <li><a href="https://www.siditalia.it/" target="_blank" rel="noopener">SID<small>siditalia.it</small></a></li>
+          <li><a href="https://www.aemmedi.it/" target="_blank" rel="noopener">AMD<small>aemmedi.it</small></a></li>
+          <li class="sep" role="separator"></li>
+          <li><a href="#link">Vai alla sezione Link</a></li>
+        </ul>
+      </div>
       <a href="#studio-sec">Design</a>
     </nav>
     <a class="btn btn-paper" href="https://t.me/ivansasi" target="_blank" rel="noopener">Scrivimi</a>
@@ -433,7 +475,7 @@ ul,ol{padding:0;list-style:none}
   <div class="sec" id="card"><h2>Card d'emergenza</h2><p>Da stampare e tenere nel portafoglio.</p></div>
 
   <div class="pair">
-    <section class="tile pdf n-blue" aria-labelledby="pdf1-t">
+    <section class="tile pdf n-blue" id="card-t1d" aria-labelledby="pdf1-t">
       <div class="pdf-top">
         <div class="pdf-art"><img src="assets/thumbnail_card_t1d.png" alt="Anteprima della card di emergenza per il diabete di tipo 1" width="92" height="92" loading="lazy" decoding="async"></div>
         <div><h3 class="tile-title" id="pdf1-t">Diabete tipo 1</h3><span class="pill" style="margin-top:8px">PDF, A4, gratis</span></div>
@@ -441,7 +483,7 @@ ul,ol{padding:0;list-style:none}
       <p class="tile-sub">Che cosa fare se mi trovi in ipoglicemia, con spazio per contatti e terapia.</p>
       <a class="btn btn-paper" href="assets/card_emergenza_diabete_tipo1.pdf" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Scarica il PDF</a>
     </section>
-    <section class="tile pdf n-purple" aria-labelledby="pdf2-t">
+    <section class="tile pdf n-purple" id="card-t2d" aria-labelledby="pdf2-t">
       <div class="pdf-top">
         <div class="pdf-art"><img src="assets/thumbnail_card_t2d.png" alt="Anteprima della card di emergenza per il diabete di tipo 2" width="92" height="92" loading="lazy" decoding="async"></div>
         <div><h3 class="tile-title" id="pdf2-t">Diabete tipo 2</h3><span class="pill" style="margin-top:8px">PDF, A4, gratis</span></div>
@@ -678,6 +720,18 @@ ul,ol{padding:0;list-style:none}
       tabs.push(t);panels.push(p);bar.appendChild(t);
     });
     wrap.append(bar,...panels);
+    const dd=document.getElementById('dd-apps');
+    if(dd){const sep=dd.querySelector('.sep');
+      apps.forEach((a,i)=>{
+        const li=document.createElement('li'),l=h('a');l.href='#'+slugs[i];
+        const ic=h('span','ddi'),src=safePath(a.icon),ini=(a.title||'?').trim().charAt(0).toUpperCase();
+        if(src){const im=h('img');im.alt='';im.width=26;im.height=26;im.onerror=()=>{im.remove();ic.textContent=ini};im.src=src;ic.appendChild(im)}else ic.textContent=ini;
+        const v=Array.isArray(a.versions)&&a.versions[0];
+        l.append(ic,document.createTextNode(a.title||''));if(v)l.appendChild(h('small',null,'v'+v.version));
+        l.addEventListener('click',e=>{e.preventDefault();select(i,false,true);wrap.scrollIntoView({behavior:'smooth',block:'start'});window.__closeMenus&&window.__closeMenus()});
+        li.appendChild(l);dd.insertBefore(li,sep);
+      });
+    }
     const want=location.hash.slice(1),w=slugs.indexOf(want);
     select(w>=0?w:0);
     window.addEventListener('hashchange',()=>{const k=slugs.indexOf(location.hash.slice(1));if(k>=0)select(k)});
@@ -706,6 +760,21 @@ ul,ol{padding:0;list-style:none}
   }
   if(inApp){const n=document.getElementById('inAppNote');if(n){n.textContent='Sei in un browser interno: se il download non parte, apri la pagina in Chrome. ';const cb=h('button','copy','Copia il link');cb.type='button';cb.addEventListener('click',()=>copyText(location.href,'Link copiato'));n.appendChild(cb)}}
   load();
+})();
+
+/* ---- Menu a tendina nella barra ---- */
+(function(){
+  const dds=[...document.querySelectorAll('.dd')];
+  function close(except){dds.forEach(d=>{if(d===except)return;const b=d.querySelector('.dd-btn'),m=d.querySelector('.dd-menu');b.setAttribute('aria-expanded','false');m.hidden=true})}
+  window.__closeMenus=()=>close(null);
+  dds.forEach(d=>{
+    const b=d.querySelector('.dd-btn'),m=d.querySelector('.dd-menu');
+    b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')==='true';close(d);b.setAttribute('aria-expanded',open?'false':'true');m.hidden=open});
+    m.addEventListener('click',e=>{if(e.target.closest('a'))close(null)});
+    d.addEventListener('focusout',e=>{if(!d.contains(e.relatedTarget)){b.setAttribute('aria-expanded','false');m.hidden=true}});
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.dd'))close(null)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){const o=dds.find(d=>!d.querySelector('.dd-menu').hidden);close(null);if(o)o.querySelector('.dd-btn').focus()}});
 })();
 
 /* ---- Voci IS: ogni voce apre il suo pannello (uno alla volta) ---- */
