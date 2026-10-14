@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- IvanSasi sito v2.6 -->
+<!-- IvanSasi sito v2.7 -->
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -285,6 +285,20 @@ ul,ol{padding:0;list-style:none}
 .studio .frame img{width:96px;height:auto;border-radius:0}
 .btn-row .btn{min-height:46px;padding:0 18px;font-size:14.5px}
 
+/* ---------- accessori (link ai prodotti) ---------- */
+.access{display:grid;gap:12px;align-content:start}
+.access .tile-title{font-weight:400}
+.access-list{display:grid;gap:10px}
+@media(min-width:720px){.access-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.product{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px 10px 10px;border:1px solid var(--line);background:var(--raise);border-radius:var(--r-inner)}
+.product.noimg{grid-template-columns:minmax(0,1fr) auto;padding-left:14px}
+@media(hover:hover){.product:hover{background:var(--raise-2);border-color:var(--line-strong)}}
+.product img{width:52px;height:52px;border-radius:12px;object-fit:cover;background:#f1f3f6}
+.product strong{display:block;font-size:14.5px;font-weight:600;line-height:1.3}
+.product small{display:block;margin-top:3px;color:var(--muted);font-size:12.5px}
+.product .ico{width:18px;height:18px;color:var(--muted)}
+.subh{margin:8px 2px 0;font:italic 400 clamp(1.25rem,1.1rem + .6vw,1.5rem)/1.2 var(--serif);color:var(--text-2)}
+
 /* ---------- link utili ---------- */
 .links{display:grid;gap:var(--gap)}
 @media(min-width:720px){.links{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -396,10 +410,8 @@ ul,ol{padding:0;list-style:none}
       <div class="dd">
         <button type="button" class="dd-btn" aria-expanded="false" aria-controls="dd-link" aria-haspopup="true">Link<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
         <ul class="dd-menu r" id="dd-link" hidden>
-          <li><a href="https://www.instagram.com/ivansasi/" target="_blank" rel="noopener">Pillole di Diabete<small>Instagram</small></a></li>
-          <li><a href="https://www.diabeteitalia.it/" target="_blank" rel="noopener">Diabete Italia<small>diabeteitalia.it</small></a></li>
-          <li><a href="https://www.siditalia.it/" target="_blank" rel="noopener">SID<small>siditalia.it</small></a></li>
-          <li><a href="https://www.aemmedi.it/" target="_blank" rel="noopener">AMD<small>aemmedi.it</small></a></li>
+          <li><a href="https://www.amazon.it/dp/B0BPCRPXWK" target="_blank" rel="noopener">MySweetStitch, cerotti Dexcom G7<small>Amazon</small></a></li>
+          <li><a href="https://www.amazon.it/dp/B0CGZ51GTS" target="_blank" rel="noopener">Cerotti Dexcom G7 impermeabili<small>Amazon</small></a></li>
           <li class="sep" role="separator"></li>
           <li><a href="#link">Vai alla sezione Link</a></li>
         </ul>
@@ -503,15 +515,24 @@ ul,ol{padding:0;list-style:none}
   </section>
 
   <!-- link utili -->
-  <div class="sec" id="link"><h2>Link utili</h2><p>Per saperne di più sul diabete.</p></div>
+  <div class="sec" id="link"><h2>Link</h2><p>Accessori per il Type 1 e siti utili.</p></div>
 
+  <section class="tile access" aria-labelledby="acc-t">
+    <h3 class="tile-title" id="acc-t">Accessori Type 1</h3>
+    <div class="access-list">
+      <a class="product" href="https://www.amazon.it/dp/B0BPCRPXWK" target="_blank" rel="noopener"><img src="assets/amazon_cerotti_blu.webp" alt="Cerotti blu per Dexcom G7" width="52" height="52" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('noimg');this.remove()"><div><strong>MySweetStitch, cerotti Dexcom G7</strong><small>Amazon.it</small></div><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+      <a class="product" href="https://www.amazon.it/dp/B0CGZ51GTS" target="_blank" rel="noopener"><img src="assets/amazon_cerotti_trasparenti.webp" alt="Cerotti trasparenti per Dexcom G7" width="52" height="52" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('noimg');this.remove()"><div><strong>Cerotti Dexcom G7 impermeabili</strong><small>Amazon.it</small></div><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
+    </div>
+  </section>
+
+  <h3 class="subh">Per saperne di più</h3>
   <div class="links">
     <a class="tile linkcard" href="https://www.instagram.com/ivansasi/" target="_blank" rel="noopener"><span class="neon n-lime sm"><svg class="ico" aria-hidden="true"><use href="#d-first-aid-kit"/></svg></span><div><b>Pillole di Diabete</b><span class="d">I miei contenuti sul T1D, su Instagram e TikTok.</span></div><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
     <a class="tile linkcard" href="https://www.diabeteitalia.it/" target="_blank" rel="noopener"><span class="neon n-blue sm"><svg class="ico" aria-hidden="true"><use href="#d-shield-check"/></svg></span><div><b>Diabete Italia</b><span class="d">Rete di associazioni di pazienti, società scientifiche e operatori. Ha sezioni su diritti e normative.</span></div><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
     <a class="tile linkcard" href="https://www.siditalia.it/" target="_blank" rel="noopener"><span class="neon n-green sm"><svg class="ico" aria-hidden="true"><use href="#d-check-circle"/></svg></span><div><b>SID, Società Italiana di Diabetologia</b><span class="d">La sezione "Sul Diabete" spiega tipi di diabete, complicanze, alimentazione e attività fisica.</span></div><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
     <a class="tile linkcard" href="https://www.aemmedi.it/" target="_blank" rel="noopener"><span class="neon n-purple sm"><svg class="ico" aria-hidden="true"><use href="#d-device-mobile"/></svg></span><div><b>AMD, Associazione Medici Diabetologi</b><span class="d">L'area "Conosci il diabete" è pensata per pazienti e cittadini.</span></div><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
   </div>
-  <p class="note">Siti esterni: non sono miei e non sostituiscono il parere del tuo diabetologo. Hai un link utile da segnalare? Scrivimi su Telegram.</p>
+  <p class="note">Siti esterni: non sono miei e non sostituiscono il parere del tuo diabetologo.</p>
 
   <!-- design -->
   <div class="sec" id="studio-sec"><h2>Design</h2><p>Per creator, live e brand.</p></div>
