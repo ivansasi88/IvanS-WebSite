@@ -51,7 +51,6 @@
       ]
     },
     {
-<<<<<<< HEAD
       "slug": "glyvia-diary",
       "title": "Glyvia Diary",
       "tag": "DIARY · T1D",
@@ -75,8 +74,6 @@
           "date": "2026-10-13"
         }
       ]
-    },
-    {
 =======
 >>>>>>> 6059be1d2f801fa683e7fa5fbc47def4f0743079
       "slug": "glyvia-follow",
@@ -88,14 +85,12 @@
       "order": 4,
       "versions": [
         {
-<<<<<<< HEAD
           "version": "0.9.8",
           "file": "downloads/glyvia-follow/glyvia-follow-v0.9.8.apk",
           "size": 39256312,
           "sha256": "010fe01613a7a46dc4c9b1c463855cd660f09bba9991f09e2c873188777fbbe6",
           "date": "2026-10-14"
         },
-        {
 =======
 >>>>>>> 6059be1d2f801fa683e7fa5fbc47def4f0743079
           "version": "0.9.7",
@@ -103,8 +98,6 @@
           "size": 39256312,
           "sha256": "a7e3afe188700d9c10f6e81b9466801547bcaf01ee81c93794d5f659a20fa00e",
           "date": "2026-10-13"
-<<<<<<< HEAD
-=======
         },
         {
           "version": "0.9.6",
@@ -112,6 +105,9 @@
           "size": 39973932,
           "sha256": "6d677c159323363709c8a4e7debbcda96b536404dd238320abf10c54d5205c45",
           "date": "2026-10-13"
+<<<<<<< HEAD
+>>>>>>> 6059be1d2f801fa683e7fa5fbc47def4f0743079
+=======
 >>>>>>> 6059be1d2f801fa683e7fa5fbc47def4f0743079
         }
       ]
