@@ -53,12 +53,27 @@
     {
       "slug": "glyvia-diary",
       "title": "Glyvia Diary",
-      "tag": "DIARIO · T1D",
-      "description": "Diario glicemico con lettura dai dati del sensore CGM.",
+      "tag": "DIARY · T1D",
+      "description": "Diario T1D: glicemia, insulina, carboidrati e attività in un unico posto.",
       "icon": "assets/glyvia-diary.svg",
-      "accent": "#3b8bff",
+      "accent": "#4da3ff",
       "order": 3,
-      "versions": []
+      "versions": [
+        {
+          "version": "3.10.19",
+          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.19.apk",
+          "size": 19318551,
+          "sha256": "819f6f499c16c31e634cc7407e26236c15821081d72edd78cdfc89c96039634f",
+          "date": "2026-10-14"
+        },
+        {
+          "version": "3.10.18",
+          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.18.apk",
+          "size": 19318551,
+          "sha256": "b9baa5b03bb16363c250d7f22a7264927b74f9e7928781ca57275d9cd81eecb4",
+          "date": "2026-10-13"
+        }
+      ]
     },
     {
       "slug": "glyvia-follow",
@@ -68,7 +83,22 @@
       "icon": "assets/glyvia-follow.svg",
       "accent": "#a45bff",
       "order": 4,
-      "versions": []
+      "versions": [
+        {
+          "version": "0.9.8",
+          "file": "downloads/glyvia-follow/glyvia-follow-v0.9.8.apk",
+          "size": 39256312,
+          "sha256": "010fe01613a7a46dc4c9b1c463855cd660f09bba9991f09e2c873188777fbbe6",
+          "date": "2026-10-14"
+        },
+        {
+          "version": "0.9.7",
+          "file": "downloads/glyvia-follow/glyvia-follow-v0.9.7.apk",
+          "size": 39256312,
+          "sha256": "a7e3afe188700d9c10f6e81b9466801547bcaf01ee81c93794d5f659a20fa00e",
+          "date": "2026-10-13"
+        }
+      ]
     }
   ]
 }
