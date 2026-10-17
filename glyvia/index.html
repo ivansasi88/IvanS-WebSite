@@ -103,6 +103,16 @@ footer a{color:var(--text)}
   section{padding-top:72px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mascot{width:104px;height:104px;border-radius:50%;flex:none;border:2px solid var(--line);background:var(--card)}
+.ch{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.ch .tag{margin-bottom:4px}
+.appico{width:56px;height:56px;border-radius:14px;flex:none;background:var(--card2)}
+.node img{width:40px;height:40px;border-radius:10px;flex:none}
+.faces{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px}
+.faces img{width:76px;height:76px;border-radius:50%;border:2px solid var(--line)}
+.faces figcaption{flex-basis:100%;color:var(--mute);font-size:14px}
+@media (min-width:720px){.mascot{width:168px;height:168px}.faces img{width:96px;height:96px}}
 </style>
 </head>
 <body>
@@ -123,8 +133,13 @@ footer a{color:var(--text)}
 
   <!-- 1. Intestazione -->
   <section id="top" style="padding-top:40px">
-    <span class="eyebrow">Glyvia Family</span>
-    <h1>Glyvia<span>.</span></h1>
+    <div class="hero-top">
+      <div>
+        <span class="eyebrow">Glyvia Family</span>
+        <h1>Glyvia<span>.</span></h1>
+      </div>
+      <img class="mascot" src="/assets/callisto/callisto-in-range.webp" width="192" height="192" alt="Callisto, la mascotte di Glyvia: un corvo nero con lo zaino blu che fa il pollice in su">
+    </div>
     <p class="lead">App Android gratuite per chi vive con il diabete di tipo 1, fatte da chi ci vive.</p>
     <div class="actions">
       <a class="btn p" href="/#apps">Scarica le app</a>
@@ -151,8 +166,10 @@ footer a{color:var(--text)}
     <div class="grid two">
 
       <article class="card" id="diary">
-        <span class="tag">Diario</span>
-        <h3>Glyvia Diary T1D</h3>
+        <div class="ch">
+          <img class="appico" src="/assets/glyvia-diary.svg" width="56" height="56" alt="">
+          <div><span class="tag">Diario</span><h3>Glyvia Diary T1D</h3></div>
+        </div>
         <p>Registro di glicemia e trattamenti con grafico scorrevole, previsione, allarmi configurabili, statistiche e widget. Esporta in CSV e PDF.</p>
         <dl class="facts">
           <dt>Offline</dt><dd>Dati sul telefono, cifrati</dd>
@@ -163,8 +180,10 @@ footer a{color:var(--text)}
       </article>
 
       <article class="card" id="follow">
-        <span class="tag">Da remoto</span>
-        <h3>Glyvia Follow</h3>
+        <div class="ch">
+          <img class="appico" src="/assets/glyvia-follow.svg" width="56" height="56" alt="">
+          <div><span class="tag">Da remoto</span><h3>Glyvia Follow</h3></div>
+        </div>
         <p>Una persona di fiducia segue andamento e statistiche di chi usa Diary e riceve gli allarmi sulle soglie impostate. Non vede i trattamenti. Si collega con un invito tramite QR.</p>
         <dl class="facts">
           <dt>Offline</dt><dd>No, usa internet</dd>
@@ -175,8 +194,10 @@ footer a{color:var(--text)}
       </article>
 
       <article class="card" id="emergency">
-        <span class="tag">Emergenza</span>
-        <h3>Glyvia Emergency</h3>
+        <div class="ch">
+          <img class="appico" src="/assets/glyvia-emergency.svg" width="56" height="56" alt="">
+          <div><span class="tag">Emergenza</span><h3>Glyvia Emergency</h3></div>
+        </div>
         <p>La scheda di emergenza T1D sempre a portata di mano, con widget, per chi deve soccorrerti e non ti conosce.</p>
         <dl class="facts">
           <dt>Offline</dt><dd>Sì, non usa internet</dd>
@@ -187,8 +208,10 @@ footer a{color:var(--text)}
       </article>
 
       <article class="card" id="stock">
-        <span class="tag">Inventario</span>
-        <h3>Glyvia Stock T1D</h3>
+        <div class="ch">
+          <img class="appico" src="/assets/glyvia-stock.svg" width="56" height="56" alt="">
+          <div><span class="tag">Inventario</span><h3>Glyvia Stock T1D</h3></div>
+        </div>
         <p>Inventario di insulina, sensori, aghi, strisce e altri materiali, così sai cosa hai in casa prima che finisca.</p>
         <dl class="facts">
           <dt>Offline</dt><dd>Sì, non usa internet</dd>
@@ -205,13 +228,13 @@ footer a{color:var(--text)}
   <section id="insieme">
     <h2>Come lavorano insieme</h2>
     <div class="map" role="img" aria-label="Diary invia i dati a Follow. Emergency e Stock sono indipendenti.">
-      <div class="node"><div><b>Diary</b><small>chi ha il diabete</small></div></div>
+      <div class="node"><img src="/assets/glyvia-diary.svg" alt="" width="40" height="40"><div><b>Diary</b><small>chi ha il diabete</small></div></div>
       <div class="arrow">→</div>
-      <div class="node"><div><b>Follow</b><small>chi lo segue</small></div></div>
+      <div class="node"><img src="/assets/glyvia-follow.svg" alt="" width="40" height="40"><div><b>Follow</b><small>chi lo segue</small></div></div>
     </div>
     <div class="map" style="margin-top:10px;grid-template-columns:1fr 1fr">
-      <div class="node"><div><b>Emergency</b><small>indipendente</small></div></div>
-      <div class="node"><div><b>Stock</b><small>indipendente</small></div></div>
+      <div class="node"><img src="/assets/glyvia-emergency.svg" alt="" width="40" height="40"><div><b>Emergency</b><small>indipendente</small></div></div>
+      <div class="node"><img src="/assets/glyvia-stock.svg" alt="" width="40" height="40"><div><b>Stock</b><small>indipendente</small></div></div>
     </div>
     <ul class="who">
       <li><b>Se hai il diabete</b>Diary per il quotidiano, Emergency per le urgenze, Stock per i materiali.</li>
@@ -261,6 +284,13 @@ footer a{color:var(--text)}
     <h2>Il progetto</h2>
     <p class="sub">Glyvia nasce da una necessità personale: mi occupo di diabete di tipo 1 in prima persona e ho costruito gli strumenti che mi mancavano. Le uso da me: Diary da agosto, Follow da circa un mese.</p>
     <p class="sub" style="margin-top:12px">Le app sono in sviluppo continuo. Il codice non è pubblico: si distribuiscono solo gli APK, con tutti i diritti riservati a me.</p>
+    <figure class="faces">
+      <img src="/assets/callisto/callisto-in-range.webp" width="192" height="192" alt="" loading="lazy">
+      <img src="/assets/callisto/callisto-high.webp" width="192" height="192" alt="" loading="lazy">
+      <img src="/assets/callisto/callisto-hyper.webp" width="192" height="192" alt="" loading="lazy">
+      <img src="/assets/callisto/callisto-hypo.webp" width="192" height="192" alt="" loading="lazy">
+      <figcaption>Callisto, la mascotte di Glyvia.</figcaption>
+    </figure>
   </section>
 
   <!-- 9. Contatti -->
