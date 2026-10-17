@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Glyvia Family: app Android gratuite per il diabete di tipo 1</title>
+<meta name="description" content="Glyvia Family: quattro app Android gratuite per chi vive con il diabete di tipo 1. Diario glicemico, controllo da remoto, scheda di emergenza e inventario dei materiali.">
+<link rel="canonical" href="https://ivansalvatoret1d.pages.dev/glyvia/">
+<meta name="theme-color" content="#050505">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="IvanSasi">
+<meta property="og:title" content="Glyvia Family: app Android gratuite per il diabete di tipo 1">
+<meta property="og:description" content="Diario glicemico, controllo da remoto, scheda di emergenza e inventario dei materiali. Gratuite, senza pubblicità.">
+<meta property="og:url" content="https://ivansalvatoret1d.pages.dev/glyvia/">
+<meta property="og:image" content="https://ivansalvatoret1d.pages.dev/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --bg:#050505;--card:#0f0f12;--card2:#15151a;--line:#25252d;
+  --text:#f2f2f4;--mute:#a4a4b0;--lime:#c6ff3d;--blue:#4aa3ff;--warn:#ffb84a;
+  --r:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+a{color:inherit}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:16px;top:16px;background:var(--lime);color:#000;padding:8px 12px;border-radius:8px;z-index:99}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:6px}
+
+/* barra */
+.bar{position:sticky;top:0;z-index:20;background:rgba(5,5,5,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:960px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none}
+.bar-in::-webkit-scrollbar{display:none}
+.bar a{flex:none;text-decoration:none;font-size:14px;font-weight:600;color:var(--mute);padding:8px 14px;border-radius:999px}
+.bar a:hover{color:var(--text)}
+.bar a[aria-current="page"]{background:var(--lime);color:#000}
+.bar .cta{margin-left:auto;border:1px solid var(--line);color:var(--text)}
+
+main{max-width:960px;margin:0 auto;padding:0 16px 56px}
+section{padding-top:48px}
+h1{font-size:clamp(40px,11vw,76px);line-height:1;letter-spacing:-.03em;font-weight:800}
+h1 span{color:var(--lime)}
+h2{font-size:clamp(24px,5.5vw,32px);line-height:1.2;letter-spacing:-.02em;margin-bottom:8px}
+h3{font-size:19px;line-height:1.25}
+p.lead{font-size:18px;color:var(--mute);max-width:56ch;margin-top:16px}
+p.sub{color:var(--mute);max-width:60ch}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;font-weight:700;text-decoration:none;font-size:15px}
+.btn.p{background:var(--lime);color:#000}
+.btn.s{border:1px solid var(--line);background:var(--card)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;list-style:none}
+.chips li{font-size:13px;font-weight:600;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--mute)}
+
+.grid{display:grid;gap:14px;margin-top:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.card h3{margin-bottom:6px}
+.card p{color:var(--mute);font-size:15px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--lime);margin-bottom:12px}
+
+dl.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:14px 0 18px;font-size:14px}
+dl.facts dt{color:var(--mute)}
+dl.facts dd{font-weight:600}
+
+/* schema */
+.map{display:grid;gap:10px;margin-top:20px}
+.node{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;gap:14px;align-items:center}
+.node b{color:var(--lime)}
+.node small{color:var(--mute);display:block;font-size:13px}
+.arrow{text-align:center;color:var(--mute);font-size:14px}
+
+.who{display:grid;gap:10px;margin-top:20px;list-style:none}
+.who li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-size:15px;color:var(--mute)}
+.who li b{color:var(--text);display:block}
+
+.note{border:1px solid var(--line);border-left:3px solid var(--warn);background:var(--card);border-radius:14px;padding:16px 18px;margin-top:16px;font-size:15px;color:var(--mute)}
+.note b{color:var(--text)}
+ul.plain{margin:12px 0 0 20px;color:var(--mute)}
+ul.plain li{margin:6px 0}
+ul.plain b{color:var(--text)}
+ol.steps{margin:14px 0 0 20px;color:var(--mute)}
+ol.steps li{margin:8px 0}
+ol.steps b{color:var(--text)}
+
+footer{max-width:960px;margin:0 auto;padding:28px 16px 48px;border-top:1px solid var(--line);color:var(--mute);font-size:14px}
+footer p+p{margin-top:8px}
+footer a{color:var(--text)}
+
+@media (min-width:720px){
+  main{padding:0 24px 80px}
+  .bar-in{padding:12px 24px}
+  .grid.two{grid-template-columns:1fr 1fr}
+  .map{grid-template-columns:1fr auto 1fr;align-items:center}
+  .who{grid-template-columns:repeat(3,1fr)}
+  section{padding-top:72px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Vai ai contenuti</a>
+
+<header class="bar">
+  <nav class="bar-in" aria-label="Principale">
+    <a href="/#apps">App</a>
+    <a href="/#card">Card</a>
+    <a href="/#link">Link</a>
+    <a href="/glyvia/" aria-current="page">Glyvia</a>
+    <a href="/#studio-sec">Design</a>
+    <a class="cta" href="https://t.me/ivansasi">Scrivimi</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- 1. Intestazione -->
+  <section id="top" style="padding-top:40px">
+    <span class="eyebrow">Glyvia Family</span>
+    <h1>Glyvia<span>.</span></h1>
+    <p class="lead">App Android gratuite per chi vive con il diabete di tipo 1, fatte da chi ci vive.</p>
+    <div class="actions">
+      <a class="btn p" href="/#apps">Scarica le app</a>
+      <a class="btn s" href="#app-glyvia">Le quattro app</a>
+    </div>
+    <ul class="chips" aria-label="In breve">
+      <li>Gratis</li>
+      <li>Senza pubblicità</li>
+      <li>Nessun account obbligatorio</li>
+      <li>Android 8.0+</li>
+    </ul>
+  </section>
+
+  <!-- 2. Cos'è -->
+  <section id="cose">
+    <h2>Cos'è Glyvia Family</h2>
+    <p class="sub">Quattro app Android separate. Diary, Emergency e Stock funzionano ciascuna da sola; Follow serve a seguire chi usa Diary. Insieme si completano. Sono sostegni per la vita di ogni giorno, non app mediche.</p>
+  </section>
+
+  <!-- 3. Le app -->
+  <section id="app-glyvia">
+    <h2>Le quattro app</h2>
+    <p class="sub">Ogni scheda rimanda al download nella home.</p>
+    <div class="grid two">
+
+      <article class="card" id="diary">
+        <span class="tag">Diario</span>
+        <h3>Glyvia Diary T1D</h3>
+        <p>Registro di glicemia e trattamenti con grafico scorrevole, previsione, allarmi configurabili, statistiche e widget. Esporta in CSV e PDF.</p>
+        <dl class="facts">
+          <dt>Offline</dt><dd>Dati sul telefono, cifrati</dd>
+          <dt>Letture</dt><dd>Da xDrip+ o da Dexcom Share</dd>
+          <dt>Android</dt><dd>8.0 o superiore</dd>
+        </dl>
+        <a class="btn p" href="/#glyvia-diary">Scarica Diary</a>
+      </article>
+
+      <article class="card" id="follow">
+        <span class="tag">Da remoto</span>
+        <h3>Glyvia Follow</h3>
+        <p>Una persona di fiducia segue andamento e statistiche di chi usa Diary e riceve gli allarmi sulle soglie impostate. Non vede i trattamenti. Si collega con un invito tramite QR.</p>
+        <dl class="facts">
+          <dt>Offline</dt><dd>No, usa internet</dd>
+          <dt>Richiede</dt><dd>Glyvia Diary su un altro telefono</dd>
+          <dt>Android</dt><dd>8.0 o superiore</dd>
+        </dl>
+        <a class="btn p" href="/#glyvia-follow">Scarica Follow</a>
+      </article>
+
+      <article class="card" id="emergency">
+        <span class="tag">Emergenza</span>
+        <h3>Glyvia Emergency</h3>
+        <p>La scheda di emergenza T1D sempre a portata di mano, con widget, per chi deve soccorrerti e non ti conosce.</p>
+        <dl class="facts">
+          <dt>Offline</dt><dd>Sì, non usa internet</dd>
+          <dt>Dati</dt><dd>Quelli che inserisci tu</dd>
+          <dt>Android</dt><dd>8.0 o superiore</dd>
+        </dl>
+        <a class="btn p" href="/#glyvia-emergency">Scarica Emergency</a>
+      </article>
+
+      <article class="card" id="stock">
+        <span class="tag">Inventario</span>
+        <h3>Glyvia Stock T1D</h3>
+        <p>Inventario di insulina, sensori, aghi, strisce e altri materiali, così sai cosa hai in casa prima che finisca.</p>
+        <dl class="facts">
+          <dt>Offline</dt><dd>Sì, non usa internet</dd>
+          <dt>Foto prodotto</dt><dd>Lettura del testo sul telefono</dd>
+          <dt>Android</dt><dd>8.0 o superiore</dd>
+        </dl>
+        <a class="btn p" href="/#glyvia-stock">Scarica Stock</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 4. Come lavorano insieme -->
+  <section id="insieme">
+    <h2>Come lavorano insieme</h2>
+    <div class="map" role="img" aria-label="Diary invia i dati a Follow. Emergency e Stock sono indipendenti.">
+      <div class="node"><div><b>Diary</b><small>chi ha il diabete</small></div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div><b>Follow</b><small>chi lo segue</small></div></div>
+    </div>
+    <div class="map" style="margin-top:10px;grid-template-columns:1fr 1fr">
+      <div class="node"><div><b>Emergency</b><small>indipendente</small></div></div>
+      <div class="node"><div><b>Stock</b><small>indipendente</small></div></div>
+    </div>
+    <ul class="who">
+      <li><b>Se hai il diabete</b>Diary per il quotidiano, Emergency per le urgenze, Stock per i materiali.</li>
+      <li><b>Se segui qualcuno</b>Follow, con l'invito di chi usa Diary.</li>
+      <li><b>Se devi soccorrere</b>Emergency (o la card da stampare) dice cosa fare.</li>
+    </ul>
+  </section>
+
+  <!-- 5. Privacy -->
+  <section id="privacy">
+    <h2>Privacy e dati</h2>
+    <ul class="plain">
+      <li><b>Emergency e Stock</b> non usano internet. I dati restano sul telefono.</li>
+      <li><b>Diary</b> conserva i dati sul telefono in un database cifrato. Le letture arrivano da xDrip+ o da Dexcom Share. Se attivi opzioni come l'invio a Nightscout, i dati vanno dove li indirizzi tu.</li>
+      <li><b>Follow</b> passa da un server cloud (Firebase di Google): i dati che condividi con chi ti segue transitano da lì. Condividi solo con persone di cui ti fidi.</li>
+      <li><b>Il sito</b> non usa cookie né strumenti di analisi.</li>
+    </ul>
+  </section>
+
+  <!-- 6. Avvertenze -->
+  <section id="avvertenze">
+    <h2>Avvertenze</h2>
+    <div class="note">
+      <p><b>Non sono dispositivi medici</b> e non sostituiscono il parere del diabetologo, il sensore o gli strumenti ufficiali. Se una lettura o un allarme ti sembra sbagliato, fidati del sensore e dei dispositivi ufficiali.</p>
+      <p style="margin-top:10px">Diary include un calcolatore di bolo come strumento di appoggio: controlla sempre il risultato e confrontalo con le indicazioni del tuo team diabetologico prima di usarlo.</p>
+      <p style="margin-top:10px">Glyvia non è affiliata a Dexcom, xDrip+, Amazfit o ad altri marchi citati, che appartengono ai rispettivi proprietari.</p>
+    </div>
+  </section>
+
+  <!-- 7. Installazione -->
+  <section id="installazione">
+    <h2>Installazione e aggiornamenti</h2>
+    <p class="sub">Le app non sono sul Play Store: si installano da APK.</p>
+    <ol class="steps">
+      <li><b>Scarica</b> l'APK dalla sezione App della home.</li>
+      <li><b>Consenti</b> l'installazione da questa fonte e conferma l'avviso di Play Protect (Più dettagli, poi Installa comunque).</li>
+      <li><b>Aggiorna</b> installando la nuova versione sopra la vecchia.</li>
+    </ol>
+    <div class="note">
+      <p><b>Se Android rifiuta l'aggiornamento</b> la firma è diversa. Prima esporta un backup dall'app, poi disinstalla e reinstalla.</p>
+    </div>
+    <p class="sub" style="margin-top:14px">Versione corrente, data e SHA-256 di ogni APK sono nella sezione App della home, accanto al pulsante di download. <a href="/#apps">Vai ai download</a></p>
+  </section>
+
+  <!-- 8. Progetto -->
+  <section id="progetto">
+    <h2>Il progetto</h2>
+    <p class="sub">Glyvia nasce da una necessità personale: mi occupo di diabete di tipo 1 in prima persona e ho costruito gli strumenti che mi mancavano. Le uso da me: Diary da agosto, Follow da circa un mese.</p>
+    <p class="sub" style="margin-top:12px">Le app sono in sviluppo continuo. Il codice non è pubblico: si distribuiscono solo gli APK, con tutti i diritti riservati a me.</p>
+  </section>
+
+  <!-- 9. Contatti -->
+  <section id="contatti">
+    <h2>Segnalazioni e contatti</h2>
+    <p class="sub">Per un bug o una richiesta scrivimi su Telegram. Indica il modello del telefono, la versione di Android e la versione dell'app.</p>
+    <div class="actions">
+      <a class="btn p" href="https://t.me/ivansasi">Scrivimi su Telegram</a>
+      <a class="btn s" href="mailto:Ivansalvatorenasti@gmail.com?subject=Glyvia">Email</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- 10. Piè di pagina -->
+<footer>
+  <p><a href="/#apps">← Torna alle app</a></p>
+  <p>Il materiale su questo sito è informativo e non sostituisce il parere medico. Il sito non usa cookie né strumenti di analisi.</p>
+  <p>© 2026 IvanSasi · Sito realizzato da <a href="https://www.instagram.com/is_studiolab">IS | Inspiration Studio</a></p>
+</footer>
+
+</body>
+</html>
