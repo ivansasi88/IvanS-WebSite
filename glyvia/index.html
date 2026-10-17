@@ -40,6 +40,8 @@ a{color:inherit}
 .bar a{flex:none;text-decoration:none;font-size:14px;font-weight:600;color:var(--mute);padding:8px 14px;border-radius:999px}
 .bar a:hover{color:var(--text)}
 .bar a[aria-current="page"]{background:var(--lime);color:#000}
+.bar .home{width:38px;height:38px;padding:0;margin-right:4px;border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px rgba(198,255,61,.35),0 0 14px rgba(198,255,61,.2)}
+.bar .home img{display:block;width:100%;height:100%}
 .bar .cta{margin-left:auto;border:1px solid var(--line);color:var(--text)}
 
 main{max-width:960px;margin:0 auto;padding:0 16px 56px}
@@ -120,6 +122,7 @@ footer a{color:var(--text)}
 
 <header class="bar">
   <nav class="bar-in" aria-label="Principale">
+    <a class="home" href="/" aria-label="IvanSasi, torna alla home"><img src="/assets/favicon-192.png" width="38" height="38" alt=""></a>
     <a href="/#apps">App</a>
     <a href="/#card">Card</a>
     <a href="/#link">Link</a>
