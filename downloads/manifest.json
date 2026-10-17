@@ -60,18 +60,18 @@
       "order": 3,
       "versions": [
         {
+          "version": "3.10.22",
+          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.22.apk",
+          "size": 19318623,
+          "sha256": "302cea1053ae9efb283dd75178a91cf5ea23ab168b0b365f8657e55544966e3c",
+          "date": "2026-10-17"
+        },
+        {
           "version": "3.10.20",
           "file": "downloads/glyvia-diary/glyvia-diary-v3.10.20.apk",
           "size": 19318555,
           "sha256": "96cfef2471dc6f420fef5b6eca42c2829fd261fa3cae9b8f9cf64f5ad3153c9c",
           "date": "2026-10-16"
-        },
-        {
-          "version": "3.10.19",
-          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.19.apk",
-          "size": 19318551,
-          "sha256": "819f6f499c16c31e634cc7407e26236c15821081d72edd78cdfc89c96039634f",
-          "date": "2026-10-15"
         }
       ]
     },
@@ -85,18 +85,18 @@
       "order": 4,
       "versions": [
         {
+          "version": "0.9.10",
+          "file": "downloads/glyvia-follow/glyvia-follow-v0.9.10.apk",
+          "size": 39272696,
+          "sha256": "ea7c8b6d8e4a9990aa23340177de01c5f0e254a1ea9fc111451ca79d21129c27",
+          "date": "2026-10-17"
+        },
+        {
           "version": "0.9.9",
           "file": "downloads/glyvia-follow/glyvia-follow-v0.9.9.apk",
           "size": 39272696,
           "sha256": "65df9c10b37e7ca15eb101bd43e0b76164a178d6db8910f904f6b62f17089922",
           "date": "2026-10-16"
-        },
-        {
-          "version": "0.9.8",
-          "file": "downloads/glyvia-follow/glyvia-follow-v0.9.8.apk",
-          "size": 39256312,
-          "sha256": "010fe01613a7a46dc4c9b1c463855cd660f09bba9991f09e2c873188777fbbe6",
-          "date": "2026-10-15"
         }
       ]
     }
