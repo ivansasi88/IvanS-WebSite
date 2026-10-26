@@ -24,9 +24,15 @@ ROOT = Path(os.environ.get("DOWNLOADS_DIR", "downloads"))
 KEEP = 2
 MANIFEST = ROOT / "manifest.json"
 
+# Feed per l'aggiornamento dentro le app (le app leggono <SITE_URL>updates/<app>.json).
+SITE_URL = "https://ivansalvatoret1d.pages.dev/"
+UPDATES_DIR = Path(os.environ.get("UPDATES_DIR", "updates"))
+UPDATE_APPS = {"glyvia-emergency": "emergency", "glyvia-stock": "stock", "glyvia-diary": "diary", "glyvia-follow": "follow"}
+
 # Versione = 2-4 numeri separati da punti, prefisso "v" opzionale, subito prima di ".apk".
 # Tollera il suffisso " (1)" che i browser aggiungono ai file scaricati due volte.
-VERSION_RE = re.compile(r"(?<![\d.])v?(\d+(?:\.\d+){1,3})(?:\s*\(\d+\))?\.apk$", re.IGNORECASE)
+# Accetta anche il suffisso della build di Android Studio ("-b86") e i trattini bassi nella versione ("0_9_11").
+VERSION_RE = re.compile(r"(?<![\d.])v?(\d+(?:[._]\d+){1,3})(?:-b\d+)?(?:\s*\(\d+\))?\.apk$", re.IGNORECASE)
 ACCENT_RE = re.compile(r"^#[0-9a-fA-F]{3,8}$")
 
 DEFAULT_ACCENT = "#55d6ac"
@@ -129,7 +135,8 @@ def process_folder(folder, old_app, today):
         if not looks_like_apk(f):
             warn(f"{folder.name}/{f.name}: non sembra un APK valido (file vuoto o corrotto), ignorato.")
             continue
-        candidates.setdefault(vkey(m.group(1)), []).append((f, m.group(1)))
+        ver = m.group(1).replace("_", ".")
+        candidates.setdefault(vkey(ver), []).append((f, ver))
 
     chosen = []  # (vkey, version_string, path)
     for key, items in candidates.items():
@@ -174,6 +181,52 @@ def process_folder(folder, old_app, today):
     return versions
 
 
+def apk_version_code(path):
+    """versionCode letto dall'APK (serve pyaxmlparser, installato dal workflow)."""
+    try:
+        from pyaxmlparser import APK
+        code = APK(str(path)).version_code
+        return int(code)
+    except Exception as e:  # noqa: BLE001
+        warn(f"{path.name}: versionCode non leggibile ({e}).")
+        return None
+
+
+def write_updates(apps):
+    """Scrive updates/diary.json e updates/follow.json dalla versione piu' recente di ogni app."""
+    for a in apps:
+        name = UPDATE_APPS.get(a["slug"])
+        if not name or not a["versions"]:
+            continue
+        v = a["versions"][0]
+        code = apk_version_code(Path(v["file"]))
+        if code is None:
+            warn(f"{name}: feed aggiornamenti non aggiornato (manca il versionCode).")
+            continue
+        notes_file = Path(v["file"]).with_suffix(".txt")
+        target = UPDATES_DIR / f"{name}.json"
+        if notes_file.is_file():
+            notes = notes_file.read_text(encoding="utf-8").strip()[:500]
+        else:  # niente .txt: tieni le note gia' presenti nel feed
+            try:
+                notes = json.loads(target.read_text(encoding="utf-8")).get("notes", "")
+            except (OSError, ValueError, AttributeError):
+                notes = ""
+        data = {
+            "versionCode": code,
+            "versionName": v["version"],
+            "downloadUrl": SITE_URL + v["file"],
+            "sha256": v["sha256"],
+            "notes": notes,
+        }
+        UPDATES_DIR.mkdir(parents=True, exist_ok=True)
+        text = json.dumps(data, indent=2, ensure_ascii=False) + "\n"
+        old = target.read_text(encoding="utf-8") if target.exists() else ""
+        if text != old:
+            target.write_text(text, encoding="utf-8")
+            info(f"updates/{name}.json aggiornato ({v['version']}, build {code}).")
+
+
 def main():
     if not ROOT.is_dir():
         print(f"Cartella {ROOT} non trovata.", file=sys.stderr)
@@ -202,6 +255,8 @@ def main():
         info("manifest.json aggiornato.")
     else:
         info("manifest.json invariato.")
+
+    write_updates(apps)
 
     for a in apps:
         latest = a["versions"][0]["version"] if a["versions"] else "nessun APK"
