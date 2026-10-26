@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- IvanSasi sito v3.0 -->
+<!-- IvanSasi sito v3.3 -->
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -371,6 +371,11 @@ ul,ol{padding:0;list-style:none}
 .hero .chip{background:#0d0e04}
 @media(max-width:679px){.bar.c{right:-30px;bottom:10px;width:90px;height:10px}}
 @media(max-width:439px){.nav .btn{display:none}.nav-links{margin-right:auto}}
+/* telefoni stretti: le cinque voci del menu devono stare dentro la barra */
+@media(max-width:400px){.nav{gap:6px;padding-left:10px}.nav-links{gap:0}.nav-links a,.dd-btn{padding:9px 6px;font-size:13px}.dd-btn{gap:3px}}
+@media(max-width:350px){.nav-logo{display:none}.nav{padding-left:6px}.nav-links a,.dd-btn{padding:9px 5px;font-size:12.5px}}
+/* schede delle app: sfumatura a destra quando ce ne sono altre da scorrere */
+.tabbar.more{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 56px),transparent)}
 
 /* ---------- contatti ---------- */
 .connect{display:grid;gap:20px;text-align:left}
@@ -416,6 +421,7 @@ ul,ol{padding:0;list-style:none}
           <li><a href="https://www.amazon.it/dp/B0BPCRPXWK" target="_blank" rel="noopener">MySweetStitch, cerotti Dexcom G7<small>Amazon</small></a></li>
           <li><a href="https://www.amazon.it/dp/B0CGZ51GTS" target="_blank" rel="noopener">Cerotti Dexcom G7 impermeabili<small>Amazon</small></a></li>
           <li class="sep" role="separator"></li>
+          <li><a href="#siti">Siti utili sul diabete</a></li>
           <li><a href="#link">Vai alla sezione Link</a></li>
         </ul>
       </div>
@@ -529,7 +535,7 @@ ul,ol{padding:0;list-style:none}
     </div>
   </section>
 
-  <h3 class="subh">Per saperne di più</h3>
+  <h3 class="subh" id="siti">Per saperne di più</h3>
   <div class="links">
     <a class="tile linkcard" href="https://www.instagram.com/ivansasi/" target="_blank" rel="noopener"><span class="neon n-lime sm"><svg class="ico" aria-hidden="true"><use href="#d-first-aid-kit"/></svg></span><div><b>Pillole di Diabete</b><span class="d">I miei contenuti sul T1D, su Instagram e TikTok.</span></div><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
     <a class="tile linkcard" href="https://www.diabeteitalia.it/" target="_blank" rel="noopener"><span class="neon n-blue sm"><svg class="ico" aria-hidden="true"><use href="#d-shield-check"/></svg></span><div><b>Diabete Italia</b><span class="d">Rete di associazioni di pazienti, società scientifiche e operatori. Ha sezioni su diritti e normative.</span></div><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
@@ -599,7 +605,7 @@ ul,ol{padding:0;list-style:none}
     <h2 id="conn-t">Hai un progetto o una domanda? Scrivimi.</h2>
     <div class="btn-row">
       <a class="btn btn-paper" href="https://t.me/ivansasi" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-telegram"/></svg>Scrivimi su Telegram</a>
-      <a class="btn btn-ghost" href="mailto:Ivansalvatorenasti@gmail.com"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
+      <a class="btn btn-ghost" href="mailto:ivansalvatorenasti@gmail.com"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
     </div>
   </section>
 
@@ -643,7 +649,7 @@ ul,ol{padding:0;list-style:none}
   const APP_EXTRA={
     'glyvia-emergency':{minAndroid:'8.0',offlineFrom:'0',hidePrevBelow:'2.0.9',
       permissions:'Chiamate telefoniche.',
-      notice:'Se hai installato la 2.0.6 o una versione precedente, Android non permette di aggiornare perché la firma è cambiata. Annota i dati della scheda, disinstalla la vecchia app e installa la 2.0.9.'},
+      notice:'Se hai installato la 2.0.6 o una versione precedente, Android non permette di aggiornare perché la firma è cambiata. Annota i dati della scheda, disinstalla la vecchia app e installa l\'ultima versione.'},
     'glyvia-stock':{minAndroid:'8.0',offlineFrom:'1.6.1',
       permissions:'Fotocamera, notifiche, avvio al riavvio del telefono, servizio in primo piano e sblocco biometrico.'},
     'glyvia-diary':{minAndroid:'8.0',
@@ -763,6 +769,8 @@ ul,ol{padding:0;list-style:none}
       tabs.push(t);panels.push(p);bar.appendChild(t);
     });
     wrap.append(bar,...panels);
+    const fade=()=>bar.classList.toggle('more',bar.scrollLeft+bar.clientWidth<bar.scrollWidth-4);
+    bar.addEventListener('scroll',fade,{passive:true});window.addEventListener('resize',fade);requestAnimationFrame(fade);
     const dd=document.getElementById('dd-apps');
     if(dd){const sep=dd.querySelector('.sep');
       apps.forEach((a,i)=>{
