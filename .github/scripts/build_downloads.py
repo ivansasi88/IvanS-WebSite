@@ -220,6 +220,7 @@ def write_updates(apps):
             "notes": notes,
         }
         UPDATES_DIR.mkdir(parents=True, exist_ok=True)
+        target = UPDATES_DIR / f"{name}.json"
         text = json.dumps(data, indent=2, ensure_ascii=False) + "\n"
         old = target.read_text(encoding="utf-8") if target.exists() else ""
         if text != old:

@@ -10,17 +10,17 @@
       "order": 1,
       "versions": [
         {
+          "version": "2.0.11",
+          "file": "downloads/glyvia-emergency/glyvia-emergency-v2.0.11.apk",
+          "size": 1352233,
+          "sha256": "7fc1b6edcb63a2752004f3f3c329e5d3005d1a860988f7025feb865431a3c0c8",
+          "date": "2026-10-16"
+        },
+        {
           "version": "2.0.9",
           "file": "downloads/glyvia-emergency/glyvia-emergency-v2.0.9.apk",
           "size": 1352237,
           "sha256": "e920852de74819c1d48c374cdfd81d80109bc8c2a9efdb49fd49854ba7dee10e",
-          "date": "2026-10-15"
-        },
-        {
-          "version": "2.0.6",
-          "file": "downloads/glyvia-emergency/glyvia-emergency-v2.0.6.apk",
-          "size": 376308,
-          "sha256": "491812ed74c398f715af0efd3041e87e35875307bdb7472bbba3124fd6cd5840",
           "date": "2026-10-15"
         }
       ]
@@ -35,17 +35,17 @@
       "order": 2,
       "versions": [
         {
+          "version": "1.6.3",
+          "file": "downloads/glyvia-stock/glyvia-stock-v1.6.3.apk",
+          "size": 28669443,
+          "sha256": "c4d7692fec05b50102b403bcf9a65db201edb30f50f539c6f53bb761118d344f",
+          "date": "2026-10-16"
+        },
+        {
           "version": "1.6.1",
           "file": "downloads/glyvia-stock/glyvia-stock-v1.6.1.apk",
           "size": 28653063,
           "sha256": "fe9c60155ec2b50fd9e0b8d40e8b39c4ee6f50f98dc0e0b2c1edfbbd115e704a",
-          "date": "2026-10-15"
-        },
-        {
-          "version": "1.6.0",
-          "file": "downloads/glyvia-stock/glyvia-stock-v1.6.0.apk",
-          "size": 39722908,
-          "sha256": "67816ad1ec8a3675cae746d17025d88c08ebf2598401a9854552713bed43d6fa",
           "date": "2026-10-15"
         }
       ]
@@ -58,7 +58,47 @@
       "icon": "assets/glyvia-diary.svg",
       "accent": "#4da3ff",
       "order": 3,
-      "versions": []
+      "versions": [
+        {
+          "version": "3.10.22",
+          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.22.apk",
+          "size": 19318623,
+          "sha256": "302cea1053ae9efb283dd75178a91cf5ea23ab168b0b365f8657e55544966e3c",
+          "date": "2026-10-17"
+        },
+        {
+          "version": "3.10.20",
+          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.20.apk",
+          "size": 19318555,
+          "sha256": "96cfef2471dc6f420fef5b6eca42c2829fd261fa3cae9b8f9cf64f5ad3153c9c",
+          "date": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "slug": "glyvia-follow",
+      "title": "Glyvia Follow",
+      "tag": "FOLLOW · T1D",
+      "description": "Segue da remoto la glicemia letta da Glyvia Diary, senza sensore diretto.",
+      "icon": "assets/glyvia-follow.svg",
+      "accent": "#a45bff",
+      "order": 4,
+      "versions": [
+        {
+          "version": "0.9.10",
+          "file": "downloads/glyvia-follow/glyvia-follow-v0.9.10.apk",
+          "size": 39272696,
+          "sha256": "ea7c8b6d8e4a9990aa23340177de01c5f0e254a1ea9fc111451ca79d21129c27",
+          "date": "2026-10-17"
+        },
+        {
+          "version": "0.9.9",
+          "file": "downloads/glyvia-follow/glyvia-follow-v0.9.9.apk",
+          "size": 39272696,
+          "sha256": "65df9c10b37e7ca15eb101bd43e0b76164a178d6db8910f904f6b62f17089922",
+          "date": "2026-10-16"
+        }
+      ]
     }
   ]
 }

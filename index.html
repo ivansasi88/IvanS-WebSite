@@ -283,6 +283,9 @@ ul,ol{padding:0;list-style:none}
 .studio .frame{background:#040404}
 .studio .tile-title{font-weight:400}
 .studio .frame img{width:96px;height:auto;border-radius:0}
+.studio-site-mark{display:block;border-radius:34px}
+.studio-site-mark .frame{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+@media(hover:hover){.studio-site-mark:hover .frame{transform:translateY(-3px);border-color:rgba(var(--r),.9);box-shadow:inset 0 0 30px rgba(var(--r),.3),0 4px 38px rgba(var(--r),.48),0 0 100px rgba(var(--r),.22)}}
 .btn-row .btn{min-height:46px;padding:0 18px;font-size:14.5px}
 
 /* ---------- accessori (link ai prodotti) ---------- */
@@ -416,6 +419,7 @@ ul,ol{padding:0;list-style:none}
           <li><a href="#link">Vai alla sezione Link</a></li>
         </ul>
       </div>
+      <a href="/glyvia/">Glyvia</a>
       <a href="#studio-sec">Design</a>
     </nav>
     <a class="btn btn-paper" href="https://t.me/ivansasi" target="_blank" rel="noopener">Scrivimi</a>
@@ -547,8 +551,8 @@ ul,ol{padding:0;list-style:none}
         <button type="button" class="voice" id="vb-social" aria-expanded="false" aria-controls="v-social">Sticker e grafiche social<svg class="ico" aria-hidden="true"><use href="#i-caret"/></svg></button>
       </div>
       <div class="btn-row">
+        <a class="btn btn-paper" href="https://is-inspirationstudio.pages.dev/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg>Visita il sito</a>
         <a class="btn btn-paper" href="mailto:ivaninspirationstudio@gmail.com?subject=Richiesta%20preventivo%20IS%20Inspiration%20Studio&body=Ciao%20Ivan%2C%0A%0Avorrei%20richiedere%20un%20preventivo%20per%3A%20"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Richiedi preventivo</a>
-        <a class="btn btn-ghost" href="https://t.me/ivansasi" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-telegram"/></svg>Telegram</a>
         <a class="btn btn-ghost" href="https://www.instagram.com/is_studiolab" target="_blank" rel="noopener">Portfolio<svg class="ico" aria-hidden="true"><use href="#i-arrow-ur"/></svg></a>
       </div>
     </div>
@@ -609,11 +613,25 @@ ul,ol{padding:0;list-style:none}
   <footer class="foot">
     <p class="big">T1D senza filtri.</p>
     <p>Il materiale su questo sito è informativo e non sostituisce il parere medico. Il sito non usa cookie né strumenti di analisi.</p>
-    <p>© 2026 IvanSasi · Sito realizzato da <a href="https://www.instagram.com/is_studiolab" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">IS | Inspiration Studio</a></p>
+    <p>© 2026 IvanSasi · Sito realizzato da <a href="https://is-inspirationstudio.pages.dev/" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">IS | Inspiration Studio</a></p>
   </footer>
 </main>
 
 <script>
+/* Il monogramma IS nel riquadro Design porta al sito dello studio. */
+(function(){
+  const frame=document.querySelector('#studio .feat-art .frame');
+  if(!frame)return;
+  const link=document.createElement('a');
+  link.className='studio-site-mark';
+  link.href='https://is-inspirationstudio.pages.dev/';
+  link.target='_blank';
+  link.rel='noopener';
+  link.setAttribute('aria-label','Visita il sito IS | Inspiration Studio');
+  frame.before(link);
+  link.appendChild(frame);
+})();
+
 /* ---- Card delle app: generate da downloads/manifest.json (aggiornato da GitHub Actions) ---- */
 (function(){
   const box=document.getElementById('appsBox');
