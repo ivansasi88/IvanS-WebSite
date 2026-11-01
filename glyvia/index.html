@@ -127,6 +127,16 @@ footer a{color:var(--text)}
 .faces img{width:76px;height:76px;border-radius:50%;border:2px solid var(--line)}
 .faces figcaption{flex-basis:100%;color:var(--mute);font-size:14px}
 @media (min-width:720px){.mascot{width:168px;height:168px}.faces img{width:96px;height:96px}}
+
+@media(prefers-reduced-motion:no-preference){
+  @keyframes cfloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-2deg)}}
+  .mascot{animation:cfloat 4.5s ease-in-out infinite;cursor:pointer;transition:opacity .2s}
+  .mascot.sw{opacity:0}
+  .faces img{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+  .faces img:hover{transform:translateY(-6px) scale(1.08)}
+  html.fx .faces img{opacity:0;transform:scale(.8)}
+  html.fx .faces.in img{opacity:1;transform:none;transition:opacity .5s calc(var(--i)*90ms),transform .5s cubic-bezier(.34,1.56,.64,1) calc(var(--i)*90ms)}
+}
 </style>
 </head>
 <body>
@@ -327,5 +337,17 @@ footer a{color:var(--text)}
   <p>© 2026 IvanSasi · Sito realizzato da <a href="https://www.instagram.com/is_studiolab">IS | Inspiration Studio</a></p>
 </footer>
 
+<script>
+(()=>{
+  const ok=!matchMedia('(prefers-reduced-motion: reduce)').matches&&!/Instagram|FBAN|FBAV|FB_IAB|TikTok|Snapchat|Threads/i.test(navigator.userAgent);
+  const m=document.querySelector('.mascot');if(!m||!ok)return;
+  const set=['in-range','high','hyper','hypo'];let n=0;
+  m.addEventListener('click',()=>{n=(n+1)%set.length;m.classList.add('sw');setTimeout(()=>{m.src='/assets/callisto/callisto-'+set[n]+'.webp';m.classList.remove('sw')},200)});
+  const f=document.querySelector('.faces');
+  if(f&&'IntersectionObserver' in window){document.documentElement.classList.add('fx');f.querySelectorAll('img').forEach((im,i)=>im.style.setProperty('--i',i));
+    new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){f.classList.add('in');o.disconnect()}})).observe(f);
+    setTimeout(()=>f.classList.add('in'),6000)}
+})();
+</script>
 </body>
 </html>
