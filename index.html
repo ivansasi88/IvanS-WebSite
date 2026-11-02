@@ -214,6 +214,31 @@ html:not(.fx) .trace .dot{display:none}
   html.fx .tile.glow::before{opacity:1}
 }
 
+
+.chip a{display:inline-flex;align-items:center;min-height:34px;margin:0 -14px;padding:0 14px;border-radius:12px;color:inherit;text-decoration:none;transition:background .2s,color .2s}
+.chip a:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+@media(hover:hover){.chip a:hover{background:rgba(var(--lime-rgb),.18);color:#fff}}
+.sec{scroll-margin-top:88px}
+.sos{display:inline-flex;align-items:center;gap:6px;margin-left:10px;padding:3px 10px;border-radius:8px;border:1px solid rgba(255,107,74,.6);background:rgba(255,107,74,.1);color:#ffb3a3;font-size:12.5px;font-weight:700;vertical-align:middle}
+.sos::before{content:"";width:7px;height:7px;border-radius:50%;background:#ff6b4a}
+#card ~ .pair .pdf{border-color:rgba(255,107,74,.38)}
+.mailline{margin-top:14px;color:var(--text-2);font-size:14px;overflow-wrap:anywhere}
+.bio a{color:var(--lime)}
+@media(prefers-reduced-motion:no-preference){
+  @keyframes sosp{0%,100%{box-shadow:0 0 0 0 rgba(255,107,74,.55)}60%{box-shadow:0 0 0 7px rgba(255,107,74,0)}}
+  html.fx .sos::before{animation:sosp 2.4s ease-out infinite}
+  html.fx.off .sos::before{animation-play-state:paused}
+  @keyframes btnp{0%{box-shadow:0 0 0 0 rgba(var(--lime-rgb),.6)}100%{box-shadow:0 0 0 14px rgba(var(--lime-rgb),0)}}
+  html.fx .pulse{animation:btnp 1.1s ease-out 2}
+  html.fx .steps li{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--s,0)*140ms)}
+  html.fx .steps.in li{opacity:1;transform:none}
+  html.fx .steps.in li .neon{animation:stepn .7s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(var(--s,0)*140ms + 150ms)}
+  @keyframes stepn{from{transform:scale(.6);opacity:.2}}
+  html.fx .vpanel:not([hidden]){animation:tabin .45s cubic-bezier(.16,1,.3,1)}
+  html.fx .clip{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+}
+@media(prefers-reduced-motion:no-preference) and (hover:hover){html.fx .clip:hover{transform:translateY(-4px)}}
+
 /* ---------- bio con puntini stellati ---------- */
 .bio{display:flex;align-items:center;min-height:170px;overflow:hidden;background:
   radial-gradient(1.2px 1.2px at 8% 22%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 22% 78%,rgba(255,255,255,.45),transparent),
@@ -468,17 +493,17 @@ html:not(.fx) .trace .dot{display:none}
         <h1 id="h1">IVANSASI</h1>
       </div>
       <p class="sub rv" style="--d:2">Pillole di Diabete</p>
-      <p class="tag rv" style="--d:3">T1D senza filtri: card d'emergenza, app e link utili.</p>
+      <p class="tag rv" style="--d:3">Divulgazione e app gratuite per chi vive con il diabete di tipo 1.</p>
       <ul class="chips rv" style="--d:4">
-        <li class="chip">Divulgazione T1D</li>
-        <li class="chip">Card d'emergenza</li>
-        <li class="chip">App Android</li>
+        <li class="chip"><a href="#link">Divulgazione T1D</a></li>
+        <li class="chip"><a href="#card">Card d'emergenza</a></li>
+        <li class="chip"><a href="#apps">App Android</a></li>
       </ul>
     </div>
   </section>
 
   <section class="tile bio" aria-label="Chi sono">
-    <p>Divulgo il <b>diabete di tipo 1</b> senza giri di parole e sviluppo <b>piccole app Android gratuite</b> per la vita di tutti i giorni. Disegno anche grafiche per creator e live con IS | Inspiration Studio.</p>
+    <p>Divulgo il <b>diabete di tipo 1</b> senza giri di parole e sviluppo <b>piccole app Android gratuite</b> per la vita di tutti i giorni. Disegno anche grafiche per creator e live con IS | Inspiration Studio: <a href="#studio-sec"><u>vai alla sezione Design</u></a>.</p>
   </section>
 
   <!-- app -->
@@ -516,7 +541,7 @@ html:not(.fx) .trace .dot{display:none}
   </section>
 
   <!-- card d'emergenza -->
-  <div class="sec" id="card"><h2>Card d'emergenza</h2><p>Da stampare e tenere nel portafoglio.</p></div>
+  <div class="sec" id="card"><h2>Card d'emergenza</h2><p>Da stampare e tenere nel portafoglio.</p><span class="sos">Da avere sempre con te</span></div>
 
   <div class="pair">
     <section class="tile pdf n-blue" id="card-t1d" aria-labelledby="pdf1-t">
@@ -629,6 +654,7 @@ html:not(.fx) .trace .dot{display:none}
       <a class="btn btn-paper" href="https://t.me/ivansasi" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-telegram"/></svg>Scrivimi su Telegram</a>
       <a class="btn btn-ghost" href="mailto:ivansalvatorenasti@gmail.com"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
     </div>
+    <p class="mailline">Oppure scrivi a <a href="mailto:ivansalvatorenasti@gmail.com"><u>ivansalvatorenasti@gmail.com</u></a></p>
   </section>
 
   <div class="socials">
@@ -898,6 +924,12 @@ html:not(.fx) .trace .dot{display:none}
   const box=document.getElementById('appsBox');
   if(box)new MutationObserver(scan).observe(box,{childList:true,subtree:true});
   setTimeout(()=>document.querySelectorAll('main .tile,main .sec').forEach(n=>n.classList.add('in')),6000);
+  const io2=new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target)}}),{threshold:.2});
+  setTimeout(()=>document.querySelectorAll('.steps').forEach(n=>n.classList.add('in')),6000);
+  document.querySelectorAll('.steps').forEach(st=>{st.querySelectorAll('li').forEach((li,i)=>li.style.setProperty('--s',i));io2.observe(st)});
+  const pulseIO=new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('pulse');o.unobserve(e.target)}}),{threshold:.9});
+  const pulseScan=()=>document.querySelectorAll('.pdf .btn-paper,.apptabs [role=tabpanel] a.btn-paper').forEach(b=>{if(!b.dataset.p){b.dataset.p=1;pulseIO.observe(b)}});
+  pulseScan();if(box)new MutationObserver(pulseScan).observe(box,{childList:true,subtree:true});
   let tk=0;addEventListener('scroll',()=>{if(tk)return;tk=setTimeout(()=>{tk=0;document.querySelectorAll('main .tile:not(.in),main .sec:not(.in)').forEach(n=>{if(n.getBoundingClientRect().top<innerHeight*.92){n.classList.add('in');io.unobserve(n)}})},120)},{passive:true});
   const hero=document.querySelector('.hero');
   if(hero)new IntersectionObserver(es=>root.classList.toggle('off',!es[0].isIntersecting)).observe(hero);
