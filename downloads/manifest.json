@@ -60,18 +60,18 @@
       "order": 3,
       "versions": [
         {
+          "version": "3.14.0",
+          "file": "downloads/glyvia-diary/glyvia-diary-v3.14.0.apk",
+          "size": 19375494,
+          "sha256": "33f120533b3aee7e80173bb72b7bec70d8d70d62a0447b8e33e4da39c6c721c7",
+          "date": "2026-11-16"
+        },
+        {
           "version": "3.10.25",
           "file": "downloads/glyvia-diary/glyvia-diary-v3.10.25.apk",
           "size": 19336167,
           "sha256": "1e83bf36de9fbd6c6e0644988e64733f6993545726bb59eebc5ba56047b523ef",
           "date": "2026-10-31"
-        },
-        {
-          "version": "3.10.23",
-          "file": "downloads/glyvia-diary/glyvia-diary-v3.10.23.apk",
-          "size": 19336167,
-          "sha256": "3392be1ef558eff58fe716edcae2de2365e965f6a43f01bf398fd9ced5cf453d",
-          "date": "2026-10-26"
         }
       ]
     },
